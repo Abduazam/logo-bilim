@@ -13,13 +13,6 @@
                 </div>
             </div>
         </div>
-         <table class="table table-bordered">
-             @foreach($languages as $item)
-             <tr wire:key="language-row-{{$item->id}}">
-                 <td>{{ $item->title }}</td>
-                 <td>@livewire('features.languages.edit', [$item], key('language-' . $item->id))</td>
-             </tr>
-             @endforeach
-         </table>
+        <x-forms.tables.table :data="$languages" :columns="$columns" model="language" />
     </div>
 </div>

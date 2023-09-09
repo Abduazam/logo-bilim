@@ -18,9 +18,9 @@ class LanguageRepository implements RepositoryInterface
         return Language::first();
     }
 
-    public function getFiltered($search)
+    public function getFiltered($columns, $search)
     {
-        return Language::select('id', 'slug', 'title', 'thumbnail', 'created_at')
+        return Language::select($columns)
             ->when($search, function ($query, $search) {
                 return $query->where('title', 'like', '%' . $search . '%');
             })->get();

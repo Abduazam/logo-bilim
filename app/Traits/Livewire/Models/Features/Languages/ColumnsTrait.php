@@ -2,6 +2,8 @@
 
 namespace App\Traits\Livewire\Models\Features\Languages;
 
+use App\Contracts\Enums\General\Braces\CurlyBracesEnum;
+
 trait ColumnsTrait
 {
     public array $columns = [
@@ -12,7 +14,19 @@ trait ColumnsTrait
             'method' => [
                 'active' => false,
                 'name' => null,
-                'braces' => null
+                'braces' => null,
+                'class' => null,
+            ]
+        ],
+        'thumbnail' => [
+            'sort' => [
+                'active' => false,
+            ],
+            'method' => [
+                'active' => true,
+                'name' => 'getThumbnail',
+                'braces' => CurlyBracesEnum::SINGLE_CURLY_BRACE,
+                'class' => null,
             ]
         ],
         'slug' => [
@@ -22,7 +36,8 @@ trait ColumnsTrait
             'method' => [
                 'active' => false,
                 'name' => null,
-                'braces' => null
+                'braces' => null,
+                'class' => null,
             ]
         ],
         'title' => [
@@ -32,17 +47,8 @@ trait ColumnsTrait
             'method' => [
                 'active' => false,
                 'name' => null,
-                'braces' => null
-            ]
-        ],
-        'thumbnail' => [
-            'sort' => [
-                'active' => false,
-            ],
-            'method' => [
-                'active' => false,
-                'name' => null,
-                'braces' => null
+                'braces' => null,
+                'class' => null,
             ]
         ],
         'created_at' => [
@@ -52,10 +58,14 @@ trait ColumnsTrait
             'method' => [
                 'active' => false,
                 'name' => null,
-                'braces' => null
+                'braces' => null,
+                'class' => null,
             ]
         ],
     ];
 
-
+    public function getColumnKeys(): array
+    {
+        return array_keys($this->columns);
+    }
 }
