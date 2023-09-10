@@ -8,12 +8,12 @@ use Illuminate\View\View;
 use Livewire\WithFileUploads;
 use App\Traits\Livewire\General\DataTrait;
 use App\Models\Features\Languages\Language;
-use App\Traits\Livewire\General\DispatchTrait;
 use Illuminate\Validation\ValidationException;
+use App\Traits\Livewire\General\DispatchTrait;
 use App\Livewire\Features\Languages\Forms\LanguageForm;
-use App\Services\Features\Languages\Edit\LanguageEditService;
+use App\Services\Features\Languages\Delete\LanguageDeleteService;
 
-class Edit extends Component
+class Delete extends Component
 {
     use DataTrait, DispatchTrait, WithFileUploads;
 
@@ -26,26 +26,19 @@ class Edit extends Component
         $this->form->setValues($item);
     }
 
-    public function removeImage(): void
-    {
-        $this->form->language->thumbnail = null;
-        $this->form->removeImage = true;
-    }
-
     /**
      * @throws Exception
      */
-    public function edit(): void
+    public function delete(): void
     {
         try {
             $this->validate();
 
-            $service = new LanguageEditService($this->form);
+            $service = new LanguageDeleteService($this->form->language);
             $service->callMethod();
 
-            $this->dispatchActionSuccess('fa fa-check text-success', 'editing-successful', $this->form->title);
+            $this->dispatchActionSuccess('fa fa-check text-success', 'deleting-successful', $this->form->title);
             $this->dispatch('refresh');
-            $this->form->resetValues();
         } catch (ValidationException $e) {
             $this->dispatchValidateError($e);
         }
@@ -53,6 +46,6 @@ class Edit extends Component
 
     public function render(): View
     {
-        return view('livewire.features.languages.edit');
+        return view('livewire.features.languages.delete');
     }
 }

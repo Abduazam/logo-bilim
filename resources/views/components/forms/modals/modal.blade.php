@@ -1,7 +1,7 @@
 <div wire:ignore.self class="modal fade" id="{{ $target }}" tabindex="-1" role="dialog" aria-labelledby="{{ $target }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered {{ $size }}" role="document">
         <div class="modal-content text-start">
-            <form wire:submit.prevent="create" class="form-border-radius">
+            <form wire:submit.prevent="{{ $action }}" class="form-border-radius">
                 <div class="block block-rounded shadow-none fs-sm mb-0">
                     <div class="block-header block-header-default">
                         <h3 class="block-title fs-sm">{{ $title }}</h3>

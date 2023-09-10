@@ -13,6 +13,6 @@
                 </div>
             </div>
         </div>
-        <x-forms.tables.table :data="$languages" :columns="$columns" model="language" />
+        <livewire:components.forms.tables.table lazy="on-load" :data="$languages" :columns="$columns" :buttons="$this->getActionsData('table')" model="language" />
     </div>
 </div>

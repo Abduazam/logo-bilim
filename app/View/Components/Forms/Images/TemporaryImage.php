@@ -15,6 +15,8 @@ class TemporaryImage extends Component
     public function __construct(
         protected LanguageForm $form,
         protected string $model,
+        protected $item = null,
+        protected ?string $method = null,
         protected string $class = 'w-100',
     )
     {
@@ -29,6 +31,8 @@ class TemporaryImage extends Component
         return view('components.forms.images.temporary-image', [
             'form' => $this->form,
             'model' => $this->model,
+            'item' => $this->item,
+            'method' => $this->method,
             'class' => $this->class,
         ]);
     }

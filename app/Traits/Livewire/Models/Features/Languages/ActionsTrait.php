@@ -8,8 +8,9 @@ trait ActionsTrait
         'table' => [
             'edit' => [
                 'target' => null,
+                'livewire' => 'features.languages.edit',
                 'style' => [
-                    'color' => null,
+                    'color' => 'bg-info text-white',
                     'margin' => null,
                 ],
                 'modal' => [
@@ -24,8 +25,9 @@ trait ActionsTrait
             ],
             'delete' => [
                 'target' => null,
+                'livewire' => 'features.languages.delete',
                 'style' => [
-                    'color' => null,
+                    'color' => 'bg-pulse text-white',
                     'margin' => null,
                 ],
                 'modal' => [
@@ -43,6 +45,7 @@ trait ActionsTrait
         'filter' => [
             'create' => [
                 'target' => 'create-language',
+                'livewire' => null,
                 'style' => [
                     'color' => null,
                     'margin' => null,

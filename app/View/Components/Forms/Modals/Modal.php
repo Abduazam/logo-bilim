@@ -41,6 +41,7 @@ class Modal extends Component implements ModalInterface
     {
         return view('components.forms.modals.modal', [
             'target' => $this->target,
+            'action' => $this->action,
             'size' => $this->getSize(),
             'title' => $this->getHeadTitle(),
             'buttons' => $this->getButtons(),

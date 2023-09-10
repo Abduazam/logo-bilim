@@ -5,16 +5,6 @@
 }
 
 /**
- * Button css.
- */
-.btn-small {
-    padding: 1px 7px;
-}
-.btn-small i {
-    font-size: 13px;
-}
-
-/**
  * Table css.
  */
 .own-table thead tr {

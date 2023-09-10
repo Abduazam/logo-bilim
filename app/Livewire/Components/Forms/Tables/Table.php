@@ -1,23 +1,21 @@
 <?php
 
-namespace App\View\Components\Forms\Tables;
+namespace App\Livewire\Components\Forms\Tables;
 
+use Livewire\Component;
+use Illuminate\View\View;
+use Livewire\Attributes\Reactive;
+use Illuminate\Database\Eloquent\Collection;
 use App\Contracts\Enums\General\Braces\CurlyBracesEnum;
 use App\Contracts\Interfaces\Components\Forms\Tables\TableInterface;
-use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 
 class Table extends Component implements TableInterface
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(
-        protected $data,
-        protected array $columns,
-        protected string $model,
-    ) { }
+    #[Reactive]
+    public Collection $data;
+    public array $columns;
+    public array $buttons;
+    public string $model;
 
     public function getColumnNames(): array
     {
@@ -46,15 +44,17 @@ class Table extends Component implements TableInterface
         return $this->columns[$column]['method']['class'];
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function placeholder(): string
     {
-        return view('components.forms.tables.table', [
-            'data' => $this->data,
-            'columns' => $this->getColumnNames(),
-            'model' => $this->model,
-        ]);
+        return <<<'HTML'
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <i class="far fa-2x fa-sun fa-spin me-3"></i> Loading data..
+            </div>
+        HTML;
+    }
+
+    public function render(): View
+    {
+        return view('livewire.components.forms.tables.table');
     }
 }

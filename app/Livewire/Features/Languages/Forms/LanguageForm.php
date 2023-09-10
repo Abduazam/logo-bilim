@@ -10,7 +10,7 @@ class LanguageForm extends Form
 {
     public Language $language;
 
-    #[Rule('required|string|min:2|unique:languages,slug')]
+    #[Rule('required|string|min:2')] # unique:languages,slug
     public ?string $slug = null;
 
     #[Rule('required|string|min:2')]
@@ -24,4 +24,20 @@ class LanguageForm extends Form
 
     #[Rule('required|string')]
     public string $folder = 'features/languages';
+
+    #[Rule('required|boolean')]
+    public bool $removeImage = false;
+
+    public function setValues(Language $item): void
+    {
+        $this->language = $item;
+        $this->slug = $item->slug;
+        $this->title = $item->title;
+    }
+
+    public function resetValues(): void
+    {
+        $this->thumbnail = null;
+        $this->removeImage = false;
+    }
 }
