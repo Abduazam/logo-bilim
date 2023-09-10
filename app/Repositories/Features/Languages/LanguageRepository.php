@@ -18,11 +18,17 @@ class LanguageRepository implements RepositoryInterface
         return Language::first();
     }
 
-    public function getFiltered($columns, $search)
+    public function getFiltered($columns, $search, $trashed)
     {
         return Language::select($columns)
             ->when($search, function ($query, $search) {
                 return $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->when($trashed === 1, function ($query) {
+                return $query->onlyTrashed();
+            })
+            ->when($trashed === 2, function ($query) {
+                return $query->withTrashed();
             })->get();
     }
 

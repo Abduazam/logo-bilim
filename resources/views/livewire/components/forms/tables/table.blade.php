@@ -24,11 +24,15 @@
                 @endforeach
                 <td class="text-center">
                     @foreach($buttons as $key => $button)
-                        @php
-                            $button['target'] = $key . '-' . $model . '-n' . $item->id;
-                        @endphp
+                        @if(!$item->trashed() and !in_array($key, ['restore', 'forceDelete']))
+                            @php
+                                $button['target'] = $key . '-' . $model . '-n' . $item->id;
+                            @endphp
 
-                        @livewire($button['livewire'], ['item' => $item, 'data' => $button], key($model . '-' . $key . '-n' . $item->id))
+                            @livewire($button['livewire'], ['item' => $item, 'data' => $button], key($model . '-' . $key . '-n' . $item->id))
+                        @else
+                            1
+                        @endif
                     @endforeach
                 </td>
             </tr>

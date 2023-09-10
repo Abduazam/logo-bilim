@@ -19,7 +19,9 @@ class Table extends Component implements TableInterface
 
     public function getColumnNames(): array
     {
-        return array_keys($this->columns);
+        return array_keys(array_filter($this->columns, function ($column) {
+            return $column['visible'] === true;
+        }));
     }
 
     public function getColumnMethod($column): string|null

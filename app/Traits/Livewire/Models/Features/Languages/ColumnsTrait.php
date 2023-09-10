@@ -16,7 +16,8 @@ trait ColumnsTrait
                 'name' => null,
                 'braces' => null,
                 'class' => null,
-            ]
+            ],
+            'visible' => true,
         ],
         'thumbnail' => [
             'sort' => [
@@ -27,7 +28,8 @@ trait ColumnsTrait
                 'name' => 'getThumbnail',
                 'braces' => CurlyBracesEnum::SINGLE_CURLY_BRACE,
                 'class' => null,
-            ]
+            ],
+            'visible' => true,
         ],
         'slug' => [
             'sort' => [
@@ -38,7 +40,8 @@ trait ColumnsTrait
                 'name' => null,
                 'braces' => null,
                 'class' => null,
-            ]
+            ],
+            'visible' => true,
         ],
         'title' => [
             'sort' => [
@@ -49,7 +52,8 @@ trait ColumnsTrait
                 'name' => null,
                 'braces' => null,
                 'class' => null,
-            ]
+            ],
+            'visible' => true,
         ],
         'created_at' => [
             'sort' => [
@@ -60,7 +64,20 @@ trait ColumnsTrait
                 'name' => null,
                 'braces' => null,
                 'class' => null,
-            ]
+            ],
+            'visible' => true,
+        ],
+        'deleted_at' => [
+            'sort' => [
+                'active' => false,
+            ],
+            'method' => [
+                'active' => false,
+                'name' => null,
+                'braces' => null,
+                'class' => null,
+            ],
+            'visible' => false,
         ],
     ];
 

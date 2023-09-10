@@ -1,17 +1,20 @@
 <?php
 
-namespace App\View\Components\Livewire\General;
+namespace App\View\Components\Livewire\Filter;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Table extends Component
+class Select extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(protected $data)
+    public function __construct(
+        protected string $model,
+        protected array $data,
+    )
     {
         //
     }
@@ -21,8 +24,9 @@ class Table extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.livewire.general.table', [
-            'data' => $this->data
+        return view('components.livewire.filter.select', [
+            'model' => $this->model,
+            'data' => $this->data,
         ]);
     }
 }
