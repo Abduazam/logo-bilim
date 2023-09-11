@@ -9,7 +9,7 @@ trait ColumnsTrait
     public array $columns = [
         'id' => [
             'sort' => [
-                'active' => false,
+                'active' => true,
             ],
             'method' => [
                 'active' => false,
@@ -61,7 +61,7 @@ trait ColumnsTrait
         ],
         'created_at' => [
             'sort' => [
-                'active' => false,
+                'active' => true,
             ],
             'method' => [
                 'active' => false,

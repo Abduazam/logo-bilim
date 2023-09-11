@@ -54,3 +54,10 @@
 .btn-sm i {
     font-size: 13px;
 }
+
+/**
+ * Global classes css.
+ */
+.cursor-pointer {
+    cursor: pointer;
+}

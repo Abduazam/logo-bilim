@@ -16,11 +16,22 @@ class Table extends Component implements TableInterface
     public array $columns;
     public array $buttons;
     public string $model;
+    #[Reactive]
+    public string $orderBy;
+    #[Reactive]
+    public string $orderDirection;
 
     public function getColumnNames(): array
     {
         return array_keys(array_filter($this->columns, function ($column) {
             return $column['visible'] === true;
+        }));
+    }
+
+    public function getColumnSorted(): array
+    {
+        return array_keys(array_filter($this->columns, function ($column) {
+            return $column['sort']['active'] === true;
         }));
     }
 
@@ -44,6 +55,16 @@ class Table extends Component implements TableInterface
     public function getColumnMethodClass($column): string|null
     {
         return $this->columns[$column]['method']['class'];
+    }
+
+    public function sortUp($column): bool
+    {
+        return $column === $this->orderBy and $this->orderDirection === 'asc';
+    }
+
+    public function sortDown($column): bool
+    {
+        return $column === $this->orderBy and $this->orderDirection === 'desc';
     }
 
     public function placeholder(): string

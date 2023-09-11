@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <livewire:components.forms.tables.table lazy="on-load" :data="$this->getObjectFromData($languages)" :columns="$columns" :buttons="$this->getActionsData('table')" model="language" />
+        <livewire:components.forms.tables.table lazy="on-load" :data="$this->getObjectFromData($languages)" :columns="$columns" :buttons="$this->getActionsData('table')" model="language" :orderBy="$orderBy" :orderDirection="$orderDirection" />
         <x-helpers.pagination-navbar :data="$languages" />
     </div>
 </div>

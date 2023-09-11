@@ -3,7 +3,20 @@
         <thead>
         <tr>
             @foreach($this->getColumnNames() as $column)
-                <th class="text-center">{{ $column }}</th>
+                @if(in_array($column, $this->getColumnSorted()))
+                    <th wire:click='$parent.sortBy("{{ $column }}")' class="d-flex justify-content-center align-items-center cursor-pointer">
+                        <span class="me-2">{{ $column }}</span>
+                        @if($this->sortUp($column))
+                            <i class="fa fa-sort-up text-gray-dark mt-1"></i>
+                        @elseif($this->sortDown($column))
+                            <i class="fa fa-sort-down text-gray-dark mb-1"></i>
+                        @else
+                            <i class="fa fa-sort text-gray-dark"></i>
+                        @endif
+                    </th>
+                @else
+                    <th class="text-center">{{ $column }}</th>
+                @endif
             @endforeach
             <th class="text-center">actions</th>
         </tr>

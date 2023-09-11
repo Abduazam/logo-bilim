@@ -18,7 +18,7 @@ class LanguageRepository implements RepositoryInterface
         return Language::first();
     }
 
-    public function getFiltered($columns, $searches, $search, $trashed, $perPage)
+    public function getFiltered($columns, $searches, $search, $trashed, $perPage, $orderBy, $orderDirection)
     {
         $languages = Language::select($columns)
             ->when($search, function ($query, $search) use ($searches) {
@@ -33,8 +33,8 @@ class LanguageRepository implements RepositoryInterface
             })
             ->when($trashed === 2, function ($query) {
                 return $query->withTrashed();
-            });
-
+            })
+            ->orderBy($orderBy, $orderDirection);
         return $perPage === 0 ? $languages->get() : $languages->paginate($perPage);
     }
 
