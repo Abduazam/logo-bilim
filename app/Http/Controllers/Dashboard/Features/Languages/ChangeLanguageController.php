@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Features\Languages;
 
 use App\Http\Controllers\Controller;
+use App\Services\Features\Languages\Change\LanguageChangeService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -12,8 +13,8 @@ class ChangeLanguageController extends Controller
 {
     public function change($language): RedirectResponse
     {
-        App::setLocale($language);
-        Session::put('locale', $language);
+        $service = new LanguageChangeService($language);
+        $service->change();
         return redirect()->back();
     }
 }

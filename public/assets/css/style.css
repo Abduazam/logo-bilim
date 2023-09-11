@@ -33,3 +33,24 @@
     background-color: transparent;
 }
 
+/**
+ * Pagination buttons css.
+ */
+.pagination {
+    margin-bottom: 0;
+}
+.pagination .page-item .page-link {
+    padding: 3px 10px;
+    font-size: 14px;
+    border: none;
+}
+
+/**
+ * Button sm css.
+ */
+.btn-sm {
+    padding: 3px 7px!important;
+}
+.btn-sm i {
+    font-size: 13px;
+}

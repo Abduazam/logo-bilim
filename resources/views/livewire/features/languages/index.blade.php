@@ -11,6 +11,9 @@
                         <div class="col-lg-3 ps-0">
                             <x-livewire.filter.select model="with_trashed" :data="$trashed_data" />
                         </div>
+                        <div class="col-lg-3 ps-0 pe-4">
+                            <x-livewire.filter.select model="perPage" :data="$perPages" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 text-end pe-0">
@@ -18,6 +21,7 @@
                 </div>
             </div>
         </div>
-        <livewire:components.forms.tables.table lazy="on-load" :data="$languages" :columns="$columns" :buttons="$this->getActionsData('table')" model="language" />
+        <livewire:components.forms.tables.table lazy="on-load" :data="$this->getObjectFromData($languages)" :columns="$columns" :buttons="$this->getActionsData('table')" model="language" />
+        <x-helpers.pagination-navbar :data="$languages" />
     </div>
 </div>

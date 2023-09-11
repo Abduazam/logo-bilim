@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($data as $item)
+            @foreach($data as $item)
             <tr wire:key="{{ $model }}-row-{{ $item->id }}">
                 @foreach($this->getColumnNames() as $column)
                     @if(!is_null($this->getColumnMethod($column)))

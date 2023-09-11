@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Create extends Component implements ActionsInterface
+class Open extends Component implements ActionsInterface
 {
     /**
      * Create a new component instance.
@@ -15,21 +15,24 @@ class Create extends Component implements ActionsInterface
     public function __construct(
         protected array $data,
         protected string $model,
+        protected string $action,
+        protected ?string $text = null,
+        protected ?string $icon = null,
     ) { }
 
     public function getModalTarget()
     {
-        return $this->data['create']['target'];
+        return $this->data['target'];
     }
 
     public function getModalProperties()
     {
-        return $this->data['create']['modal'];
+        return $this->data['modal'];
     }
 
     public function getButtonProperties()
     {
-        return $this->data['create']['style'];
+        return $this->data['style'];
     }
 
     /**
@@ -37,11 +40,14 @@ class Create extends Component implements ActionsInterface
      */
     public function render(): View|Closure|string
     {
-        return view('components.actions.modals.create', [
+        return view('components.actions.modals.open', [
             'target' => $this->getModalTarget(),
             'button' => $this->getButtonProperties(),
             'modal' => $this->getModalProperties(),
             'model' => $this->model,
+            'action' => $this->action,
+            'text' => $this->text,
+            'icon' => $this->icon,
         ]);
     }
 }

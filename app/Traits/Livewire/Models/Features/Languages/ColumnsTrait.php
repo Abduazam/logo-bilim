@@ -18,6 +18,7 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => true,
+            'searchable' => false,
         ],
         'thumbnail' => [
             'sort' => [
@@ -30,6 +31,7 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => true,
+            'searchable' => false,
         ],
         'slug' => [
             'sort' => [
@@ -42,6 +44,7 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => true,
+            'searchable' => true,
         ],
         'title' => [
             'sort' => [
@@ -54,6 +57,7 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => true,
+            'searchable' => true,
         ],
         'created_at' => [
             'sort' => [
@@ -66,6 +70,7 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => true,
+            'searchable' => false,
         ],
         'deleted_at' => [
             'sort' => [
@@ -78,11 +83,19 @@ trait ColumnsTrait
                 'class' => null,
             ],
             'visible' => false,
+            'searchable' => false,
         ],
     ];
 
     public function getColumnKeys(): array
     {
         return array_keys($this->columns);
+    }
+
+    public function getSearchableKeys(): array
+    {
+        return array_keys(array_filter($this->columns, function ($column) {
+            return $column['searchable'] === true;
+        }));
     }
 }

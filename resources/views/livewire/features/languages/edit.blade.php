@@ -1,5 +1,5 @@
 <div class="d-inline-block">
-    <x-actions.modals.edit :data="$data" :model="$form->model">
+    <x-actions.modals.open :data="$data" :model="$form->model" icon="fa fa-pen" action="edit">
         <div class="col-6 ps-0">
             <x-forms.inputs.default.input-sm type="text" model="title" />
         </div>
@@ -12,5 +12,5 @@
         <div class="col-4 pe-0">
             <x-forms.images.temporary-image :form="$form" model="thumbnail" :item="$form->language" method="getThumbnail" />
         </div>
-    </x-actions.modals.edit>
+    </x-actions.modals.open>
 </div>

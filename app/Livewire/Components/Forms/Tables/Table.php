@@ -12,7 +12,7 @@ use App\Contracts\Interfaces\Components\Forms\Tables\TableInterface;
 class Table extends Component implements TableInterface
 {
     #[Reactive]
-    public Collection $data;
+    public Collection|array $data;
     public array $columns;
     public array $buttons;
     public string $model;

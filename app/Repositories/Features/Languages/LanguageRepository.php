@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Features\Languages;
 
-use App\Contracts\Interfaces\Repositories\RepositoryInterface;
 use App\Models\Features\Languages\Language;
 use Illuminate\Database\Eloquent\Collection;
+use App\Contracts\Interfaces\Repositories\RepositoryInterface;
 
 class LanguageRepository implements RepositoryInterface
 {
@@ -13,23 +13,29 @@ class LanguageRepository implements RepositoryInterface
         return Language::select('slug', 'title')->get();
     }
 
-    public function getOne(): Collection|array
+    public function getOne(): Language
     {
         return Language::first();
     }
 
-    public function getFiltered($columns, $search, $trashed)
+    public function getFiltered($columns, $searches, $search, $trashed, $perPage)
     {
-        return Language::select($columns)
-            ->when($search, function ($query, $search) {
-                return $query->where('title', 'like', '%' . $search . '%');
+        $languages = Language::select($columns)
+            ->when($search, function ($query, $search) use ($searches) {
+                $query->where(function ($query) use ($searches, $search) {
+                    foreach ($searches as $column) {
+                        $query->orWhere($column, 'like', '%' . $search . '%');
+                    }
+                });
             })
             ->when($trashed === 1, function ($query) {
                 return $query->onlyTrashed();
             })
             ->when($trashed === 2, function ($query) {
                 return $query->withTrashed();
-            })->get();
+            });
+
+        return $perPage === 0 ? $languages->get() : $languages->paginate($perPage);
     }
 
     public function getCurrent()
