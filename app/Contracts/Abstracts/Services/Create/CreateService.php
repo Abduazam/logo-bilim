@@ -2,11 +2,12 @@
 
 namespace App\Contracts\Abstracts\Services\Create;
 
-use App\Contracts\Interfaces\Services\CallMethodInterface;
+use Exception;
+use App\Contracts\Interfaces\Services\ServiceCallMethodInterface;
 
-abstract class CreateService implements CallMethodInterface
+abstract class CreateService implements ServiceCallMethodInterface
 {
-    abstract protected function create();
+    abstract protected function create(): bool|Exception;
 
     public function callMethod(): void
     {

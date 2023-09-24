@@ -2,11 +2,12 @@
 
 namespace App\Contracts\Abstracts\Services\Delete;
 
-use App\Contracts\Interfaces\Services\CallMethodInterface;
+use Exception;
+use App\Contracts\Interfaces\Services\ServiceCallMethodInterface;
 
-abstract class DeleteService implements CallMethodInterface
+abstract class DeleteService implements ServiceCallMethodInterface
 {
-    abstract protected function delete();
+    abstract protected function delete(): bool|Exception;
 
     public function callMethod(): void
     {

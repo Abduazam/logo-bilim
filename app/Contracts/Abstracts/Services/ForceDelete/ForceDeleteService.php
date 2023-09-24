@@ -2,11 +2,12 @@
 
 namespace App\Contracts\Abstracts\Services\ForceDelete;
 
-use App\Contracts\Interfaces\Services\CallMethodInterface;
+use Exception;
+use App\Contracts\Interfaces\Services\ServiceCallMethodInterface;
 
-abstract class ForceDeleteService implements CallMethodInterface
+abstract class ForceDeleteService implements ServiceCallMethodInterface
 {
-    abstract protected function forceDelete();
+    abstract protected function forceDelete(): bool|Exception;
 
     public function callMethod(): void
     {

@@ -18,14 +18,4 @@ use Illuminate\Support\Facades\Route;
  */
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/', [\App\Http\Controllers\Dashboard\Home\HomeController::class, 'index'])->name('home');
-
-    Route::prefix('features')->name('features.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Dashboard\Features\FeatureController::class, 'index'])->name('index');
-
-        Route::prefix('languages')->name('languages.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Languages\LanguageController::class, 'index'])->name('index');
-        });
-    });
-
-    Route::get('change-language/{language}', [\App\Http\Controllers\Dashboard\Features\Languages\ChangeLanguageController::class, 'change'])->name('change-language');
 });

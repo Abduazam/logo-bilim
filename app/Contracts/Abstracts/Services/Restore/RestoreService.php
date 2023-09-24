@@ -2,11 +2,12 @@
 
 namespace App\Contracts\Abstracts\Services\Restore;
 
-use App\Contracts\Interfaces\Services\CallMethodInterface;
+use Exception;
+use App\Contracts\Interfaces\Services\ServiceCallMethodInterface;
 
-abstract class RestoreService implements CallMethodInterface
+abstract class RestoreService implements ServiceCallMethodInterface
 {
-    abstract protected function restore();
+    abstract protected function restore(): bool|Exception;
 
     public function callMethod(): void
     {
