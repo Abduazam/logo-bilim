@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard\Home;
 
 use Illuminate\View\View;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashboard\DashboardController;
 
-class HomeController extends Controller
+class HomeController extends DashboardController
 {
     /**
      * Show the application dashboard.

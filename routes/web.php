@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 /**
  * Dashboard routes.
  */
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::redirect('/', '/dashboard');
+
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Dashboard\Home\HomeController::class, 'index'])->name('home');
-});
+
+    Route::prefix('features')->name('features.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Dashboard\Features\FeatureController::class, 'index'])->name('index');
+
+        Route::prefix('languages')->name('languages.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Languages\LanguageController::class, 'index'])->name('index');
+        });
+    });
+
+    Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
+
+})->middleware(['auth', 'verified']);

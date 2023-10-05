@@ -1,26 +1,26 @@
 <!-- Sidebar -->
-<nav id="sidebar">
+<nav id="sidebar" class="bg-white">
     <!-- Sidebar Content -->
     <div class="sidebar-content">
         <!-- Side Header -->
-        <div class="content-header justify-content-lg-center bg-black-10">
-            <x-helpers.logo />
+        <div class="content-header justify-content-lg-center">
+            <x-sections.fillers.logo />
 
             <!-- Options -->
             <div>
                 <!-- Close Sidebar, Visible only on mobile screens -->
-                <button type="button" class="btn btn-sm btn-alt-danger d-lg-none" data-toggle="layout" data-action="sidebar_close">
+                <button type="button" class="btn btn-sm btn-alt-success d-lg-none" data-toggle="layout" data-action="sidebar_close">
                     <i class="fa fa-fw fa-times"></i>
                 </button>
             </div>
         </div>
 
         <!-- Sidebar Scrolling -->
-        <div class="js-sidebar-scroll">
+        <div class="js-sidebar-scroll bg-light">
             <!-- Side Main Navigation -->
             <div class="content-side content-side-full">
                 <ul class="nav-main">
-                    <x-helpers.nav-list />
+                    <x-sections.fillers.nav-list />
                 </ul>
             </div>
         </div>
@@ -29,25 +29,27 @@
 </nav>
 
 <!-- Header -->
-<header id="page-header" class="bg-dark">
+<header id="page-header" class="bg-white">
     <!-- Header Content -->
     <div class="content-header">
         <!-- Left Section -->
         <div class="d-flex align-items-center space-x-3">
-            <x-helpers.logo />
+            <x-sections.fillers.logo />
 
             <!-- Header Navigation -->
             <ul class="nav-main nav-main-horizontal nav-main-hover d-none d-lg-block">
-                <x-helpers.nav-list />
+                <x-sections.fillers.nav-list />
             </ul>
         </div>
 
         <!-- Right Section -->
         <div class="space-x-1">
-            <x-helpers.user-dropdown />
+            <livewire:components.sections.fillers.languages />
+
+            <x-sections.fillers.user-dropdown />
 
             <!-- Toggle Sidebar -->
-            <button type="button" class="btn btn-sm text-white d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+            <button type="button" class="btn btn-sm d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
         </div>

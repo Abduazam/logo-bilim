@@ -1,7 +1,7 @@
 <x-layouts.auth>
     <!-- Header -->
     <div class="py-4 text-center">
-        <x-helpers.logo />
+        <x-sections.fillers.logo />
         <h1 class="h3 fw-bold mt-4 mb-2">Welcome to Your Dashboard</h1>
         <h2 class="h5 fw-medium text-muted mb-0">It’s a great day today!</h2>
     </div>
@@ -10,7 +10,7 @@
     <form class="js-validation-signin" action="{{ route('login') }}" method="POST">
         @csrf
         <div class="block block-themed block-rounded block-fx-shadow">
-            <div class="block-header bg-gd-dusk">
+            <div class="block-header bg-gd-earth">
                 <h3 class="block-title">Sign in</h3>
             </div>
             <div class="block-content">
@@ -18,7 +18,7 @@
                 <x-forms.inputs.floating.input type="password" model="password" text="Password" autocomplete="true" error="true" required="true" />
                 <div class="row">
                     <div class="col-12 text-sm-end push">
-                        <button type="submit" class="btn btn-lg btn-alt-primary fw-medium w-100">Sign in</button>
+                        <button type="submit" class="btn btn-lg btn-alt-success fw-medium w-100">Sign in</button>
                     </div>
                 </div>
             </div>

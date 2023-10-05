@@ -1,7 +1,7 @@
 <x-layouts.auth>
     <!-- Header -->
     <div class="py-4 text-center">
-        <x-helpers.logo />
+        <x-sections.fillers.logo />
         <h1 class="h3 fw-bold mt-4 mb-2">Create New Account</h1>
         <h2 class="h5 fw-medium text-muted mb-0">We’re excited to have you on board!</h2>
     </div>
@@ -10,7 +10,7 @@
     <form class="js-validation-signup" action="{{ route('register') }}" method="POST">
         @csrf
         <div class="block block-themed block-rounded block-fx-shadow">
-            <div class="block-header bg-gd-dusk">
+            <div class="block-header bg-gd-earth">
                 <h3 class="block-title">Please add your details</h3>
             </div>
             <div class="block-content">
@@ -25,7 +25,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 text-sm-end push">
-                        <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
+                        <button type="submit" class="btn btn-lg btn-alt-success fw-semibold">
                             Create Account
                         </button>
                     </div>

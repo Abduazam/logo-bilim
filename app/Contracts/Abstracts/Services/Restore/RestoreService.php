@@ -9,8 +9,8 @@ abstract class RestoreService implements ServiceCallMethodInterface
 {
     abstract protected function restore(): bool|Exception;
 
-    public function callMethod(): void
+    public function callMethod(): bool|Exception
     {
-        $this->restore();
+        return $this->restore();
     }
 }

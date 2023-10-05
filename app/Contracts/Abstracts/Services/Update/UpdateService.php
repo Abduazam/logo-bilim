@@ -7,10 +7,10 @@ use App\Contracts\Interfaces\Services\ServiceCallMethodInterface;
 
 abstract class UpdateService implements ServiceCallMethodInterface
 {
-    abstract protected function edit(): bool|Exception;
+    abstract protected function update(): bool|Exception;
 
-    public function callMethod(): void
+    public function callMethod(): bool|Exception
     {
-        $this->edit();
+        return $this->update();
     }
 }

@@ -9,8 +9,8 @@ abstract class CreateService implements ServiceCallMethodInterface
 {
     abstract protected function create(): bool|Exception;
 
-    public function callMethod(): void
+    public function callMethod(): bool|Exception
     {
-        $this->create();
+        return $this->create();
     }
 }

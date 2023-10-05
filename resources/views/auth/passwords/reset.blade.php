@@ -1,7 +1,7 @@
 <x-layouts.auth>
     <!-- Header -->
     <div class="py-4 text-center">
-        <x-helpers.logo />
+        <x-sections.fillers.logo />
         <h1 class="h3 fw-bold mt-4 mb-2">Welcome back, Admin</h1>
         <h2 class="h5 fw-medium text-muted mb-0">Please enter your password</h2>
     </div>
@@ -11,7 +11,7 @@
         @csrf
         <input type="hidden" name="token" value="{{ $request->token }}">
         <div class="block block-themed block-rounded block-fx-shadow">
-            <div class="block-header bg-gd-dusk">
+            <div class="block-header bg-gd-earth">
                 <h3 class="block-title">Unlock Account</h3>
             </div>
             <div class="block-content">
@@ -22,7 +22,7 @@
                     <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="{{ route('login') }}">
                         <i class="fa fa-arrow-left opacity-50 me-1"></i> Not you? Sign In
                     </a>
-                    <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
+                    <button type="submit" class="btn btn-lg btn-alt-success fw-semibold">
                         Reset password
                     </button>
                 </div>

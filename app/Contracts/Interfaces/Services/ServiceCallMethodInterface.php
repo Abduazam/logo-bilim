@@ -2,7 +2,9 @@
 
 namespace App\Contracts\Interfaces\Services;
 
+use Exception;
+
 interface ServiceCallMethodInterface
 {
-    public function callMethod(): void;
+    public function callMethod(): bool|Exception;
 }

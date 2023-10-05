@@ -7,7 +7,7 @@
 
     <!-- Header -->
     <div class="py-4 text-center">
-        <x-helpers.logo />
+        <x-sections.fillers.logo />
         <h1 class="h3 fw-bold mt-4 mb-2">Don’t worry, we’ve got your back</h1>
         <h2 class="h5 fw-medium text-muted mb-0">Please verify your email</h2>
     </div>
@@ -16,7 +16,7 @@
     <form class="js-validation-reminder" action="{{ route('verification.send') }}" method="POST">
         @csrf
         <div class="block block-themed block-rounded block-fx-shadow">
-            <div class="block-header bg-gd-dusk">
+            <div class="block-header bg-gd-earth">
                 <h3 class="block-title">Verify email</h3>
             </div>
             <div class="block-content">
@@ -29,7 +29,7 @@
                     </h2>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold w-100">
+                    <button type="submit" class="btn btn-lg btn-alt-success fw-semibold w-100">
                         Resend verification email
                     </button>
                 </div>

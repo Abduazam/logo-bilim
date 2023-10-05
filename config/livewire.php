@@ -100,7 +100,7 @@ return [
     |
     */
 
-    'legacy_model_binding' => false,
+    'legacy_model_binding' => true,
 
     /*
     |---------------------------------------------------------------------------
@@ -154,5 +154,5 @@ return [
     |
     */
 
-    'pagination_theme' => 'bootstrap',
+        'pagination_theme' => 'bootstrap',
 ];

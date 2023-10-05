@@ -9,8 +9,8 @@ abstract class DeleteService implements ServiceCallMethodInterface
 {
     abstract protected function delete(): bool|Exception;
 
-    public function callMethod(): void
+    public function callMethod(): bool|Exception
     {
-        $this->delete();
+        return $this->delete();
     }
 }

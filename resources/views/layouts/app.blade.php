@@ -7,7 +7,7 @@
         <main id="main-container" style="padding-top: 68px;">
             <!-- Page Content -->
             <div>
-                <x-helpers.breadcrumb />
+                <x-sections.fillers.breadcrumb />
 
                 <!-- Content -->
                 <div class="content">

@@ -9,8 +9,8 @@ abstract class ForceDeleteService implements ServiceCallMethodInterface
 {
     abstract protected function forceDelete(): bool|Exception;
 
-    public function callMethod(): void
+    public function callMethod(): bool|Exception
     {
-        $this->forceDelete();
+        return $this->forceDelete();
     }
 }

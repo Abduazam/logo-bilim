@@ -14,10 +14,16 @@ function showToast(event) {
     new bootstrap.Toast(toast).show();
 }
 
+function closeModal() {
+    $(".modal:visible").modal("hide");
+}
+
+
 /**
  * Showing bootstrap toast listener.
  */
 window.addEventListener('dispatch-toast', showToast);
+window.addEventListener('refresh', closeModal);
 
 /**
  * Refreshing page listener.

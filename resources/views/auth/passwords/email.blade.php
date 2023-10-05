@@ -7,7 +7,7 @@
 
     <!-- Header -->
     <div class="py-4 text-center">
-        <x-helpers.logo />
+        <x-sections.fillers.logo />
         <h1 class="h3 fw-bold mt-4 mb-2">Don’t worry, we’ve got your back</h1>
         <h2 class="h5 fw-medium text-muted mb-0">Please enter your email</h2>
     </div>
@@ -16,7 +16,7 @@
     <form class="js-validation-reminder" action="{{ route('password.email') }}" method="POST">
         @csrf
         <div class="block block-themed block-rounded block-fx-shadow">
-            <div class="block-header bg-gd-dusk">
+            <div class="block-header bg-gd-earth">
                 <h3 class="block-title">Password Reminder</h3>
             </div>
             <div class="block-content">
@@ -25,7 +25,7 @@
                     <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="{{ route('login') }}">
                         <i class="fa fa-arrow-left opacity-50 me-1"></i> Sign In
                     </a>
-                    <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
+                    <button type="submit" class="btn btn-lg btn-alt-success fw-semibold">
                         Reset Password
                     </button>
                 </div>
