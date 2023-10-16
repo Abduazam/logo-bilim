@@ -1,5 +1,5 @@
 <div>
-    <button type="button" class="btn btn-green btn-sm text-white" data-bs-toggle="modal" data-bs-target="#modal-create-language">New language</button>
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-create-language">New language</button>
 
     <!-- Create Language Modal -->
     <div wire:ignore.self class="modal fade" id="modal-create-language" tabindex="-1" role="dialog" aria-labelledby="modal-create-language" aria-hidden="true">

@@ -20,6 +20,7 @@ class Index extends Component
     {
         return view('livewire.features.languages.index', [
             'languages' => $repository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
+            'columns' => $repository->getVisibleColumns(),
         ]);
     }
 }

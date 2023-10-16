@@ -19,6 +19,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Database Name
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which of the database name below you wish
+    | to use as your default database for all database work.
+    |
+    */
+
+    'db_name' => env('DB_DATABASE', 'template'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Database Connections
     |--------------------------------------------------------------------------
     |

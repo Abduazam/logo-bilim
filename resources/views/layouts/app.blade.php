@@ -1,6 +1,6 @@
 <x-sections.header />
 
-    <div id="page-container" class="sidebar-dark side-scroll page-header-fixed page-header-glass page-header-dark main-content-boxed">
+    <div id="page-container" class="side-scroll page-header-fixed page-header-glass main-content-boxed">
         <x-sections.nav />
 
         <!-- Main Container -->

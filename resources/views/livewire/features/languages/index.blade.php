@@ -25,38 +25,31 @@
             <table class="own-table w-100">
                 <thead>
                 <tr>
-                    <th wire:click='sortBy("id")' class="d-flex justify-content-center align-items-center cursor-pointer">
-                        <span class="me-2">id</span>
-                        @if($this->sortUp('id'))
-                            <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                        @elseif($this->sortDown('id'))
-                            <i class="fa fa-sort-down text-gray-dark mb-1"></i>
+                    @foreach($columns as $column)
+                        @if($column->sortable())
+                        <th wire:click='sortBy("{{ $column->name }}")' class="d-flex justify-content-center align-items-center cursor-pointer">
+                            <span class="me-2">{{ $column->name }}</span>
+                            @if($this->sortUp($column->name))
+                                <i class="fa fa-sort-up text-gray-dark mt-1"></i>
+                            @elseif($this->sortDown($column->name))
+                                <i class="fa fa-sort-down text-gray-dark mb-1"></i>
+                            @else
+                                <i class="fa fa-sort text-gray-dark"></i>
+                            @endif
+                        </th>
                         @else
-                            <i class="fa fa-sort text-gray-dark"></i>
+                        <th class="text-center">{{ $column->name }}</th>
                         @endif
-                    </th>
-                    <th class="text-center">slug</th>
-                    <th class="text-center">title</th>
-                    <th wire:click='sortBy("created_at")' class="d-flex justify-content-center align-items-center cursor-pointer">
-                        <span class="me-2">created_at</span>
-                        @if($this->sortUp('created_at'))
-                            <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                        @elseif($this->sortDown('created_at'))
-                            <i class="fa fa-sort-down text-gray-dark mb-1"></i>
-                        @else
-                            <i class="fa fa-sort text-gray-dark"></i>
-                        @endif
-                    </th>
+                    @endforeach
                     <th class="text-center">actions</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($languages as $language)
                         <tr wire:key="language-row-{{ $language->id }}">
-                            <td class="text-center">{{ $language->id }}</td>
-                            <td class="text-center">{{ $language->slug }}</td>
-                            <td class="text-center">{{ $language->title }}</td>
-                            <td class="text-center">{{ $language->created_at }}</td>
+                            @foreach($columns as $column)
+                                <td class="text-center">@if(is_null($column->method)) {{ $language->{$column->name} }} @else {!! $language->{$column->method}() !!} @endif</td>
+                            @endforeach
                             <td class="text-center">
                                 @if(!$language->trashed())
                                     <livewire:features.languages.update :language="$language" :wire:key="'update-language-id' . $language->id" />

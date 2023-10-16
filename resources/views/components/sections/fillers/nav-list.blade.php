@@ -9,5 +9,10 @@
                 <span class="nav-main-link-name">Languages</span>
             </a>
         </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('dashboard.features.table-columns.index') }}">
+                <span class="nav-main-link-name">Table columns</span>
+            </a>
+        </li>
     </ul>
 </li>

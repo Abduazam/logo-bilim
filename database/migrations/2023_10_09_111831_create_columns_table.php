@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_columns', function (Blueprint $table) {
+        Schema::create('columns', function (Blueprint $table) {
             $table->id();
-            $table->string('table_name');
-            $table->string('column_name');
-            $table->boolean('visible')->default(true);
+            $table->foreignId('table_id')->references('id')->on('tables')->onDelete('cascade');
+            $table->string('name');
+            $table->string('method', 255)->nullable();
             $table->boolean('sortable')->default(false);
-            $table->string('method')->nullable();
+            $table->boolean('visible')->default(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->unique(['table_name', 'column_name']);
-            $table->index(['table_name', 'column_name']);
+            $table->unique(['table_id', 'name']);
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_columns');
+        Schema::dropIfExists('columns');
     }
 };

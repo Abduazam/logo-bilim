@@ -2,12 +2,20 @@
 
 namespace App\Repositories\Dashboard\Features\Languages;
 
-use App\Models\Dashboard\Features\Languages\Language;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\Features\Languages\Language;
+use App\Repositories\Dashboard\Features\TableColumns\Tables\TableRepository;
 
 class LanguageRepository
 {
-    public function getAll(): Collection|array
+    protected TableRepository $repository;
+
+    public function __construct()
+    {
+        $this->repository = new TableRepository();
+    }
+
+    public function getAll(): Collection
     {
         return Language::select('slug', 'title')->get();
     }
@@ -17,7 +25,7 @@ class LanguageRepository
         return Language::first();
     }
 
-    public function getCurrent()
+    public function getCurrent(): string
     {
         $language = Language::where('slug', app()->getLocale())->pluck('title')->first();
         if ($language) {
@@ -27,9 +35,24 @@ class LanguageRepository
         return Language::pluck('title')->first();
     }
 
-    public function getFiltered(string $search, int $perPage, bool $with_trashed, string $orderBy, string $orderDirection)
+    public function getVisibleColumns(): Collection
     {
-        $languages = Language::select('id', 'slug', 'title', 'created_at', 'deleted_at')
+        return $this->repository->getVisibleColumns('languages');
+    }
+
+    public function getActiveColumns(): array
+    {
+        return $this->repository->getActiveColumns('languages');
+    }
+
+    public function getFiltered(
+        string $search,
+        int $perPage,
+        bool $with_trashed,
+        string $orderBy,
+        string $orderDirection,
+    ) {
+        $languages = Language::select($this->getActiveColumns())
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
             })

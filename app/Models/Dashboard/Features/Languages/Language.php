@@ -20,6 +20,11 @@ class Language extends Model
         'title'
     ];
 
+    public function getSlug(): string
+    {
+        return '<code>' . $this->slug . '</code>';
+    }
+
     public function isLast(): bool
     {
         $languages = Language::whereNot('id', $this->id)->get();

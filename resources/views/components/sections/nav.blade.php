@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<nav id="sidebar" class="bg-white">
+<nav id="sidebar">
     <!-- Sidebar Content -->
     <div class="sidebar-content">
         <!-- Side Header -->
@@ -49,8 +49,8 @@
             <x-sections.fillers.user-dropdown />
 
             <!-- Toggle Sidebar -->
-            <button type="button" class="btn btn-sm d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
-                <i class="fa fa-fw fa-bars"></i>
+            <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                <i class="fa fa-fw fa-stream"></i>
             </button>
         </div>
     </div>

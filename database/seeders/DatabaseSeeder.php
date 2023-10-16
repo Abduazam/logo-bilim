@@ -13,8 +13,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            /* DATA */
             Dashboard\Users\AdminSeeder::class,
             Dashboard\Features\Languages\LanguageSeeder::class,
+
+            /* TABLE COLUMNS */
+            Dashboard\Features\TableColumns\TableColumnSeeder::class,
         ]);
     }
 }

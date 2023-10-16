@@ -27,6 +27,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::prefix('languages')->name('languages.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Dashboard\Features\Languages\LanguageController::class, 'index'])->name('index');
         });
+
+        Route::resource('table-columns', \App\Http\Controllers\Dashboard\Features\TableColumns\TableColumnController::class)->except(['destroy']);
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');

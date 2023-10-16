@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Dashboard\Features\TableColumns;
+namespace App\Models\Dashboard\Features\TableColumns\Tables;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TableColumn extends Model
+class TableAction extends Model
 {
     use HasFactory;
 }
