@@ -7,6 +7,9 @@
 /**
  * Table css.
  */
+.own-table.js-table-sections thead tr {
+    background: #f2f2f2!important;
+}
 .own-table thead tr {
     border: 1px solid var(--border-grey);
     background: var(--table-bg);
@@ -54,10 +57,26 @@
 .btn-sm i {
     font-size: 13px;
 }
+.btn-white {
+    background: white!important;
+    color: rgb(31 41 55/1);
+    border: 1px solid #e5e7eb!important;
+    padding-inline: 20px;
+}
+.btn-white:hover {
+    opacity: 0.7;
+}
 
 /**
  * Global classes css.
  */
 .cursor-pointer {
     cursor: pointer;
+}
+
+/**
+ * Table js-table-section header active css.
+ */
+.js-table-sections-header.show {
+    background: var(--table-bg);
 }

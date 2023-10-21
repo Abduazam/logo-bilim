@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Features\Languages\Language;
 use App\Contracts\Abstracts\Services\Create\CreateService;
+use App\Events\Dashboard\Models\Features\Languages\LanguageCreated;
 
 class LanguageCreateService extends CreateService
 {
@@ -22,10 +23,12 @@ class LanguageCreateService extends CreateService
     {
         DB::beginTransaction();
         try {
-            Language::create([
+            $language = Language::create([
                 'slug' => $this->slug,
                 'title' => $this->title,
             ]);
+
+            event(new LanguageCreated($language));
 
             DB::commit();
 

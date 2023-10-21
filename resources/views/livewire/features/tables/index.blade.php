@@ -24,15 +24,17 @@
                     <tr>
                         @foreach($columns as $column)
                             @if($column->sortable())
-                                <th wire:click='sortBy("{{ $column->name }}")' class="d-flex justify-content-center align-items-center cursor-pointer">
-                                    <span class="me-2">{{ $column->name }}</span>
-                                    @if($this->sortUp($column->name))
-                                        <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                                    @elseif($this->sortDown($column->name))
-                                        <i class="fa fa-sort-down text-gray-dark mb-1"></i>
-                                    @else
-                                        <i class="fa fa-sort text-gray-dark"></i>
-                                    @endif
+                                <th wire:click='sortBy("{{ $column->name }}")' class="cursor-pointer">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span class="me-2">{{ $column->name }}</span>
+                                        @if($this->sortUp($column->name))
+                                            <i class="fa fa-sort-up text-gray-dark mt-1"></i>
+                                        @elseif($this->sortDown($column->name))
+                                            <i class="fa fa-sort-down text-gray-dark mb-1"></i>
+                                        @else
+                                            <i class="fa fa-sort text-gray-dark"></i>
+                                        @endif
+                                    </div>
                                 </th>
                             @else
                                 <th class="text-center">{{ $column->name }}</th>
@@ -48,7 +50,9 @@
                             <td class="text-center">@if(is_null($column->method)) {{ $table->{$column->name} }} @else {!! $table->{$column->method}() !!} @endif</td>
                         @endforeach
                         <td class="text-center">
-                            <livewire:features.table-columns.tables.update :table="$table" :wire:key="'update-table-id' . $table->id" />
+                            <a href="{{ route('dashboard.features.tables.edit', $table) }}" class="btn btn-sm btn-primary text-white">
+                                <i class="fa fa-pen"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

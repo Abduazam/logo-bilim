@@ -36,8 +36,21 @@ class Column extends Model
         return $this->hasOne(ColumnTranslation::class)->where('slug', app()->getLocale());
     }
 
+    public function translations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ColumnTranslation::class);
+    }
+
     public function sortable(): bool
     {
         return $this->sortable;
+    }
+
+    public function getActive(): string
+    {
+        return match ($this->active) {
+            1 => '<span>active</span>',
+            default => '<span>inactive</span>',
+        };
     }
 }

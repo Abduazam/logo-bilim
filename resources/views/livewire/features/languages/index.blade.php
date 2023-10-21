@@ -27,18 +27,20 @@
                 <tr>
                     @foreach($columns as $column)
                         @if($column->sortable())
-                        <th wire:click='sortBy("{{ $column->name }}")' class="d-flex justify-content-center align-items-center cursor-pointer">
-                            <span class="me-2">{{ $column->name }}</span>
-                            @if($this->sortUp($column->name))
-                                <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                            @elseif($this->sortDown($column->name))
-                                <i class="fa fa-sort-down text-gray-dark mb-1"></i>
-                            @else
-                                <i class="fa fa-sort text-gray-dark"></i>
-                            @endif
+                        <th wire:click='sortBy("{{ $column->name }}")' class="cursor-pointer">
+                            <div class="d-flex justify-content-center align-items-center ">
+                                <span class="me-2">{{ $column->translation->translation }}</span>
+                                @if($this->sortUp($column->name))
+                                    <i class="fa fa-sort-up text-gray-dark mt-1"></i>
+                                @elseif($this->sortDown($column->name))
+                                    <i class="fa fa-sort-down text-gray-dark mb-1"></i>
+                                @else
+                                    <i class="fa fa-sort text-gray-dark"></i>
+                                @endif
+                            </div>
                         </th>
                         @else
-                        <th class="text-center">{{ $column->name }}</th>
+                        <th class="text-center">{{ $column->translation->translation }}</th>
                         @endif
                     @endforeach
                     <th class="text-center">actions</th>

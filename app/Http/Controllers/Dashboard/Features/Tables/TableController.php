@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Features\TableColumns;
+namespace App\Http\Controllers\Dashboard\Features\Tables;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Models\Dashboard\Features\TableColumns\Tables\Table;
 
-class TableColumnController extends DashboardController
+class TableController extends DashboardController
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        return view('dashboard.features.table-columns.index');
+        return view('dashboard.features.tables.index');
     }
 
     /**
@@ -35,7 +36,7 @@ class TableColumnController extends DashboardController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Table $table)
     {
         //
     }
@@ -43,15 +44,17 @@ class TableColumnController extends DashboardController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Table $table): View
     {
-        //
+        return view('dashboard.features.tables.update', [
+            'table' => $table,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Table $table)
     {
         //
     }
@@ -59,7 +62,7 @@ class TableColumnController extends DashboardController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Table $table)
     {
         //
     }

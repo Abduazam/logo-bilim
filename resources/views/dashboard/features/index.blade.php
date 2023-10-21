@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-6 col-md-4 col-xl-2">
-            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.features.table-columns.index') }}">
+            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.features.tables.index') }}">
                 <div class="ribbon-box">{{ $tables }}</div>
                 <div class="block-content">
                     <p class="mt-1 mb-2">

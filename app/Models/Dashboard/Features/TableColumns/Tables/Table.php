@@ -18,9 +18,13 @@ class Table extends Model
         'name',
     ];
 
+    protected $with = [
+        'columns',
+    ];
+
     public function columns(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Column::class)->orderBy('id');
     }
 
     public function relations(): \Illuminate\Database\Eloquent\Relations\HasMany
