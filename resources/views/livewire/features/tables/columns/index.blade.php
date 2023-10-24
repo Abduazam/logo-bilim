@@ -3,9 +3,9 @@
         <thead>
         <tr>
             @foreach($columns as $column)
-                @if($column->sortable())
+                @if($column->sortable)
                     <th wire:click='sortBy("{{ $column->name }}")' class="d-flex justify-content-center align-items-center cursor-pointer">
-                        <span class="me-2">{{ $column->name }}</span>
+                        <span class="me-2">{{ $column->translation->translation ?? $column->name }}</span>
                         @if($this->sortUp($column->name))
                             <i class="fa fa-sort-up text-gray-dark mt-1"></i>
                         @elseif($this->sortDown($column->name))
@@ -15,7 +15,7 @@
                         @endif
                     </th>
                 @else
-                    <th class="text-center">{{ $column->name }}</th>
+                    <th class="text-center">{{ $column->translation->translation ?? $column->name }}</th>
                 @endif
             @endforeach
         </tr>
@@ -24,11 +24,6 @@
         <tbody class="js-table-sections-header @if($loop->first) show table-active @endif">
             <tr wire:key="table-row-{{ $table_column->id }}">
                 <td>{{ $table_column->name }}</td>
-                <td class="text-center">
-                    <label class="w-auto">
-                        <input type="text" name="method-{{ $table_column->id }}" class="form-control form-control-sm w-100" value="{{ $table_column->method }}" wire:blur="updateMethod('{{ $table_column->id }}', $event.target.value)">
-                    </label>
-                </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <label class="form-check form-switch w-auto">
@@ -43,17 +38,14 @@
                         </label>
                     </div>
                 </td>
-                <td class="text-center">{!! $table_column->getActive() !!}</td>
             </tr>
         </tbody>
         <tbody>
             @foreach($table_column->translations as $column_translation)
             <tr>
-                <td class="text-center">{{ $column_translation->getSlugLanguage() }}</td>
-                <td class="text-center">
-                    <label class="w-auto">
-                        <input type="text" name="translation-{{ $column_translation->slug }}-{{ $column_translation->column->name }}" class="form-control form-control-sm w-100" value="{{ $column_translation->translation }}" wire:blur="updateTranslation('{{ $column_translation->id }}', $event.target.value)">
-                    </label>
+                <td class="w-auto d-flex align-items-center ps-5">
+                    <label for="translation-{{ $column_translation->slug }}-{{ $column_translation->column->name }}" class="form-label mb-0 me-2">{{ $column_translation->getSlugLanguage() }}:</label>
+                    <input type="text" name="translation-{{ $column_translation->slug }}-{{ $column_translation->column->name }}" id="translation-{{ $column_translation->slug }}-{{ $column_translation->column->name }}" class="form-control form-control-sm w-50" value="{{ $column_translation->translation }}" wire:blur="updateTranslation('{{ $column_translation->id }}', $event.target.value)">
                 </td>
             </tr>
             @endforeach

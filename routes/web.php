@@ -28,7 +28,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Dashboard\Features\Languages\LanguageController::class, 'index'])->name('index');
         });
 
-        Route::resource('tables', \App\Http\Controllers\Dashboard\Features\Tables\TableController::class)->except(['destroy']);
+        Route::resource('tables', \App\Http\Controllers\Dashboard\Features\Tables\TableController::class)->except(['create', 'store', 'show', 'update', 'destroy']);
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');

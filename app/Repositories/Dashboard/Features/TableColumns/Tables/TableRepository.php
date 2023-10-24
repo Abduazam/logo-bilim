@@ -7,27 +7,9 @@ use App\Models\Dashboard\Features\TableColumns\Tables\Table;
 
 class TableRepository
 {
-    public function getAll()
+    public function getAll(): Collection
     {
-        return Table::select('name')->get();
-    }
-
-    public function getVisibleColumns(string $table_name): Collection
-    {
-        return $this->getColumns($table_name, ['visible' => true]);
-    }
-
-    public function getActiveColumns(string $table_name): array
-    {
-        return array_values($this->getColumns($table_name, ['active' => true])->pluck('name')->toArray());
-    }
-
-    private function getColumns(string $table_name, array $condition): Collection
-    {
-        return Table::where('name', $table_name)
-            ->with(['columns' => fn ($query) => $query->where($condition)->orderBy('id')])
-            ->firstOrFail()
-            ->columns;
+        return Table::all();
     }
 
     public function getFiltered(
@@ -36,7 +18,8 @@ class TableRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $tables = Table::select($this->getActiveColumns('tables'))
+        $tables = Table::select(['id', 'name', 'created_at'])
+            ->withCount('columns')
             ->when($search, function ($query, $search) {
                 $query->where('name', 'like', '%' . $search . '%');
             })

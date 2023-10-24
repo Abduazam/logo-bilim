@@ -8,13 +8,6 @@ use App\Repositories\Dashboard\Features\TableColumns\Tables\TableRepository;
 
 class LanguageRepository
 {
-    protected TableRepository $repository;
-
-    public function __construct()
-    {
-        $this->repository = new TableRepository();
-    }
-
     public function getAll(): Collection
     {
         return Language::select('slug', 'title')->get();
@@ -35,16 +28,6 @@ class LanguageRepository
         return Language::pluck('title')->first();
     }
 
-    public function getVisibleColumns(): Collection
-    {
-        return $this->repository->getVisibleColumns('languages');
-    }
-
-    public function getActiveColumns(): array
-    {
-        return $this->repository->getActiveColumns('languages');
-    }
-
     public function getFiltered(
         string $search,
         int $perPage,
@@ -52,7 +35,7 @@ class LanguageRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $languages = Language::select($this->getActiveColumns())
+        $languages = Language::select(['id', 'slug', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
             })

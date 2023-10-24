@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('table_id')->references('id')->on('tables')->onDelete('cascade');
             $table->string('name');
-            $table->string('method', 255)->nullable();
             $table->boolean('sortable')->default(false);
             $table->boolean('visible')->default(true);
-            $table->boolean('active')->default(true);
             $table->timestamps();
 
             $table->unique(['table_id', 'name']);

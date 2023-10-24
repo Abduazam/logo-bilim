@@ -26,10 +26,10 @@
                 <thead>
                 <tr>
                     @foreach($columns as $column)
-                        @if($column->sortable())
+                        @if($column->sortable)
                         <th wire:click='sortBy("{{ $column->name }}")' class="cursor-pointer">
                             <div class="d-flex justify-content-center align-items-center ">
-                                <span class="me-2">{{ $column->translation->translation }}</span>
+                                <span class="me-2">{{ $column->translation->translation ?? $column->name }}</span>
                                 @if($this->sortUp($column->name))
                                     <i class="fa fa-sort-up text-gray-dark mt-1"></i>
                                 @elseif($this->sortDown($column->name))
@@ -40,7 +40,7 @@
                             </div>
                         </th>
                         @else
-                        <th class="text-center">{{ $column->translation->translation }}</th>
+                        <th class="text-center">{{ $column->translation->translation ?? $column->name }}</th>
                         @endif
                     @endforeach
                     <th class="text-center">actions</th>
@@ -50,7 +50,11 @@
                     @foreach($languages as $language)
                         <tr wire:key="language-row-{{ $language->id }}">
                             @foreach($columns as $column)
-                                <td class="text-center">@if(is_null($column->method)) {{ $language->{$column->name} }} @else {!! $language->{$column->method}() !!} @endif</td>
+                                @if($column->name === 'slug')
+                                    <td class="text-center">{!! $language->getSlug() !!}</td>
+                                @else
+                                    <td class="text-center">{{ $language->{$column->name} }}</td>
+                                @endif
                             @endforeach
                             <td class="text-center">
                                 @if(!$language->trashed())

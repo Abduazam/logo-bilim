@@ -2,23 +2,23 @@
 
 namespace App\Livewire\Features\Tables;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\PaginatingTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\SearchingTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\SortingTrait;
-use App\Repositories\Dashboard\Features\TableColumns\Tables\TableRepository;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Helpers\Services\ColumnsService\getColumnsService;
+use App\Contracts\Traits\Dashboard\Livewire\General\SortingTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\SearchingTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\PaginatingTrait;
+use App\Repositories\Dashboard\Features\TableColumns\Tables\TableRepository;
 
 class Index extends Component
 {
     use SearchingTrait, PaginatingTrait, SortingTrait;
 
-    public function render(TableRepository $repository): View
+    public function render(TableRepository $repository, getColumnsService $service): View
     {
         return view('livewire.features.tables.index', [
             'tables' => $repository->getFiltered($this->search, $this->perPage, $this->orderBy, $this->orderDirection),
-            'columns' => $repository->getVisibleColumns('tables')
+            'columns' => $service->getVisibleColumns('tables')
         ]);
     }
 }
