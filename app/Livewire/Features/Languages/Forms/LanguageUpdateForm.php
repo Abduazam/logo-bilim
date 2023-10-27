@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Features\Languages\Forms;
 
-use App\Models\Dashboard\Features\Languages\Language;
-use Livewire\Attributes\Rule;
 use Livewire\Form;
+use Livewire\Attributes\Rule;
+use App\Models\Dashboard\Features\Languages\Language;
 
 class LanguageUpdateForm extends Form
 {

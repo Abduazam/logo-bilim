@@ -29,6 +29,14 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         });
 
         Route::resource('tables', \App\Http\Controllers\Dashboard\Features\Tables\TableController::class)->except(['create', 'store', 'show', 'update', 'destroy']);
+
+        Route::prefix('texts')->name('texts.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Texts\TextController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('icons')->name('icons.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Icons\IconController::class, 'index'])->name('index');
+        });
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');

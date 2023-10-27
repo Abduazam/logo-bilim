@@ -4,7 +4,7 @@ namespace App\Contracts\Traits\Dashboard\Livewire\General;
 
 trait SortingTrait
 {
-    public string $orderBy = '';
+    public string $orderBy = 'id';
     public string $orderDirection = 'asc';
 
     public function sortBy($field): void

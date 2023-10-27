@@ -4,6 +4,6 @@
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
-        <option value="0">All</option>
+        <option value="0">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('all') }}</option>
     </select>
 </label>

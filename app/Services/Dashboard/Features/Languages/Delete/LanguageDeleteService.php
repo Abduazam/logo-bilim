@@ -20,8 +20,7 @@ class LanguageDeleteService extends DeleteService
 
     protected function delete(): bool|Exception
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () {
             $this->language->delete();
 
             if ($this->language->slug === app()->getLocale()) {
@@ -29,12 +28,7 @@ class LanguageDeleteService extends DeleteService
                 (new LanguageChangeService($language->slug))();
             }
 
-            DB::commit();
-
             return true;
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return $exception;
-        }
+        }, 5);
     }
 }

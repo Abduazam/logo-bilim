@@ -8,5 +8,5 @@ trait PaginatingTrait
 {
     use WithPagination;
 
-    public int $perPage = 0;
+    public int $perPage = 5;
 }

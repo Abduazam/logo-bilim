@@ -5,5 +5,6 @@
     <script src="/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
     <!-- Page JS Code -->
     <script src="/assets/js/script.js"></script>
+    @stack('scripts')
 </body>
 </html>

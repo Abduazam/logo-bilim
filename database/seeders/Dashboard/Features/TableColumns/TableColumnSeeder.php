@@ -17,26 +17,26 @@ class TableColumnSeeder extends Seeder
      */
     public function run(): void
     {
-        $tables = DB::select("SELECT TABLE_NAME
-            FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_SCHEMA = '" . config('database.db_name') . "'
-            AND TABLE_NAME NOT IN ('failed_jobs', 'migrations', 'password_reset_tokens', 'password_resets', 'personal_access_tokens', 'jobs')
-            GROUP BY TABLE_NAME");
+        $tables = Schema::getAllTables();
+
+        $tablesToRemove = ['failed_jobs', 'migrations', 'password_reset_tokens', 'password_resets', 'personal_access_tokens', 'jobs'];
+
+        foreach ($tables as $key => $table) {
+            $tableName = $table->tablename;
+
+            if (in_array($tableName, $tablesToRemove)) {
+                unset($tables[$key]);
+            }
+        }
 
         foreach ($tables as $table) {
             $tableRecord = Table::create([
-                'name' => $table->TABLE_NAME
+                'name' => $table->tablename
             ]);
 
-            // Retrieve columns in the order they appear in the table
             $columns = Schema::getColumnListing($tableRecord->name);
 
-            info($columns);
-
             foreach ($columns as $column) {
-                info($column);
-
-                // Your logic for visibility here
                 $visible = true;
                 if ($tableRecord->name === 'columns') {
                     $visible = match ($column) {

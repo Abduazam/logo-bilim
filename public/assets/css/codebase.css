@@ -16718,6 +16718,14 @@ small,
 #page-container.main-content-boxed > #page-footer .content {
   max-width: 1260px;
 }
+@media (min-width: 1367px) {
+    #page-container.main-content-boxed > #page-header .content-header,
+    #page-container.main-content-boxed > #page-header .content,
+    #page-container.main-content-boxed > #main-container .content,
+    #page-container.main-content-boxed > #page-footer .content {
+        max-width: 1820px;
+    }
+}
 @media (min-width: 992px) {
   #page-container.page-header-modern #page-header {
     background-color: #f0f2f5;

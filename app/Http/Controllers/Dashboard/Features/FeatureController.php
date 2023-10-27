@@ -13,6 +13,8 @@ class FeatureController extends DashboardController
         return view('dashboard.features.index', [
             'languages' => $repository->getLanguagesCount(),
             'tables' => $repository->getTableColumnsCount(),
+            'texts' => $repository->getTextsCount(),
+            'icons' => 2185,
         ]);
     }
 }

@@ -21,8 +21,7 @@ class LanguageCreateService extends CreateService
 
     protected function create(): bool|Exception
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () {
             $language = Language::create([
                 'slug' => $this->slug,
                 'title' => $this->title,
@@ -30,12 +29,7 @@ class LanguageCreateService extends CreateService
 
             event(new LanguageCreated($language));
 
-            DB::commit();
-
             return true;
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return $exception;
-        }
+        }, 5);
     }
 }

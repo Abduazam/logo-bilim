@@ -18,49 +18,6 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive text-nowrap mb-4">
-            <table class="own-table w-100">
-                <thead>
-                    <tr>
-                        @foreach($columns as $column)
-                            @if($column->sortable)
-                                <th wire:click='sortBy("{{ $column->name }}")' class="cursor-pointer">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <span class="me-2">{{ $column->translation->translation ?? $column->name }}</span>
-                                        @if($this->sortUp($column->name))
-                                            <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                                        @elseif($this->sortDown($column->name))
-                                            <i class="fa fa-sort-down text-gray-dark mb-1"></i>
-                                        @else
-                                            <i class="fa fa-sort text-gray-dark"></i>
-                                        @endif
-                                    </div>
-                                </th>
-                            @else
-                                <th class="text-center">{{ $column->translation->translation ?? $column->name }}</th>
-                            @endif
-                        @endforeach
-                        <th class="text-center">columns</th>
-                        <th class="text-center">actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($tables as $table)
-                    <tr wire:key="table-row-{{ $table->id }}">
-                        @foreach($columns as $column)
-                            <td class="text-center">{{ $table->{$column->name} }}</td>
-                        @endforeach
-                        <td class="text-center">{{ $table->columns_count }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('dashboard.features.tables.edit', $table) }}" class="btn btn-sm btn-primary text-white">
-                                <i class="fa fa-pen"></i>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-        <x-sections.fillers.pagination-navbar :data="$tables" />
+        <livewire:features.tables.lists.tables-list lazy="on-load" />
     </div>
 </div>

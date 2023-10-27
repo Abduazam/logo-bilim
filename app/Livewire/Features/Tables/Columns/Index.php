@@ -36,8 +36,10 @@ class Index extends Component
 
     public function render(getColumnsService $service): View
     {
-        return view('livewire.features.tables.columns.index', [
-            'columns' => $service->getVisibleColumns('columns')
-        ]);
+        // return view('livewire.features.tables.columns.index', [
+        //    'columns' => $service->getVisibleColumns('columns')
+        // ]);
+
+        return view('livewire.features.tables.columns.index');
     }
 }

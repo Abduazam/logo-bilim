@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'lazy_placeholder' => null,
+    'lazy_placeholder' => 'livewire.components.sections.fillers.placeholder',
 
     /*
     |---------------------------------------------------------------------------
@@ -154,5 +154,5 @@ return [
     |
     */
 
-        'pagination_theme' => 'bootstrap',
+    'pagination_theme' => 'bootstrap',
 ];

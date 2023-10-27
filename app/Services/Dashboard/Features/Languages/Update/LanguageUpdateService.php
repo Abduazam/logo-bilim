@@ -22,19 +22,13 @@ class LanguageUpdateService extends UpdateService
 
     protected function update(): bool|Exception
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () {
             $this->language->update([
                 'slug' => $this->slug,
                 'title' => $this->title,
             ]);
 
-            DB::commit();
-
             return true;
-        } catch (Exception $exception) {
-            DB::rollBack();
-            return $exception;
-        }
+        }, 5);
     }
 }

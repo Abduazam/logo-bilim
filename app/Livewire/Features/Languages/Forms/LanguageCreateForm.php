@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Features\Languages\Forms;
 
-use Livewire\Attributes\Rule;
 use Livewire\Form;
+use Livewire\Attributes\Rule;
 
 class LanguageCreateForm extends Form
 {

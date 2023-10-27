@@ -21,57 +21,6 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive text-nowrap mb-4">
-            <table class="own-table w-100">
-                <thead>
-                <tr>
-                    @foreach($columns as $column)
-                        @if($column->sortable)
-                        <th wire:click='sortBy("{{ $column->name }}")' class="cursor-pointer">
-                            <div class="d-flex justify-content-center align-items-center ">
-                                <span class="me-2">{{ $column->translation->translation ?? $column->name }}</span>
-                                @if($this->sortUp($column->name))
-                                    <i class="fa fa-sort-up text-gray-dark mt-1"></i>
-                                @elseif($this->sortDown($column->name))
-                                    <i class="fa fa-sort-down text-gray-dark mb-1"></i>
-                                @else
-                                    <i class="fa fa-sort text-gray-dark"></i>
-                                @endif
-                            </div>
-                        </th>
-                        @else
-                        <th class="text-center">{{ $column->translation->translation ?? $column->name }}</th>
-                        @endif
-                    @endforeach
-                    <th class="text-center">actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($languages as $language)
-                        <tr wire:key="language-row-{{ $language->id }}">
-                            @foreach($columns as $column)
-                                @if($column->name === 'slug')
-                                    <td class="text-center">{!! $language->getSlug() !!}</td>
-                                @else
-                                    <td class="text-center">{{ $language->{$column->name} }}</td>
-                                @endif
-                            @endforeach
-                            <td class="text-center">
-                                @if(!$language->trashed())
-                                    <livewire:features.languages.update :language="$language" :wire:key="'update-language-id' . $language->id" />
-                                    @if(!$language->isLast())
-                                        <livewire:features.languages.delete :language="$language" :wire:key="'delete-language-id' . $language->id" />
-                                    @endif
-                                @else
-                                    <livewire:features.languages.restore :language="$language" :wire:key="'restore-language-id' . $language->id" />
-                                    <livewire:features.languages.force-delete :language="$language" :wire:key="'force-delete-language-id' . $language->id" />
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <x-sections.fillers.pagination-navbar :data="$languages" />
+        <livewire:features.languages.lists.languages-list lazy="on-load" />
     </div>
 </div>
