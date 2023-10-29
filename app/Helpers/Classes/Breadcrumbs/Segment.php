@@ -3,7 +3,6 @@
 namespace App\Helpers\Classes\Breadcrumbs;
 
 use Illuminate\Http\Request;
-use App\Helpers\Services\TextsService\getTextTranslationService;
 
 class Segment
 {
@@ -18,7 +17,7 @@ class Segment
 
     public function name(): string
     {
-        return getTextTranslationService::getTextTranslation($this->segment);
+        return str_replace('-', ' ', ucfirst($this->segment));
     }
 
     public function model()

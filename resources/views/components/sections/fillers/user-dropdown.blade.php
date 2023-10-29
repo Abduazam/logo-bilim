@@ -13,12 +13,12 @@
         </div>
         <div class="p-2">
             <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="" data-toggle="layout" data-action="side_overlay_toggle">
-                <span>{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('settings') }}</span>
+                <span>Settings</span>
                 <i class="fa fa-fw fa-wrench opacity-25"></i>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <span>{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('sign-out') }}</span>
+                <span>Sign out</span>
                 <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

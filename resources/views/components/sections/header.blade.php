@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!-- Title -->
-    <title>LaraTemp</title>
+    <title>{{ env('APP_NAME', 'Logo-Bilim') }}</title>
     <!-- Metas -->
     <meta name="description" content="">
     <meta name="author" content="">

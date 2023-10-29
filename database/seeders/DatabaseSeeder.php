@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             /* DATA */
             Dashboard\Users\AdminSeeder::class,
             Dashboard\Features\Languages\LanguageSeeder::class,
-            Dashboard\Features\Texts\TextSeeder::class,
 
             /* TABLE COLUMNS */
             Dashboard\Features\TableColumns\TableColumnSeeder::class,

@@ -7,7 +7,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-language fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('languages') }}</p>
+                    <p class="fw-semibold">Languages</p>
                 </div>
             </a>
         </div>
@@ -19,7 +19,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-database fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('tables') }}</p>
+                    <p class="fw-semibold">Tables</p>
                 </div>
             </a>
         </div>
@@ -31,7 +31,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-text-height fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('texts') }}</p>
+                    <p class="fw-semibold">Texts</p>
                 </div>
             </a>
         </div>
@@ -43,7 +43,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-icons fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('icons') }}</p>
+                    <p class="fw-semibold">Icons</p>
                 </div>
             </a>
         </div>

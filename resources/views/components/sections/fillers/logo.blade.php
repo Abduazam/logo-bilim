@@ -1,4 +1,4 @@
 <!-- Logo -->
 <a class="link-fx fw-semibold" href="{{ route('dashboard.home') }}">
-    <span class="text-dark">{{ \App\Helpers\Services\TextsService\getTextTranslationService::getTextTranslation('app-name') }}</span>
+    <span class="text-dark">Logo</span><span class="text-primary">Bilim</span>
 </a>
