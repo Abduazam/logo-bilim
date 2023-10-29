@@ -14,7 +14,7 @@ class FeatureController extends DashboardController
             'languages' => $repository->getLanguagesCount(),
             'tables' => $repository->getTableColumnsCount(),
             'texts' => $repository->getTextsCount(),
-            'icons' => 2185,
+            'icons' => $repository->getIconsCount(),
         ]);
     }
 }

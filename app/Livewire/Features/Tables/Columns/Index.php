@@ -5,7 +5,6 @@ namespace App\Livewire\Features\Tables\Columns;
 use Livewire\Component;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use App\Helpers\Services\ColumnsService\getColumnsService;
 use App\Models\Dashboard\Features\TableColumns\Columns\Column;
 use App\Models\Dashboard\Features\TableColumns\Columns\ColumnTranslation;
 
@@ -34,12 +33,8 @@ class Index extends Component
         ]);
     }
 
-    public function render(getColumnsService $service): View
+    public function render(): View
     {
-        // return view('livewire.features.tables.columns.index', [
-        //    'columns' => $service->getVisibleColumns('columns')
-        // ]);
-
         return view('livewire.features.tables.columns.index');
     }
 }

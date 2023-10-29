@@ -40,7 +40,8 @@ class LanguageRepository
                 return $query->onlyTrashed();
             })
             ->when($search, function ($query, $search) {
-                $query->where('title', 'like', '%' . $search . '%');
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('slug', 'like', '%' . $search . '%');
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);

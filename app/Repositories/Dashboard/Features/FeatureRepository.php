@@ -20,6 +20,11 @@ class FeatureRepository
 
     public function getTextsCount(): int
     {
-        return Text::query()->count();
+        return 0;
+    }
+
+    public function getIconsCount(): int
+    {
+        return 2185;
     }
 }
