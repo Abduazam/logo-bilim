@@ -36,7 +36,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'refresh-language', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', $title  . ' => ' . $this->form->title);
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Language updated:</b> {$title} => {$this->form->title}");
             } else {
                 throw $response;
             }

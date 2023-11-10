@@ -2,16 +2,10 @@
 
 namespace App\Repositories\Dashboard\Features\TableColumns\Tables;
 
-use Illuminate\Database\Eloquent\Collection;
 use App\Models\Dashboard\Features\TableColumns\Tables\Table;
 
 class TableRepository
 {
-    public function getAll(): Collection
-    {
-        return Table::all();
-    }
-
     public function getFiltered(
         string $search,
         int $perPage,
@@ -20,9 +14,7 @@ class TableRepository
     ) {
         $tables = Table::select(['id', 'name', 'created_at'])
             ->withCount('columns')
-            ->when($search, function ($query, $search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            })
+            ->when($search, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

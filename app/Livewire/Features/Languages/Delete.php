@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatchMany(['refresh', 'refresh-language']);
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', $this->language->title);
+            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Language deleted:</b> {$this->language->title}");
         } else {
             throw $response;
         }

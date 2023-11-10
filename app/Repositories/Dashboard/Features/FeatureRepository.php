@@ -4,7 +4,6 @@ namespace App\Repositories\Dashboard\Features;
 
 use App\Models\Dashboard\Features\Languages\Language;
 use App\Models\Dashboard\Features\TableColumns\Tables\Table;
-use App\Models\Dashboard\Features\Texts\Text;
 
 class FeatureRepository
 {

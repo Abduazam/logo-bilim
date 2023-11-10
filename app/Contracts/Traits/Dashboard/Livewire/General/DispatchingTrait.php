@@ -4,6 +4,8 @@ namespace App\Contracts\Traits\Dashboard\Livewire\General;
 
 trait DispatchingTrait
 {
+    public bool $dispatching = false;
+
     public function dispatchSuccess($icon, $action, $description): void
     {
         $this->dispatch('dispatch-toast', [
@@ -18,5 +20,10 @@ trait DispatchingTrait
         foreach ($dispatches as $dispatch) {
             $this->dispatch($dispatch);
         }
+    }
+
+    public function dispatchTrue(): void
+    {
+        $this->dispatching = true;
     }
 }

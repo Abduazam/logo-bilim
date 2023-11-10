@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'lazy_placeholder' => 'livewire.components.sections.fillers.placeholder',
+    'lazy_placeholder' => 'components.sections.fillers.livewire.placeholder',
 
     /*
     |---------------------------------------------------------------------------

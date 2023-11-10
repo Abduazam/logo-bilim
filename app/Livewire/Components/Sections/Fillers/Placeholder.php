@@ -3,11 +3,12 @@
 namespace App\Livewire\Components\Sections\Fillers;
 
 use Livewire\Component;
+use Illuminate\View\View;
 
 class Placeholder extends Component
 {
-    public function render()
+    public function render(): View
     {
-        return view('livewire.components.sections.fillers.placeholder');
+        return view('components.sections.fillers.livewire.placeholder');
     }
 }

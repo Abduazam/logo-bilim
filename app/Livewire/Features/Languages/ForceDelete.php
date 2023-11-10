@@ -3,9 +3,9 @@
 namespace App\Livewire\Features\Languages;
 
 use Exception;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use App\Models\Dashboard\Features\Languages\Language;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Services\Dashboard\Features\Languages\ForceDelete\LanguageForceDeleteService;
@@ -26,7 +26,7 @@ class ForceDelete extends Component
 
         if ($response) {
             $this->dispatchMany(['refresh', 'refresh-language']);
-            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', $this->language->title);
+            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Language completely deleted:</b> {$this->language->title}");
         } else {
             throw $response;
         }

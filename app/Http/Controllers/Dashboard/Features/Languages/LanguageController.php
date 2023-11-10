@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard\Features\Languages;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 class LanguageController extends DashboardController

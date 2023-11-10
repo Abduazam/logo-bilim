@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard\Features\Tables;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\Dashboard\Features\TableColumns\Tables\Table;
 
@@ -18,27 +17,11 @@ class TableController extends DashboardController
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(Table $table)
+    public function show(Table $table): View
     {
-        //
+        return view('dashboard.features.tables.show', compact('table'));
     }
 
     /**
@@ -46,24 +29,6 @@ class TableController extends DashboardController
      */
     public function edit(Table $table): View
     {
-        return view('dashboard.features.tables.update', [
-            'table' => $table,
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Table $table)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Table $table)
-    {
-        //
+        return view('dashboard.features.tables.update', compact('table'));
     }
 }

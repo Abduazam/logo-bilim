@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard\Features\Texts;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 class TextController extends DashboardController

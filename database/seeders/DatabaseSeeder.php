@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             /* DATA */
-            Dashboard\Users\AdminSeeder::class,
+            Dashboard\UserManagement\Users\AdminSeeder::class,
+            Dashboard\UserManagement\Permissions\PermissionsSeeder::class,
             Dashboard\Features\Languages\LanguageSeeder::class,
 
             /* TABLE COLUMNS */

@@ -27,7 +27,7 @@ class Create extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'refresh-language']);
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', $this->form->title);
+                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New language:</b> {$this->form->title}");
                 $this->form->reset();
             } else {
                 throw $response;

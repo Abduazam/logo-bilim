@@ -80,3 +80,7 @@
 .js-table-sections-header.show {
     background: var(--table-bg);
 }
+
+.remove-permission:hover i {
+    color: #333!important;
+}
