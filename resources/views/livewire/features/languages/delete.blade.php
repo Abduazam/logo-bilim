@@ -3,7 +3,6 @@
         <i class="fa fa-trash"></i>
     </button>
 
-    <!-- Delete Language Modal -->
     <div wire:ignore.self class="modal fade" id="modal-delete-language-id{{ $language->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-delete-language-id{{ $language->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content fs-sm text-start">

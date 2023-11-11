@@ -75,5 +75,19 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     });
 
+    Route::prefix('information')->name('information.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Dashboard\Information\InformationController::class, 'index'])->name('index');
+
+        Route::prefix('branches')->name('branches.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Information\Branches\BranchController::class, 'index'])->name('index');
+
+            foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
+    });
+
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
 })->middleware(['auth', 'verified', 'has_permission']);

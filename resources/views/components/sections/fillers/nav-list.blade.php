@@ -1,4 +1,16 @@
 <li class="nav-main-item">
+    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="{{ route('dashboard.information.index') }}">
+        <span class="nav-main-link-name">Information</span>
+    </a>
+    <ul class="nav-main-submenu">
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('dashboard.information.branches.index') }}">
+                <span class="nav-main-link-name">Branches</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="nav-main-item">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="{{ route('dashboard.user-management.index') }}">
         <span class="nav-main-link-name">User Management</span>
     </a>

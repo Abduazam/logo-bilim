@@ -3,7 +3,6 @@
         <i class="fa fa-pen"></i>
     </button>
 
-    <!-- Update Language Modal -->
     <div wire:ignore.self class="modal fade" id="modal-update-language-id{{ $language->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-update-language-id{{ $language->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content fs-sm text-start">

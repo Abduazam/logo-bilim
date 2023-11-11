@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use App\Events\Dashboard\Models\Features\Languages\LanguageCreated;
 use App\Listeners\Dashboard\Models\Features\Languages\CopyColumnNames;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+use App\Listeners\Dashboard\Models\UserManagement\Permissions\CopyPermissionTranslations;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
 
         LanguageCreated::class => [
             CopyColumnNames::class,
+            CopyPermissionTranslations::class,
         ],
     ];
 
