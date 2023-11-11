@@ -8,17 +8,24 @@ use Illuminate\View\View;
 use Livewire\WithFileUploads;
 use App\Livewire\UserManagement\Users\Forms\UserCreateForm;
 use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\AssigningBranch;
 use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
 use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
 use App\Services\Dashboard\UserManagement\Users\Create\UserCreateService;
 
 class Create extends Component
 {
     use WithFileUploads;
-    use ShowPasswordTrait, DispatchingTrait, RemoveFileTrait;
+    use ShowPasswordTrait, DispatchingTrait, RemoveFileTrait, AssigningBranch;
 
     public UserCreateForm $form;
+
+    public function mount(BranchRepository $branchRepository): void
+    {
+        $this->branches = $branchRepository->getAll()->pluck('title', 'id')->all();
+    }
 
     /**
      * @throws Exception
@@ -26,6 +33,7 @@ class Create extends Component
     public function create()
     {
         $validatedData = $this->validate();
+
         if ($validatedData) {
             $service = new UserCreateService($validatedData);
             $response = $service->callMethod();
@@ -43,10 +51,11 @@ class Create extends Component
         }
     }
 
-    public function render(RoleRepository $repository): View
+    public function render(RoleRepository $roleRepository,  ): View
     {
         return view('livewire.user-management.users.create', [
-            'roles' => $repository->getAll(),
+            'roles' => $roleRepository->getAll(),
+            'branches' => $this->branches,
         ]);
     }
 }

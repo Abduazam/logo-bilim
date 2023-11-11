@@ -2,10 +2,22 @@
 
 namespace App\Repositories\Dashboard\Information\Branches;
 
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\UserManagement\Users\User;
 use App\Models\Dashboard\Information\Branches\Branch;
 
 class BranchRepository
 {
+    public function getAll(): Collection
+    {
+        return Branch::all();
+    }
+
+    public function getNotChosenAll(User $user)
+    {
+        return Branch::whereNotIn('id', $user->branches->pluck('id'))->get();
+    }
+
     public function getFiltered(
         string $search,
         int $perPage,

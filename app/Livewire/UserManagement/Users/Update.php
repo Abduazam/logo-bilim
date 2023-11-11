@@ -10,6 +10,8 @@ use App\Models\Dashboard\UserManagement\Users\User;
 use App\Livewire\UserManagement\Users\Forms\UserUpdateForm;
 use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
 use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\AssigningBranch;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
 use App\Services\Dashboard\UserManagement\Users\Update\UserUpdateService;
@@ -17,13 +19,14 @@ use App\Services\Dashboard\UserManagement\Users\Update\UserUpdateService;
 class Update extends Component
 {
     use WithFileUploads;
-    use ShowPasswordTrait, DispatchingTrait, RemoveFileTrait;
+    use ShowPasswordTrait, DispatchingTrait, RemoveFileTrait, AssigningBranch;
 
     public User $user;
     public UserUpdateForm $form;
 
-    public function mount(): void
+    public function mount(BranchRepository $branchRepository): void
     {
+        $this->branches = $branchRepository->getNotChosenAll($this->user)->pluck('title', 'id')->all();
         $this->form->setValues($this->user);
     }
 
@@ -49,10 +52,11 @@ class Update extends Component
         }
     }
 
-    public function render(RoleRepository $repository): View
+    public function render(RoleRepository $roleRepository): View
     {
         return view('livewire.user-management.users.update', [
-            'roles' => $repository->getAll(),
+            'roles' => $roleRepository->getAll(),
+            'branches' => $this->branches,
         ]);
     }
 }

@@ -7,6 +7,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Dashboard\Information\Branches\Branch;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,6 +26,7 @@ use App\Models\Dashboard\UserManagement\Users\Traits\UserMethods;
  * @property BelongsTo $role
  * @property BelongsToMany $roles
  * @property BelongsToMany $permissions
+ * @property BelongsToMany $branches
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -69,4 +71,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Accesses user's all branches.
+     *
+     * @return BelongsToMany
+     */
+    public function branches(): BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class, 'user_branches');
+    }
 }

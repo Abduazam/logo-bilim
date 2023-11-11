@@ -15,6 +15,7 @@ class UserCreateService extends CreateService
     protected string $name;
     protected string $email;
     protected Role $role;
+    protected array $branches;
     protected string $password;
     protected mixed $photo;
 
@@ -23,6 +24,7 @@ class UserCreateService extends CreateService
         $this->name = $data['form']['name'];
         $this->email = $data['form']['email'];
         $this->role = Role::findOrFail($data['form']['role_id']);
+        $this->branches = array_keys($data['form']['chosen_branches']);
         $this->password = $data['form']['password'];
         $this->photo = $data['form']['photo'];
     }
@@ -43,6 +45,8 @@ class UserCreateService extends CreateService
                 'email_verified_at' => now(),
                 'photo' => $photo,
             ]);
+
+            $user->branches()->syncWithPivotValues($this->branches, ['created_at' => now(), 'updated_at' => now()]);
 
             $user->assignRole($this->role);
 

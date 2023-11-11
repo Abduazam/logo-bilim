@@ -16,6 +16,9 @@ class UserCreateForm extends Form
     #[Rule('required|numeric|exists:roles,id')]
     public int|null $role_id = null;
 
+    #[Rule('required|array')]
+    public array $chosen_branches = [];
+
     #[Rule('required|string|min:3')]
     public ?string $password = null;
 

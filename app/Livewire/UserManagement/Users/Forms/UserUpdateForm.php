@@ -17,6 +17,9 @@ class UserUpdateForm extends Form
     #[Rule('required|numeric|exists:roles,id')]
     public int|null $role_id = null;
 
+    #[Rule('required|array')]
+    public array $chosen_branches = [];
+
     #[Rule('nullable|string|min:3')]
     public ?string $password = null;
 
@@ -28,6 +31,7 @@ class UserUpdateForm extends Form
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role_id = $user->roles->first()->id;
+        $this->chosen_branches = $user->branches->pluck('title', 'id')->toArray();
         $this->photo = $user->photo;
     }
 }

@@ -17,8 +17,6 @@ class RoleUpdateForm extends Form
     public function setValues(Role $role): void
     {
         $this->name = $role->name;
-        foreach ($role->permissions as $permission) {
-            $this->role_permissions[$permission->id] = $permission->name;
-        }
+        $this->role_permissions = $role->permissions->pluck('name', 'id')->toArray();
     }
 }
