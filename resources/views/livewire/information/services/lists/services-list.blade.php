@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-4 text-end pe-0">
-                <livewire:information.branches.create />
+                <livewire:information.services.create />
             </div>
         </div>
     </div>
@@ -26,25 +26,23 @@
             <tr>
                 <th class="text-center">id</th>
                 <th class="text-center">title</th>
-                <th class="text-center">services</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($branches as $branch)
-                <tr wire:key="branch-row-{{ $branch->id }}">
-                    <td class="text-center">{{ $branch->id }}</td>
-                    <td class="text-center">{{ $branch->title }}</td>
-                    <td class="text-center">{{ $branch->services_count }}</td>
-                    <td class="text-center">{{ $branch->created_at }}</td>
+            @foreach($services as $service)
+                <tr wire:key="service-row-{{ $service->id }}">
+                    <td class="text-center">{{ $service->id }}</td>
+                    <td class="text-center">{{ $service->title }}</td>
+                    <td class="text-center">{{ $service->created_at }}</td>
                     <td class="text-center">
-                        @if(!$branch->trashed())
-                            <livewire:information.branches.update :branch="$branch" :wire:key="'update-branch-id' . $branch->id" />
-                            <livewire:information.branches.delete :branch="$branch" :wire:key="'delete-branch-id' . $branch->id" />
+                        @if(!$service->trashed())
+                            <livewire:information.services.update :service="$service" :wire:key="'update-service-id' . $service->id" />
+                            <livewire:information.services.delete :service="$service" :wire:key="'delete-service-id' . $service->id" />
                         @else
-                            <livewire:information.branches.restore :branch="$branch" :wire:key="'restore-branch-id' . $branch->id" />
-                            <livewire:information.branches.force-delete :branch="$branch" :wire:key="'force-delete-branch-id' . $branch->id" />
+                            <livewire:information.services.restore :service="$service" :wire:key="'restore-service-id' . $service->id" />
+                            <livewire:information.services.force-delete :service="$service" :wire:key="'force-delete-service-id' . $service->id" />
                         @endif
                     </td>
                 </tr>
@@ -52,5 +50,5 @@
             </tbody>
         </table>
     </div>
-    <x-sections.fillers.pagination-navbar :data="$branches" />
+    <x-sections.fillers.pagination-navbar :data="$services" />
 </div>

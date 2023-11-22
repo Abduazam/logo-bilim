@@ -11,11 +11,13 @@ class BranchUpdateService extends UpdateService
 {
     protected Branch $branch;
     protected string $title;
+    protected array $services;
 
     public function __construct(array $data, Branch $branch)
     {
         $this->branch = $branch;
         $this->title = $data['title'];
+        $this->services = $data['chosen_services'];
     }
 
     protected function update(): bool|Exception
@@ -25,6 +27,17 @@ class BranchUpdateService extends UpdateService
                 $this->branch->update([
                     'title' => $this->title,
                 ]);
+
+                $syncData = [];
+                foreach ($this->services as $id => $service) {
+                    $syncData[$id] = [
+                        'price' => $service['price'],
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                }
+
+                $this->branch->services()->sync($syncData);
             }, 5);
 
             return true;

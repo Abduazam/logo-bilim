@@ -52,7 +52,7 @@ class UserUpdateService extends UpdateService
 
                 $this->user->update($userAttributes);
 
-                $this->user->branches()->syncWithPivotValues($this->branches, ['updated_at' => now()]);
+                $this->user->branches()->syncWithPivotValues($this->branches, ['created_at' => now(), 'updated_at' => now()]);
 
                 if (!$this->user->hasRole($this->role->name)) {
                     $this->user->syncRoles([$this->role]);

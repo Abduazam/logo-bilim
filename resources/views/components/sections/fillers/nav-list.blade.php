@@ -4,6 +4,11 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('dashboard.information.services.index') }}">
+                <span class="nav-main-link-name">Services</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
             <a class="nav-main-link" href="{{ route('dashboard.information.branches.index') }}">
                 <span class="nav-main-link-name">Branches</span>
             </a>

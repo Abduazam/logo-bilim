@@ -2,19 +2,19 @@
 
 namespace App\Livewire\UserManagement\Users;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
-use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
-use App\Livewire\UserManagement\Users\Forms\UserUpdateForm;
-use App\Models\Dashboard\UserManagement\Users\User;
-use App\Repositories\Dashboard\Information\Branches\BranchRepository;
-use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
-use App\Services\Dashboard\UserManagement\Users\Update\UserUpdateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
 use Livewire\WithFileUploads;
+use App\Models\Dashboard\UserManagement\Users\User;
+use App\Livewire\UserManagement\Users\Forms\UserUpdateForm;
+use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
+use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
+use App\Services\Dashboard\UserManagement\Users\Update\UserUpdateService;
 
 class Update extends Component
 {

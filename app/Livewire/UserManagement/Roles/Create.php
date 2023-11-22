@@ -37,6 +37,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New role:</b> {$this->form->name}");
                     $this->form->reset();
+                    $this->mount(new PermissionRepository());
                 } else {
                     return to_route('dashboard.user-management.roles.index');
                 }

@@ -9,4 +9,12 @@ class BranchCreateForm extends Form
 {
     #[Validate('required|string|min:2|unique:branches')]
     public string $title = '';
+
+    #[Validate([
+        'chosen_services' => 'required|array',
+        'chosen_services.*' => 'required|array',
+        'chosen_services.*.title' => 'required|string',
+        'chosen_services.*.price' => 'required|numeric',
+    ])]
+    public array $chosen_services = [];
 }

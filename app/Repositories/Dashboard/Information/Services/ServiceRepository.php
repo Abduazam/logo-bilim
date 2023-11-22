@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Repositories\Dashboard\Information\Branches;
+namespace App\Repositories\Dashboard\Information\Services;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\UserManagement\Users\User;
 use App\Models\Dashboard\Information\Branches\Branch;
+use App\Models\Dashboard\Information\Services\Service;
 
-class BranchRepository
+class ServiceRepository
 {
     public function getAll(): Collection
     {
-        return Branch::all();
+        return Service::all();
     }
 
-    public function getNotChosenAll(User $user)
+    public function getNotChosenAll(Branch $branch)
     {
-        return Branch::whereNotIn('id', $user->branches->pluck('id'))->get();
+        return Service::whereNotIn('id', $branch->services->pluck('id'))->get();
     }
 
     public function getFiltered(
@@ -25,8 +25,7 @@ class BranchRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $branches = Branch::select(['id', 'title', 'created_at', 'deleted_at'])
-            ->withCount('services')
+        $branches = Service::select(['id', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query) => $query->where('title', 'like', "%$search%"))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

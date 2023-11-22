@@ -2,18 +2,18 @@
 
 namespace App\Livewire\UserManagement\Users;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
-use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
-use App\Livewire\UserManagement\Users\Forms\UserCreateForm;
-use App\Repositories\Dashboard\Information\Branches\BranchRepository;
-use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
-use App\Services\Dashboard\UserManagement\Users\Create\UserCreateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
 use Livewire\WithFileUploads;
+use App\Livewire\UserManagement\Users\Forms\UserCreateForm;
+use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
+use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
+use App\Services\Dashboard\UserManagement\Users\Create\UserCreateService;
 
 class Create extends Component
 {
@@ -42,6 +42,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New user:</b> {$this->form->name}");
                     $this->form->reset();
+                    $this->mount(new BranchRepository());
                 } else {
                     return to_route('dashboard.user-management.users.index');
                 }
