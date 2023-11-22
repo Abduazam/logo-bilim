@@ -9,25 +9,29 @@ use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 class PermissionUpdateService extends UpdateService
 {
-    protected array $translations;
     protected Permission $permission;
+    protected array $translations;
 
     public function __construct(array $data, Permission $permission)
     {
-        $this->translations = $data['form']['translations'];
         $this->permission = $permission;
+        $this->translations = $data['translations'];
     }
 
     protected function update(): bool|Exception
     {
-        return DB::transaction(function () {
-            foreach ($this->translations as $key => $translation) {
-                $this->permission->translations->where('slug', $key)->first()->update([
-                    'translation' => $translation,
-                ]);
-            }
+        try {
+            DB::transaction(function () {
+                foreach ($this->translations as $key => $translation) {
+                    $this->permission->translations->where('slug', $key)->first()->update([
+                        'translation' => $translation,
+                    ]);
+                }
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

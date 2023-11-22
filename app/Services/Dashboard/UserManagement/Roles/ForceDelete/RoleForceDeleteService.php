@@ -13,10 +13,14 @@ class RoleForceDeleteService extends ForceDeleteService
 
     protected function forceDelete(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->role->forceDelete();
+        try {
+            DB::transaction(function () {
+                $this->role->forceDelete();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

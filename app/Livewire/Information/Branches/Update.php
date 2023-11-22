@@ -27,7 +27,8 @@ class Update extends Component
      */
     public function update(): void
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $title = $this->branch->title;
 
@@ -35,7 +36,7 @@ class Update extends Component
             $response = $service->callMethod();
 
             if ($response) {
-                $this->dispatch('refresh');
+                $this->dispatchMany(['refresh', 'updated']);
                 $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Branch updated:</b> {$title} => {$this->form->title}");
             } else {
                 throw $response;

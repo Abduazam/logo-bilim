@@ -27,7 +27,8 @@ class Update extends Component
      */
     public function update(): void
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $title = $this->language->title;
 

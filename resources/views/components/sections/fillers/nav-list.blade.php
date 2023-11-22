@@ -42,20 +42,20 @@
                 <span class="nav-main-link-name">Languages</span>
             </a>
         </li>
-        <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('dashboard.features.tables.index') }}">
-                <span class="nav-main-link-name">Tables</span>
-            </a>
-        </li>
-        <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('dashboard.features.texts.index') }}">
-                <span class="nav-main-link-name">Texts</span>
-            </a>
-        </li>
-        <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('dashboard.features.icons.index') }}">
-                <span class="nav-main-link-name">Icons</span>
-            </a>
-        </li>
+{{--        <li class="nav-main-item">--}}
+{{--            <a class="nav-main-link" href="{{ route('dashboard.features.tables.index') }}">--}}
+{{--                <span class="nav-main-link-name">Tables</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        <li class="nav-main-item">--}}
+{{--            <a class="nav-main-link" href="{{ route('dashboard.features.texts.index') }}">--}}
+{{--                <span class="nav-main-link-name">Texts</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        <li class="nav-main-item">--}}
+{{--            <a class="nav-main-link" href="{{ route('dashboard.features.icons.index') }}">--}}
+{{--                <span class="nav-main-link-name">Icons</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
     </ul>
 </li>

@@ -2,18 +2,18 @@
 
 namespace App\Livewire\UserManagement\Users;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
-use Livewire\WithFileUploads;
-use App\Livewire\UserManagement\Users\Forms\UserCreateForm;
-use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
-use App\Contracts\Traits\Dashboard\Livewire\General\AssigningBranch;
-use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Repositories\Dashboard\Information\Branches\BranchRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
+use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
+use App\Livewire\UserManagement\Users\Forms\UserCreateForm;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
+use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
 use App\Services\Dashboard\UserManagement\Users\Create\UserCreateService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
@@ -32,7 +32,7 @@ class Create extends Component
      */
     public function create()
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
 
         if ($validatedData) {
             $service = new UserCreateService($validatedData);
@@ -51,7 +51,7 @@ class Create extends Component
         }
     }
 
-    public function render(RoleRepository $roleRepository,  ): View
+    public function render(RoleRepository $roleRepository): View
     {
         return view('livewire.user-management.users.create', [
             'roles' => $roleRepository->getAll(),

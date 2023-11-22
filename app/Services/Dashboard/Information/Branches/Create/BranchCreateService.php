@@ -13,17 +13,21 @@ class BranchCreateService extends CreateService
 
     public function __construct(array $data)
     {
-        $this->title = $data['form']['title'];
+        $this->title = $data['title'];
     }
 
     protected function create(): bool|Exception
     {
-        return DB::transaction(function () {
-            Branch::create([
-                'title' => $this->title,
-            ]);
+        try {
+            DB::transaction(function () {
+                Branch::create([
+                    'title' => $this->title,
+                ]);
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

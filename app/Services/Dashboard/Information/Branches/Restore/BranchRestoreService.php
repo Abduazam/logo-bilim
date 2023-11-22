@@ -13,10 +13,14 @@ class BranchRestoreService extends RestoreService
 
     protected function restore(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->branch->restore();
+        try {
+            DB::transaction(function () {
+                $this->branch->restore();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

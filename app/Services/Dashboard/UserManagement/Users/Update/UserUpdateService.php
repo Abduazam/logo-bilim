@@ -23,41 +23,45 @@ class UserUpdateService extends UpdateService
     public function __construct(array $data, User $user)
     {
         $this->user = $user;
-        $this->name = $data['form']['name'];
-        $this->email = $data['form']['email'];
-        $this->role = Role::findOrFail($data['form']['role_id']);
-        $this->branches = array_keys($data['form']['chosen_branches']);
-        $this->password = $data['form']['password'];
-        $this->photo = $data['form']['photo'];
+        $this->name = $data['name'];
+        $this->email = $data['email'];
+        $this->role = Role::findOrFail($data['role_id']);
+        $this->branches = array_keys($data['chosen_branches']);
+        $this->password = $data['password'];
+        $this->photo = $data['photo'];
     }
 
     protected function update(): bool|Exception
     {
-        return DB::transaction(function () {
-            $userAttributes = [
-                'name' => $this->name,
-                'email' => $this->email,
-            ];
+        try {
+            DB::transaction(function () {
+                $userAttributes = [
+                    'name' => $this->name,
+                    'email' => $this->email,
+                ];
 
-            $userAttributes['photo'] = $this->photo;
-            if (!is_null($this->photo) && $this->user->photo != $this->photo) {
-                $upload = new Upload($this->photo, 'users', $this->user, 'photo');
-                $userAttributes['photo'] = $upload->uploadMedia();
-            }
+                $userAttributes['photo'] = $this->photo;
+                if (!is_null($this->photo) && $this->user->photo != $this->photo) {
+                    $upload = new Upload($this->photo, 'users', $this->user, 'photo');
+                    $userAttributes['photo'] = $upload->uploadMedia();
+                }
 
-            if (!is_null($this->password)) {
-                $userAttributes['password'] = Hash::make($this->password);
-            }
+                if (!is_null($this->password)) {
+                    $userAttributes['password'] = Hash::make($this->password);
+                }
 
-            $this->user->update($userAttributes);
+                $this->user->update($userAttributes);
 
-            $this->user->branches()->syncWithPivotValues($this->branches, ['updated_at' => now()]);
+                $this->user->branches()->syncWithPivotValues($this->branches, ['updated_at' => now()]);
 
-            if (!$this->user->hasRole($this->role->name)) {
-                $this->user->syncRoles([$this->role]);
-            }
+                if (!$this->user->hasRole($this->role->name)) {
+                    $this->user->syncRoles([$this->role]);
+                }
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

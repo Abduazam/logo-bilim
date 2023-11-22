@@ -15,23 +15,27 @@ class RoleCreateService extends CreateService
 
     public function __construct(array $data)
     {
-        $this->name = $data['form']['name'];
-        $this->permissions = array_keys($data['form']['role_permissions']);
+        $this->name = $data['name'];
+        $this->permissions = array_keys($data['role_permissions']);
     }
 
     protected function create(): bool|Exception
     {
-        return DB::transaction(function () {
-            $role = Role::create([
-                'name' => $this->name,
-            ]);
+        try {
+            DB::transaction(function () {
+                $role = Role::create([
+                    'name' => $this->name,
+                ]);
 
-            $role->givePermissionTo($this->permissions);
+                $role->givePermissionTo($this->permissions);
 
-            $checking = new RoleCheckDefaultPermissionsService($role);
-            $checking->checkOrGive();
+                $checking = new RoleCheckDefaultPermissionsService($role);
+                $checking->checkOrGive();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

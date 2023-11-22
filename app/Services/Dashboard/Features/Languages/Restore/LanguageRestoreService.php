@@ -13,10 +13,14 @@ class LanguageRestoreService extends RestoreService
 
     protected function restore(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->language->restore();
+        try {
+            DB::transaction(function () {
+                $this->language->restore();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

@@ -16,10 +16,10 @@ class LanguagesList extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function render(LanguageRepository $repository): View
+    public function render(LanguageRepository $languageRepository): View
     {
         return view('livewire.features.languages.lists.languages-list', [
-            'languages' => $repository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
+            'languages' => $languageRepository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
         ]);
     }
 }

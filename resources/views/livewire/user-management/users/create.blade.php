@@ -47,13 +47,13 @@
                                 <label class="form-label mb-0" for="branch_id">Branches: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
-                                <select wire:model.live="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('branch_id') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
+                                <select wire:model.live="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('form.chosen_branches') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($branches as $id => $title)
                                         <option value="{{ $id }}">{{ $title }}</option>
                                     @endforeach
                                 </select>
-                                @error('branch_id')
+                                @error('form.chosen_branches')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>

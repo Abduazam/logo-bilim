@@ -10,9 +10,7 @@ class Remove
         protected string $folder,
         protected $model = null,
         protected $modelColumn = null,
-    )
-    {
-    }
+    ) { }
 
     public function removeMedia(): void
     {

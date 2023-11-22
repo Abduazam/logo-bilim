@@ -2,19 +2,19 @@
 
 namespace App\Livewire\UserManagement\Users;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
-use Livewire\WithFileUploads;
-use App\Models\Dashboard\UserManagement\Users\User;
-use App\Livewire\UserManagement\Users\Forms\UserUpdateForm;
-use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
-use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\AssigningBranch;
-use App\Repositories\Dashboard\Information\Branches\BranchRepository;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\ShowPasswordTrait;
+use App\Contracts\Traits\Dashboard\Livewire\Models\AssigningBranch;
+use App\Livewire\UserManagement\Users\Forms\UserUpdateForm;
+use App\Models\Dashboard\UserManagement\Users\User;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
+use App\Repositories\Dashboard\UserManagement\Roles\RoleRepository;
 use App\Services\Dashboard\UserManagement\Users\Update\UserUpdateService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Update extends Component
 {
@@ -35,7 +35,8 @@ class Update extends Component
      */
     public function update()
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $service = new UserUpdateService($validatedData, $this->user);
             $response = $service->callMethod();

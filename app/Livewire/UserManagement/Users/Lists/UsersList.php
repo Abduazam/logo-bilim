@@ -19,10 +19,10 @@ class UsersList extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function render(UserRepository $repository, RoleRepository $roleRepository): View
+    public function render(UserRepository $userRepository, RoleRepository $roleRepository): View
     {
         return view('livewire.user-management.users.lists.users-list', [
-            'users' => $repository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection, $this->role_id),
+            'users' => $userRepository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection, $this->role_id),
             'roles' => $roleRepository->getAll(),
         ]);
     }

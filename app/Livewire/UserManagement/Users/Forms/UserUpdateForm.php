@@ -3,27 +3,30 @@
 namespace App\Livewire\UserManagement\Users\Forms;
 
 use Livewire\Form;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use App\Models\Dashboard\UserManagement\Users\User;
 
 class UserUpdateForm extends Form
 {
-    #[Rule('required|string|min:3')]
+    #[Validate('required|string|min:3')]
     public ?string $name = null;
 
-    #[Rule('required|email|min:3')]
+    #[Validate('required|email|min:3')]
     public ?string $email = null;
 
-    #[Rule('required|numeric|exists:roles,id')]
+    #[Validate('required|numeric|exists:roles,id')]
     public int|null $role_id = null;
 
-    #[Rule('required|array')]
+    #[Validate([
+        'chosen_branches' => 'required|array',
+        'chosen_branches.*' => 'required|string',
+    ])]
     public array $chosen_branches = [];
 
-    #[Rule('nullable|string|min:3')]
+    #[Validate('nullable|string|min:3')]
     public ?string $password = null;
 
-    #[Rule('nullable|image|mimes:jpg,jpeg,png,gif|max:5120')]
+    #[Validate('nullable|image|mimes:jpg,jpeg,png,gif|max:5120')]
     public mixed $photo = null;
 
     public function setValues(User $user): void

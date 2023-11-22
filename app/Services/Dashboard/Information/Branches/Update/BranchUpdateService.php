@@ -9,23 +9,27 @@ use App\Contracts\Abstracts\Services\Update\UpdateService;
 
 class BranchUpdateService extends UpdateService
 {
-    protected string $title;
     protected Branch $branch;
+    protected string $title;
 
     public function __construct(array $data, Branch $branch)
     {
-        $this->title = $data['form']['title'];
         $this->branch = $branch;
+        $this->title = $data['title'];
     }
 
     protected function update(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->branch->update([
-                'title' => $this->title,
-            ]);
+        try {
+            DB::transaction(function () {
+                $this->branch->update([
+                    'title' => $this->title,
+                ]);
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

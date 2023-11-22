@@ -3,10 +3,10 @@
 namespace App\Livewire\Information\Branches\Forms;
 
 use Livewire\Form;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 
 class BranchCreateForm extends Form
 {
-    #[Rule('required|string|min:2')]
+    #[Validate('required|string|min:2|unique:branches')]
     public string $title = '';
 }

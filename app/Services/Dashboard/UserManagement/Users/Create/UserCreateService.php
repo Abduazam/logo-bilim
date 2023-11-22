@@ -21,36 +21,40 @@ class UserCreateService extends CreateService
 
     public function __construct(array $data)
     {
-        $this->name = $data['form']['name'];
-        $this->email = $data['form']['email'];
-        $this->role = Role::findOrFail($data['form']['role_id']);
-        $this->branches = array_keys($data['form']['chosen_branches']);
-        $this->password = $data['form']['password'];
-        $this->photo = $data['form']['photo'];
+        $this->name = $data['name'];
+        $this->email = $data['email'];
+        $this->role = Role::findOrFail($data['role_id']);
+        $this->branches = array_keys($data['chosen_branches']);
+        $this->password = $data['password'];
+        $this->photo = $data['photo'];
     }
 
     protected function create(): bool|Exception
     {
-        return DB::transaction(function () {
-            $photo = null;
-            if (!is_null($this->photo)) {
-                $upload = new Upload($this->photo, 'users');
-                $photo = $upload->uploadMedia();
-            }
+        try {
+            DB::transaction(function () {
+                $photo = null;
+                if (!is_null($this->photo)) {
+                    $upload = new Upload($this->photo, 'users');
+                    $photo = $upload->uploadMedia();
+                }
 
-            $user = User::create([
-                'name' => $this->name,
-                'email' => $this->email,
-                'password' => Hash::make($this->password),
-                'email_verified_at' => now(),
-                'photo' => $photo,
-            ]);
+                $user = User::create([
+                    'name' => $this->name,
+                    'email' => $this->email,
+                    'password' => Hash::make($this->password),
+                    'email_verified_at' => now(),
+                    'photo' => $photo,
+                ]);
 
-            $user->branches()->syncWithPivotValues($this->branches, ['created_at' => now(), 'updated_at' => now()]);
+                $user->branches()->syncWithPivotValues($this->branches, ['created_at' => now(), 'updated_at' => now()]);
 
-            $user->assignRole($this->role);
+                $user->assignRole($this->role);
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

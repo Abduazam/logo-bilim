@@ -5,7 +5,7 @@
                 <div class="ribbon-box">{{ $branches }}</div>
                 <div class="block-content">
                     <p class="mt-1 mb-2">
-                        <i class="fa fa-language fa-2x text-muted"></i>
+                        <i class="fa fa-bank fa-2x text-muted"></i>
                     </p>
                     <p class="fw-semibold">Branches</p>
                 </div>

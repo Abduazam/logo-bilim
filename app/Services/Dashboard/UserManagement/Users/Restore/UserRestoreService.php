@@ -13,10 +13,14 @@ class UserRestoreService extends RestoreService
 
     protected function restore(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->user->restore();
+        try {
+            DB::transaction(function () {
+                $this->user->restore();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

@@ -16,10 +16,10 @@ class BranchesList extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function render(BranchRepository $repository): View
+    public function render(BranchRepository $branchRepository): View
     {
         return view('livewire.information.branches.lists.branches-list', [
-            'branches' => $repository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
+            'branches' => $branchRepository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
         ]);
     }
 }
