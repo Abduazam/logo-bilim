@@ -13,10 +13,14 @@ class LanguageForceDeleteService extends ForceDeleteService
 
     protected function forceDelete(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->language->forceDelete();
+        try {
+            DB::transaction(function () {
+                $this->language->forceDelete();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

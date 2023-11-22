@@ -26,6 +26,7 @@
             <tr>
                 <th class="text-center">id</th>
                 <th class="text-center">title</th>
+                <th class="text-center">services</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
             </tr>
@@ -35,6 +36,7 @@
                 <tr wire:key="branch-row-{{ $branch->id }}">
                     <td class="text-center">{{ $branch->id }}</td>
                     <td class="text-center">{{ $branch->title }}</td>
+                    <td class="text-center">{{ $branch->services_count }}</td>
                     <td class="text-center">{{ $branch->created_at }}</td>
                     <td class="text-center">
                         @if(!$branch->trashed())

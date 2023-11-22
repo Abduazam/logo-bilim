@@ -19,9 +19,9 @@ class Update extends Component
     public Role $role;
     public RoleUpdateForm $form;
 
-    public function mount(PermissionRepository $repository): void
+    public function mount(PermissionRepository $permissionRepository): void
     {
-        $this->permissions = $repository->getNotChosenAll($this->role)->pluck('name', 'id')->all();
+        $this->permissions = $permissionRepository->getNotChosenAll($this->role)->pluck('name', 'id')->all();
         $this->form->setValues($this->role);
     }
 
@@ -30,7 +30,8 @@ class Update extends Component
      */
     public function update()
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $service = new RoleUpdateService($validatedData, $this->role);
             $response = $service->callMethod();

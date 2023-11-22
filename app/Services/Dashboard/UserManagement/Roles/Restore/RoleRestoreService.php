@@ -13,10 +13,14 @@ class RoleRestoreService extends RestoreService
 
     protected function restore(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->role->restore();
+        try {
+            DB::transaction(function () {
+                $this->role->restore();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

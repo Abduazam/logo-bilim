@@ -16,10 +16,10 @@ class RolesList extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function render(RoleRepository $repository): View
+    public function render(RoleRepository $roleRepository): View
     {
         return view('livewire.user-management.roles.lists.roles-list', [
-            'roles' => $repository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
+            'roles' => $roleRepository->getFiltered($this->search, $this->perPage, $this->with_trashed, $this->orderBy, $this->orderDirection),
         ]);
     }
 }

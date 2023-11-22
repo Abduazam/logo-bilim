@@ -13,10 +13,14 @@ class UserDeleteService extends DeleteService
 
     protected function delete(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->user->delete();
+        try {
+            DB::transaction(function () {
+                $this->user->delete();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

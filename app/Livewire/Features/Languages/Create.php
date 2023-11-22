@@ -20,7 +20,8 @@ class Create extends Component
      */
     public function create(): void
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $service = new LanguageCreateService($validatedData);
             $response = $service->callMethod();

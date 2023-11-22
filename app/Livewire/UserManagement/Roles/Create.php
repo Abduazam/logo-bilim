@@ -17,9 +17,9 @@ class Create extends Component
 
     public RoleCreateForm $form;
 
-    public function mount(PermissionRepository $repository): void
+    public function mount(PermissionRepository $permissionRepository): void
     {
-        $this->permissions = $repository->getAll()->pluck('name', 'id')->all();
+        $this->permissions = $permissionRepository->getAll()->pluck('name', 'id')->all();
     }
 
     /**
@@ -27,7 +27,8 @@ class Create extends Component
      */
     public function create()
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->form->validate();
+
         if ($validatedData) {
             $service = new RoleCreateService($validatedData);
             $response = $service->callMethod();
@@ -36,6 +37,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New role:</b> {$this->form->name}");
                     $this->form->reset();
+                    $this->mount(new PermissionRepository());
                 } else {
                     return to_route('dashboard.user-management.roles.index');
                 }

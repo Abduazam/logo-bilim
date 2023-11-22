@@ -15,21 +15,25 @@ class LanguageCreateService extends CreateService
 
     public function __construct(array $data)
     {
-        $this->slug = $data['form']['slug'];
-        $this->title = $data['form']['title'];
+        $this->slug = $data['slug'];
+        $this->title = $data['title'];
     }
 
     protected function create(): bool|Exception
     {
-        return DB::transaction(function () {
-            $language = Language::create([
-                'slug' => $this->slug,
-                'title' => $this->title,
-            ]);
+        try {
+            DB::transaction(function () {
+                $language = Language::create([
+                    'slug' => $this->slug,
+                    'title' => $this->title,
+                ]);
 
-            event(new LanguageCreated($language));
+                event(new LanguageCreated($language));
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

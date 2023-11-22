@@ -17,7 +17,7 @@
                             <div class="mb-4">
                                 <label class="form-label" for="role_permissions">Permissions <span class="text-danger">*</span></label>
                                 <select wire:model.live="current_permission" wire:change="addPermission($event.target.value)" class="form-select form-select-sm @error('form.role_permissions') is-invalid @elseif(!empty($this->form->role_permissions)) is-valid @enderror" name="role_permissions" id="role_permissions">
-                                    <option value="0" disabled>Choose</option>
+                                    <option value="null" disabled>Choose</option>
                                     @foreach($permissions as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Contracts\Traits\Dashboard\Livewire\General;
+namespace App\Contracts\Traits\Dashboard\Livewire\Models;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 
 trait AssigningBranch
 {
-    #[Rule('nullable|numeric|exists:branches,id')]
+    #[Validate('nullable|numeric|exists:branches,id')]
     public ?int $branch_id = null;
 
     public array $branches = [];

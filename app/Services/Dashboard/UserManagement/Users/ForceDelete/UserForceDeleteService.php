@@ -13,10 +13,14 @@ class UserForceDeleteService extends ForceDeleteService
 
     protected function forceDelete(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->user->forceDelete();
+        try {
+            DB::transaction(function () {
+                $this->user->forceDelete();
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

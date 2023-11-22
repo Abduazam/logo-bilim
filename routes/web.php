@@ -87,6 +87,16 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
                 })->name($action);
             }
         });
+
+        Route::prefix('services')->name('services.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Information\Services\ServiceController::class, 'index'])->name('index');
+
+            foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');

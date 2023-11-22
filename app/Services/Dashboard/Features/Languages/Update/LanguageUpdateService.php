@@ -9,26 +9,27 @@ use App\Contracts\Abstracts\Services\Update\UpdateService;
 
 class LanguageUpdateService extends UpdateService
 {
-    protected string $slug;
-    protected string $title;
     protected Language $language;
+    protected string $title;
 
     public function __construct(array $data, Language $language)
     {
-        $this->slug = $data['form']['slug'];
-        $this->title = $data['form']['title'];
         $this->language = $language;
+        $this->title = $data['title'];
     }
 
     protected function update(): bool|Exception
     {
-        return DB::transaction(function () {
-            $this->language->update([
-                'slug' => $this->slug,
-                'title' => $this->title,
-            ]);
+        try {
+            DB::transaction(function () {
+                $this->language->update([
+                    'title' => $this->title,
+                ]);
+            }, 5);
 
             return true;
-        }, 5);
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }

@@ -15,10 +15,10 @@ class PermissionsList extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function render(PermissionRepository $repository): View
+    public function render(PermissionRepository $permissionRepository): View
     {
         return view('livewire.user-management.permissions.lists.permissions-list', [
-            'permissions' => $repository->getFiltered($this->search, $this->perPage, $this->orderBy, $this->orderDirection),
+            'permissions' => $permissionRepository->getFiltered($this->search, $this->perPage, $this->orderBy, $this->orderDirection),
         ]);
     }
 }
