@@ -25,7 +25,8 @@ class RoleRepository
             ->when($search, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
-            });
+            })
+            ->whereNot('name', 'super-admin');
 
         return $perPage === 0 ? $users->get() : $users->paginate($perPage);
     }

@@ -19,9 +19,12 @@ class Update extends Component
     public Role $role;
     public RoleUpdateForm $form;
 
-    public function mount(PermissionRepository $permissionRepository): void
+    public function mount(): void
     {
-        $this->permissions = $permissionRepository->getNotChosenAll($this->role)->pluck('name', 'id')->all();
+        $this->permissions = (new PermissionRepository())->getNotChosenAll($this->role)->mapWithKeys(function ($permission) {
+            $translation = $permission->translation ? $permission->translation->translation : '';
+            return [$permission->id => ['name' => $permission->name, 'translation' => $translation]];
+        })->all();
         $this->form->setValues($this->role);
     }
 
@@ -39,7 +42,7 @@ class Update extends Component
             if ($response) {
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Role updated</b>: {$this->form->name}");
-                    $this->mount(new PermissionRepository());
+                    $this->mount();
                 } else {
                     return to_route('dashboard.user-management.roles.index');
                 }

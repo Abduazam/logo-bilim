@@ -22,9 +22,9 @@ class Create extends Component
 
     public UserCreateForm $form;
 
-    public function mount(BranchRepository $branchRepository): void
+    public function mount(): void
     {
-        $this->branches = $branchRepository->getAll()->pluck('title', 'id')->all();
+        $this->branches = (new BranchRepository())->getAll()->pluck('title', 'id')->all();
     }
 
     /**
@@ -42,7 +42,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New user:</b> {$this->form->name}");
                     $this->form->reset();
-                    $this->mount(new BranchRepository());
+                    $this->mount();
                 } else {
                     return to_route('dashboard.user-management.users.index');
                 }

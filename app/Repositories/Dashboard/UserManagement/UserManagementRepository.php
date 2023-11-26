@@ -10,7 +10,7 @@ class UserManagementRepository
 {
     public function getUsersCount(): int
     {
-        return User::query()->count();
+        return User::query()->whereNot('id', 1)->count();
     }
 
     public function getRolesCount(): int

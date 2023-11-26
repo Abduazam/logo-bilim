@@ -70,10 +70,10 @@
                             <div class="col-4 text-end">
                                 <label class="form-label mb-0" for="password">Password: <span class="text-danger">*</span></label>
                             </div>
-                            <div class="col-8">
-                                <input wire:model.live="form.password" wire:keydown="showEyeButton" type="{{ $passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
-                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 31px; right: 7px;">
-                                    <i class="fa {{ $passwordInputEyeIcon }}"></i>
+                            <div class="col-8 position-relative">
+                                <input wire:model.live="form.password" wire:keydown="showEyeButton" type="{{ $this->passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
+                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $this->passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 4px; right: 155px;">
+                                    <i class="fa {{ $this->passwordInputEyeIcon }}"></i>
                                 </button>
                                 @error('form.password')
                                 <span class="invalid-feedback">{{ $message }}</span>
@@ -101,9 +101,9 @@
                                         <div x-bind:style="`width: ${progress}%;`" class="progress-bar"></div>
                                     </div>
                                 </div>
-                                @if($form->photo?->temporaryUrl())
+                                @if($this->form->photo?->temporaryUrl())
                                     <div class="options-container mt-3">
-                                        <img class="img-fluid options-item" src="{{ $form->photo->temporaryUrl() }}" alt="Temporary user photo">
+                                        <img class="img-fluid options-item" src="{{ $this->form->photo->temporaryUrl() }}" alt="Temporary user photo">
                                         <div class="options-overlay bg-black-50">
                                             <div class="options-overlay-content">
                                                 <button type="button" class="btn btn-sm btn-alt-danger" wire:click="removePhoto('photo')">

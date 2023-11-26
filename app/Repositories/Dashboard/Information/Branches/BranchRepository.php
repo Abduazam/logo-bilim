@@ -26,7 +26,7 @@ class BranchRepository
         string $orderDirection,
     ) {
         $branches = Branch::select(['id', 'title', 'created_at', 'deleted_at'])
-            ->withCount('services')
+            ->withCount('services', 'teachers')
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query) => $query->where('title', 'like', "%$search%"))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

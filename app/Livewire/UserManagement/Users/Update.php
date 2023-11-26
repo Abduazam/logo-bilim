@@ -24,9 +24,9 @@ class Update extends Component
     public User $user;
     public UserUpdateForm $form;
 
-    public function mount(BranchRepository $branchRepository): void
+    public function mount(): void
     {
-        $this->branches = $branchRepository->getNotChosenAll($this->user)->pluck('title', 'id')->all();
+        $this->branches = (new BranchRepository())->getNotChosenAll($this->user)->pluck('title', 'id')->all();
         $this->form->setValues($this->user);
     }
 
@@ -44,6 +44,7 @@ class Update extends Component
             if ($response) {
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>User updated:</b> {$this->form->name}");
+                    $this->mount();
                 } else {
                     return to_route('dashboard.user-management.users.index');
                 }

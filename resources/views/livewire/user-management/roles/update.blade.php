@@ -18,8 +18,8 @@
                                 <label class="form-label" for="role_permissions">Permissions <span class="text-danger">*</span></label>
                                 <select wire:model.live="current_permission" wire:change="addPermission($event.target.value)" class="form-select form-select-sm @error('form.role_permissions') is-invalid @elseif(!empty($this->form->role_permissions)) is-valid @enderror" name="role_permissions" id="role_permissions">
                                     <option value="null" disabled>Choose</option>
-                                    @foreach($permissions as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @foreach($permissions as $id => $values)
+                                    <option value="{{ $id }}">{{ $values['name'] }} - {{ $values['translation'] }}</option>
                                     @endforeach
                                 </select>
                                 @error('form.role_permissions')
@@ -30,8 +30,8 @@
                         @if(!empty($this->form->role_permissions))
                             <div class="col-12 mb-4 px-0">
                                 <p class="form-label mb-2">Chosen permissions:</p>
-                                @foreach($this->form->role_permissions as $id => $name)
-                                    <span class="btn btn-sm btn-info mb-1">{{ $name }} <button wire:click="removePermission({{ $id }})" type="button" class="bg-transparent border-0 p-0 text-white ms-2 remove-permission"><i class="fa fa-times"></i></button></span>
+                                @foreach($this->form->role_permissions as $id => $values)
+                                <span class="btn btn-sm btn-info mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $values['translation'] }}">{{ $values['name'] }} <button wire:click="removePermission({{ $id }})" type="button" class="bg-transparent border-0 p-0 text-white ms-2 remove-permission"><i class="fa fa-times"></i></button></span>
                                 @endforeach
                             </div>
                         @endif

@@ -29,7 +29,8 @@ class UserRepository
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 return $query->orderBy($orderBy, $orderDirection);
-            });
+            })
+            ->whereNot('id', 1);
 
         return $perPage === 0 ? $query->get() : $query->paginate($perPage);
     }

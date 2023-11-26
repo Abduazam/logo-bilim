@@ -18,8 +18,8 @@
                         </div>
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
-                                @foreach($form->translations as $key => $translation)
-                                    <div class="col-12 d-flex align-items-center mb-4">
+                                @foreach($this->form->translations as $key => $translation)
+                                    <div class="col-12 d-flex align-items-center px-0 mb-4">
                                         <label for="translation-{{ $key }}-id{{ $this->permission->id }}" class="form-label mb-0 me-2">{{ $key }}:</label>
                                         <input wire:model.live="form.translations.{{ $key }}" type="text" name="translation-{{ $key }}-id{{ $this->permission->id }}" id="translation-{{ $key }}-id{{ $this->permission->id }}" class="form-control form-control-sm w-100" value="{{ $translation }}">
                                     </div>

@@ -27,6 +27,7 @@
                 <th class="text-center">id</th>
                 <th class="text-center">title</th>
                 <th class="text-center">branches</th>
+                <th class="text-center">teachers</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
             </tr>
@@ -37,6 +38,7 @@
                     <td class="text-center">{{ $service->id }}</td>
                     <td class="text-center">{{ $service->title }}</td>
                     <td class="text-center">{{ $service->branches_count }}</td>
+                    <td class="text-center">{{ $service->teachers_count }}</td>
                     <td class="text-center">{{ $service->created_at }}</td>
                     <td class="text-center">
                         @if(!$service->trashed())

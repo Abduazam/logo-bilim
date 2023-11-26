@@ -5,6 +5,7 @@ namespace App\Livewire\UserManagement\Roles\Forms;
 use Livewire\Form;
 use Livewire\Attributes\Validate;
 use App\Models\Dashboard\UserManagement\Roles\Role;
+use App\Models\Dashboard\UserManagement\Permissions\PermissionTranslation;
 
 class RoleUpdateForm extends Form
 {
@@ -13,13 +14,24 @@ class RoleUpdateForm extends Form
 
     #[Validate([
         'role_permissions' => 'required|array',
-        'role_permissions.*' => 'required|string',
+        'role_permissions.*' => 'required|array',
+        'role_permissions.*.*' => 'required|string',
     ])]
     public array $role_permissions = [];
 
     public function setValues(Role $role): void
     {
         $this->name = $role->name;
-        $this->role_permissions = $role->permissions->pluck('name', 'id')->toArray();
+        $this->role_permissions = $role->permissions->mapWithKeys(function ($permission) {
+            $translation = PermissionTranslation::where('permission_id', $permission->id)->first();
+            $translationText = $translation ? $translation->translation : '';
+
+            return [
+                $permission->id => [
+                    'name' => $permission->name,
+                    'translation' => $translationText,
+                ]
+            ];
+        })->all();
     }
 }

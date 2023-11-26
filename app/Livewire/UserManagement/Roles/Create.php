@@ -17,9 +17,12 @@ class Create extends Component
 
     public RoleCreateForm $form;
 
-    public function mount(PermissionRepository $permissionRepository): void
+    public function mount(): void
     {
-        $this->permissions = $permissionRepository->getAll()->pluck('name', 'id')->all();
+        $this->permissions = (new PermissionRepository())->getAll()->mapWithKeys(function ($permission) {
+            $translation = $permission->translation ? $permission->translation->translation : '';
+            return [$permission->id => ['name' => $permission->name, 'translation' => $translation]];
+        })->all();
     }
 
     /**
@@ -37,7 +40,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New role:</b> {$this->form->name}");
                     $this->form->reset();
-                    $this->mount(new PermissionRepository());
+                    $this->mount();
                 } else {
                     return to_route('dashboard.user-management.roles.index');
                 }

@@ -10,7 +10,7 @@ class PermissionRepository
 {
     public function getAll(): Collection
     {
-        return Permission::all();
+        return Permission::with('translation')->get();
     }
 
     public function getNotChosenAll(Role $role)
@@ -24,9 +24,11 @@ class PermissionRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $users = Permission::select(['id', 'name', 'created_at'])
+        $permissions = Permission::select(['id', 'name', 'created_at'])
             ->with('translation')
-            ->withCount('roles')
+            ->withCount(['roles' => function ($query) {
+                $query->where('name', '!=', 'super-admin');
+            }])
             ->when($search, fn ($query, $search) => $query->where(function ($subQuery) use ($search) {
                 $subQuery->where('name', 'like', "%$search%")
                     ->orWhereHas('translation', fn ($translationQuery) => $translationQuery->where('translation', 'like', "%$search%"));
@@ -35,6 +37,6 @@ class PermissionRepository
                 $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $users->get() : $users->paginate($perPage);
+        return $perPage === 0 ? $permissions->get() : $permissions->paginate($perPage);
     }
 }

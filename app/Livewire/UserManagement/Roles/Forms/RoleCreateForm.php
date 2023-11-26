@@ -12,7 +12,8 @@ class RoleCreateForm extends Form
 
     #[Validate([
         'role_permissions' => 'required|array',
-        'role_permissions.*' => 'required|string',
+        'role_permissions.*' => 'required|array',
+        'role_permissions.*.*' => 'required|string',
     ])]
     public array $role_permissions = [];
 }
