@@ -18,6 +18,11 @@ class ServiceRepository
         return Service::whereNotIn('id', $branch->services->pluck('id'))->get();
     }
 
+    public function getByNotTheseIds(array $ids)
+    {
+        return Service::whereNotIn('id', $ids)->get();
+    }
+
     public function getFiltered(
         string $search,
         int $perPage,
@@ -26,6 +31,7 @@ class ServiceRepository
         string $orderDirection,
     ) {
         $branches = Service::select(['id', 'title', 'created_at', 'deleted_at'])
+            ->withCount('branches')
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query) => $query->where('title', 'like', "%$search%"))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders\Dashboard\UserManagement\Users;
 
-use App\Models\Dashboard\UserManagement\Users\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Dashboard\UserManagement\Users\User;
 
 class AdminSeeder extends Seeder
 {
@@ -14,15 +14,24 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::create(['name' => 'admin']);
+        $superAdmin = Role::create(['name' => 'super-admin']);
+        $admin = Role::create(['name' => 'admin']);
 
-        $user = User::create([
+        $superAdminUser = User::create([
+            'name' => 'Softify',
+            'email' => 'softify@gmail.com',
+            'password' => Hash::make('123'),
+            'email_verified_at' => now(),
+        ]);
+
+        $adminUser = User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('123'),
             'email_verified_at' => now(),
         ]);
 
-        $user->assignRole($role);
+        $superAdminUser->assignRole($superAdmin);
+        $adminUser->assignRole($admin);
     }
 }

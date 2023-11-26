@@ -2,10 +2,11 @@
 
 namespace App\Models\Dashboard\Information\Branches;
 
-use App\Models\Dashboard\Information\Services\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Dashboard\UserManagement\Users\User;
+use App\Models\Dashboard\Information\Services\Service;
+use App\Models\Dashboard\Information\Teachers\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -45,12 +46,22 @@ class Branch extends Model
     }
 
     /**
-     * Accesses user's all branches.
+     * Accesses branch's all services.
      *
      * @return BelongsToMany
      */
     public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class, 'branch_services');
+    }
+
+    /**
+     * Accesses branch's all teachers.
+     *
+     * @return BelongsToMany
+     */
+    public function teachers(): BelongsToMany
+    {
+        return $this->belongsToMany(Teacher::class, 'teacher_services');
     }
 }

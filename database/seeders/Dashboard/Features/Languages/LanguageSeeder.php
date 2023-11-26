@@ -2,9 +2,8 @@
 
 namespace Database\Seeders\Dashboard\Features\Languages;
 
-use App\Models\Dashboard\Features\Languages\Language;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Dashboard\Features\Languages\Language;
 
 class LanguageSeeder extends Seeder
 {

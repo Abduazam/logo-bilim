@@ -13,6 +13,11 @@
                 <span class="nav-main-link-name">Branches</span>
             </a>
         </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('dashboard.information.teachers.index') }}">
+                <span class="nav-main-link-name">Teachers</span>
+            </a>
+        </li>
     </ul>
 </li>
 <li class="nav-main-item">

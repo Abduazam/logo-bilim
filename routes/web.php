@@ -97,6 +97,15 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
                 })->name($action);
             }
         });
+
+        Route::resource('teachers', \App\Http\Controllers\Dashboard\Information\Teachers\TeacherController::class)->except(['store', 'update', 'destroy']);
+        Route::prefix('teachers')->name('teachers.')->group(function () {
+            foreach (['delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');

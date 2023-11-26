@@ -13,13 +13,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            /* DATA */
+            /**
+             * Default data of user-management section
+             */
             Dashboard\UserManagement\Users\AdminSeeder::class,
             Dashboard\UserManagement\Permissions\PermissionsSeeder::class,
-            Dashboard\Features\Languages\LanguageSeeder::class,
 
-            /* TABLE COLUMNS */
+            /**
+             * Default data of features section
+             */
+            Dashboard\Features\Languages\LanguageSeeder::class,
             Dashboard\Features\TableColumns\TableColumnSeeder::class,
+
+            /**
+             * Default data of information section
+             */
+            Dashboard\Information\Branches\BranchSeeder::class,
+            Dashboard\Information\Services\ServiceSeeder::class,
         ]);
     }
 }

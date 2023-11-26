@@ -16,6 +16,7 @@ class InformationController extends DashboardController
         return view('dashboard.information.index', [
             'branches' => $repository->getBranchesCount(),
             'services' => $repository->getServicesCount(),
+            'teachers' => $repository->getTeachersCount(),
         ]);
     }
 }

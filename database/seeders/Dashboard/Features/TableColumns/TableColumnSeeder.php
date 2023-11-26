@@ -2,13 +2,11 @@
 
 namespace Database\Seeders\Dashboard\Features\TableColumns;
 
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use App\Models\Dashboard\Features\TableColumns\Tables\Table;
 use App\Models\Dashboard\Features\TableColumns\Columns\Column;
 use App\Models\Dashboard\Features\TableColumns\Columns\ColumnTranslation;
-use App\Models\Dashboard\Features\TableColumns\Tables\Table;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TableColumnSeeder extends Seeder
 {
