@@ -106,6 +106,15 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
                 })->name($action);
             }
         });
+
+        Route::resource('clients', \App\Http\Controllers\Dashboard\Information\Clients\ClientController::class)->except(['store', 'update', 'destroy']);
+        Route::prefix('clients')->name('clients.')->group(function () {
+            foreach (['delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
     });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
