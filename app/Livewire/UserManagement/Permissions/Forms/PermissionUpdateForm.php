@@ -8,7 +8,10 @@ use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 class PermissionUpdateForm extends Form
 {
-    #[Validate('required|array')]
+    #[Validate([
+        'translations' => 'required|array',
+        'translations.*' => 'required|string',
+    ])]
     public array $translations = [];
 
     public function setValues(Permission $permission): void

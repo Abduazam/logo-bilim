@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <x-forms.buttons.default.back route="{{ route('dashboard.information.teachers.index') }}" />
+        <x-forms.buttons.default.back route="{{ route('dashboard.information.clients.index') }}" />
         <button wire:target="create" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
             <small>Create & Create another</small>
         </button>

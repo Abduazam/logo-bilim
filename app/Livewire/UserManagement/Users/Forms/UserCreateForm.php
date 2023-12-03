@@ -13,12 +13,14 @@ class UserCreateForm extends Form
     #[Validate('required|email|min:3')]
     public ?string $email = null;
 
-    #[Validate('required|numeric|exists:roles,id')]
+    #[Validate('required|numeric|exists:roles,id', as: 'role')]
     public int|null $role_id = null;
 
     #[Validate([
         'chosen_branches' => 'required|array',
         'chosen_branches.*' => 'required|string',
+    ], as: [
+        'chosen_branches' => 'branches',
     ])]
     public array $chosen_branches = [];
 

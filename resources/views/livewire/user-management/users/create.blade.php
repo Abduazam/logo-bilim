@@ -82,6 +82,13 @@
                         </div>
                     </div>
                 </div>
+                <x-forms.buttons.default.back route="{{ route('dashboard.user-management.users.index') }}" />
+                <button wire:target="create" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
+                    <small>Create & Create another</small>
+                </button>
+                <button wire:target="create" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
+                    <small>Create</small>
+                </button>
             </div>
 
             <div class="col-lg-3 col-md-4 pe-0">
@@ -119,13 +126,5 @@
                 </div>
             </div>
         </div>
-
-        <x-forms.buttons.default.back route="{{ route('dashboard.user-management.users.index') }}" />
-        <button wire:target="create" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
-            <small>Create & Create another</small>
-        </button>
-        <button wire:target="create" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
-            <small>Create</small>
-        </button>
     </form>
 </div>

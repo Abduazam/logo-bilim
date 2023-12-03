@@ -54,15 +54,24 @@
                             </div>
                         </div>
                         @if(!empty($this->form->teacher_services))
-                            <div class="row w-100 h-100 p-0 mx-0 mb-1">
+                            <div class="row w-100 h-100 p-0 mx-0 mb-4">
                                 <hr>
                                 @foreach($this->form->teacher_services as $branch_id => $services)
                                     @foreach($services as $service_id => $values)
-                                        <div class="col-12 d-flex align-items-center mb-3 px-0">
-                                            <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>
-                                            <input wire:model.live="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-50" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="Price: {{ $values['price'] }}">
-                                            <button wire:click="removeService({{ $branch_id }}, {{ $service_id }})" type="button" class="bg-transparent border-0 p-0 ms-2 float-end remove-service">
-                                                <i class="fa fa-times"></i>
+                                        <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative @if(!$loop->first) mt-2 @endif">
+                                            <div class="col-12 d-flex align-items-center px-0">
+                                                <div class="col-3">
+                                                    <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <input wire:model.live="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="Price: {{ $values['price'] }}">
+                                                    @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary')
+                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <button wire:click="removeService({{ $branch_id }}, {{ $service_id }})" wire:loading.attr="disabled" type="button" class="btn btn-alt-danger w-auto px-1 d-flex align-items-center justify-content-center position-absolute" style="height: 25px; top: 7px; right: 7px;">
+                                                <i class="fa fa-times" style="font-size: 14px"></i>
                                             </button>
                                         </div>
                                     @endforeach

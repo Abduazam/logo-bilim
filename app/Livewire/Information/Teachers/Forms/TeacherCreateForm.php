@@ -10,7 +10,7 @@ class TeacherCreateForm extends Form
     #[Validate('required|string|min:3')]
     public ?string $fullname = null;
 
-    #[Validate('nullable|date')]
+    #[Validate('nullable|date', as: 'date of birth')]
     public ?string $dob = null;
 
     #[Validate('nullable|numeric')]
@@ -23,7 +23,9 @@ class TeacherCreateForm extends Form
         'teacher_services' => 'required|array',
         'teacher_services.*' => 'required|array',
         'teacher_services.*.*' => 'required|array',
-        'teacher_services.*.*.salary' => 'nullable|numeric',
+        'teacher_services.*.*.salary' => 'required|numeric',
+    ], as: [
+        'teacher_services.*.*.salary' => 'salary',
     ])]
     public array $teacher_services = [];
 }

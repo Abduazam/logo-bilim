@@ -117,5 +117,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         });
     });
 
+    Route::get('settings', [\App\Http\Controllers\Dashboard\Settings\SettingsController::class, 'index'])->name('settings');
+
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
 })->middleware(['auth', 'verified', 'has_permission']);

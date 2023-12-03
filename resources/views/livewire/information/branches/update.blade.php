@@ -41,11 +41,20 @@
                                     <hr>
                                     <div class="col-12 px-0 mt-2 mb-4">
                                         @foreach($this->form->chosen_services as $id => $service)
-                                            <div class="col-12 d-flex align-items-center @if(!$loop->first) mt-2 @endif">
-                                                <label for="{{ $service['title'] }}" class="form-label mb-0 me-2">{{ $service['title'] }}:</label>
-                                                <input wire:model.live="form.chosen_services.{{ $id }}.price" type="text" class="form-control form-control-sm w-100 @error('form.chosen_services.' . $id . '.price') is-invalid @elseif(!is_null($this->form->chosen_services[$id]['price']) && is_numeric($this->form->chosen_services[$id]['price'])) is-valid @enderror" name="{{ $service['title'] }}" id="{{ $service['title'] }}">
-                                                <button wire:click="removeService({{ $id }})" type="button" class="bg-transparent border-0 p-0 ms-2 remove-service">
-                                                    <i class="fa fa-times"></i>
+                                            <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative @if(!$loop->first) mt-2 @endif">
+                                                <div class="col-12 d-flex align-items-center px-0">
+                                                    <div class="col-3">
+                                                        <label for="{{ $service['title'] }}" class="form-label mb-0 me-2">{{ $service['title'] }}:</label>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input wire:model.live="form.chosen_services.{{ $id }}.price" type="text" class="form-control form-control-sm w-100 @error('form.chosen_services.' . $id . '.price') is-invalid @elseif(!is_null($this->form->chosen_services[$id]['price']) && is_numeric($this->form->chosen_services[$id]['price'])) is-valid @enderror" name="{{ $service['title'] }}" id="{{ $service['title'] }}" placeholder="Price">
+                                                        @error('form.chosen_services.' . $id . '.price')
+                                                        <span class="invalid-feedback">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <button wire:click="removeService({{ $id }})" wire:loading.attr="disabled" type="button" class="btn btn-alt-danger w-auto px-1 d-flex align-items-center justify-content-center position-absolute" style="height: 25px; top: 7px; right: 7px;">
+                                                    <i class="fa fa-times" style="font-size: 14px"></i>
                                                 </button>
                                             </div>
                                         @endforeach

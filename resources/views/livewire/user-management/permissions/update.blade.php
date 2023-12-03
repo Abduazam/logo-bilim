@@ -21,7 +21,7 @@
                                 @foreach($this->form->translations as $key => $translation)
                                     <div class="col-12 d-flex align-items-center px-0 mb-4">
                                         <label for="translation-{{ $key }}-id{{ $this->permission->id }}" class="form-label mb-0 me-2">{{ $key }}:</label>
-                                        <input wire:model.live="form.translations.{{ $key }}" type="text" name="translation-{{ $key }}-id{{ $this->permission->id }}" id="translation-{{ $key }}-id{{ $this->permission->id }}" class="form-control form-control-sm w-100" value="{{ $translation }}">
+                                        <input wire:model.live="form.translations.{{ $key }}" type="text" class="form-control form-control-sm w-100 @error('form.translations.' . $key) is-invalid @elseif(!is_null($this->form->translations[$key])) is-valid @enderror" name="translation-{{ $key }}-id{{ $this->permission->id }}" id="translation-{{ $key }}-id{{ $this->permission->id }}">
                                     </div>
                                 @endforeach
                             </div>

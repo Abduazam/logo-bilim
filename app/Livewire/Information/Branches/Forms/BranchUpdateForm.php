@@ -16,6 +16,9 @@ class BranchUpdateForm extends Form
         'chosen_services.*' => 'required|array',
         'chosen_services.*.title' => 'required|string',
         'chosen_services.*.price' => 'required|numeric',
+    ], as: [
+        'chosen_services' => 'services',
+        'chosen_services.*.price' => 'price',
     ])]
     public array $chosen_services = [];
 

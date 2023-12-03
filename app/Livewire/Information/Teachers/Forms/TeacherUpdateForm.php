@@ -11,7 +11,7 @@ class TeacherUpdateForm extends Form
     #[Validate('required|string|min:3')]
     public ?string $fullname = null;
 
-    #[Validate('nullable|date')]
+    #[Validate('nullable|date', as: 'date of birth')]
     public ?string $dob = null;
 
     #[Validate('nullable|numeric')]
@@ -25,6 +25,8 @@ class TeacherUpdateForm extends Form
         'teacher_services.*' => 'required|array',
         'teacher_services.*.*' => 'required|array',
         'teacher_services.*.*.salary' => 'nullable|numeric',
+    ], as: [
+        'teacher_services.*.*.salary' => 'salary',
     ])]
     public array $teacher_services = [];
 

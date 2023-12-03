@@ -6,6 +6,7 @@ class RoleCheckDefaultPermissionsService
 {
     protected array $defaultPermissions = [
         'dashboard.home',
+        'dashboard.settings',
         'dashboard.change-language',
     ];
 

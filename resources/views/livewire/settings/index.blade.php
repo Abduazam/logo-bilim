@@ -28,51 +28,11 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="role">Role: <span class="text-danger">*</span></label>
-                            </div>
-                            <div class="col-8">
-                                <select wire:model.live="form.role_id" class="form-select form-select-sm w-75 @error('form.role_id') is-invalid @elseif(!empty($this->form->role_id)) is-valid @enderror" name="role" id="role">
-                                    <option value="null" disabled>Choose</option>
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('form.role_id')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
-                            <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="branch_id">Branches: <span class="text-danger">*</span></label>
-                            </div>
-                            <div class="col-8">
-                                <select wire:model.live="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('branch_id') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
-                                    <option value="null" disabled>Choose</option>
-                                    @foreach($branches as $id => $title)
-                                        <option value="{{ $id }}">{{ $title }}</option>
-                                    @endforeach
-                                </select>
-                                @error('branch_id')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            @if(!empty($this->form->chosen_branches))
-                                <div class="col-4"></div>
-                                <div class="col-8 mt-2">
-                                    @foreach($this->form->chosen_branches as $id => $name)
-                                        <span class="btn btn-sm btn-info mb-1">{{ $name }} <button wire:click="removeBranch({{ $id }})" type="button" class="bg-transparent border-0 p-0 text-white ms-2 remove-permission"><i class="fa fa-times"></i></button></span>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-                        <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
-                            <div class="col-4 text-end">
                                 <label class="form-label mb-0" for="password">Password: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8 position-relative">
                                 <input wire:model.live="form.password" wire:keydown="showEyeButton" type="{{ $this->passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
-                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $this->passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 31px; right: 7px;">
+                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $this->passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 5px; right: 155px;">
                                     <i class="fa {{ $this->passwordInputEyeIcon }}"></i>
                                 </button>
                                 @error('form.password')
@@ -82,10 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <x-forms.buttons.default.back route="{{ route('dashboard.user-management.users.index') }}" />
-                <button wire:target="update" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
-                    <small>Update & Stay</small>
-                </button>
+                <x-forms.buttons.default.back route="{{ route('dashboard.home') }}" />
                 <button wire:target="update" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
                     <small>Update</small>
                 </button>

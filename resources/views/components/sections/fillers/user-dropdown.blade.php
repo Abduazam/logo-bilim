@@ -12,7 +12,7 @@
             </h5>
         </div>
         <div class="p-2">
-            <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="" data-toggle="layout" data-action="side_overlay_toggle">
+            <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="{{ route('dashboard.settings') }}" data-toggle="layout" data-action="side_overlay_toggle">
                 <span>Settings</span>
                 <i class="fa fa-fw fa-wrench opacity-25"></i>
             </a>
