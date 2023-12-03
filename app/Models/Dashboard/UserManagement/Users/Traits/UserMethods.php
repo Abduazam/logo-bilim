@@ -2,6 +2,9 @@
 
 namespace App\Models\Dashboard\UserManagement\Users\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\UserManagement\Permissions\Permission;
+
 trait UserMethods
 {
     /**
@@ -30,15 +33,28 @@ trait UserMethods
     }
 
     /**
-     * Get user's photo and generate.
+     * Get user's all branches and make it in one string.
      *
      * @return string
      */
-    public function getPhoto(): string
+    public function getBranchName(): string
     {
-        return !is_null($this->photo)
-            ? '<img src="/storage/' . $this->photo . '" alt="' . $this->name . '" class="w-25">'
-            : '';
+        return $this->branches->pluck('title')->implode(PHP_EOL);
+    }
+
+    /**
+     * Get user's all permissions as array.
+     *
+     * @return Collection
+     */
+    public function getPermissions(): Collection
+    {
+        $roleIds = $this->roles->pluck('id')->toArray();
+
+        return Permission::with('translation')
+            ->whereHas('roles', function ($query) use ($roleIds) {
+                $query->whereIn('role_id', $roleIds);
+            })->get();
     }
 
     /**

@@ -56,6 +56,9 @@
                     <td class="text-center">{{ $user->created_at }}</td>
                     <td class="text-center">
                         @if(!$user->trashed())
+                            <a href="{{ route('dashboard.user-management.users.show', $user) }}" class="btn btn-sm btn-secondary text-white">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             @if(!$user->admin())
                                 <a href="{{ route('dashboard.user-management.users.edit', $user) }}" class="btn btn-sm btn-primary text-white">
                                     <i class="fa fa-pen"></i>

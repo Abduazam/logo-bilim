@@ -20,6 +20,13 @@ class Permission extends SpatiePermission
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<PermissionTranslation>
+     */
+    protected $with = ['translation'];
+
+    /**
      * Accesses only one translation which slug equal to current locale.
      *
      * @return HasOne

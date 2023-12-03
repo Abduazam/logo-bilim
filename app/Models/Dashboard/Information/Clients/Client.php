@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
 
 /**
  * Table columns
@@ -24,6 +25,10 @@ class Client extends Model
      * Application itself traits
      */
     use HasFactory, SoftDeletes;
+    /**
+     * My own traits
+     */
+    use GetPictureTrait;
 
     /**
      * The attributes that are mass assignable.

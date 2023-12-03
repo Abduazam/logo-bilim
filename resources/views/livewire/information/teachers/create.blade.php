@@ -58,7 +58,7 @@
                             <hr>
                             @foreach($this->form->teacher_services as $branch_id => $services)
                                 @foreach($services as $service_id => $values)
-                                    <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative @if(!$loop->first) mt-2 @endif">
+                                    <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative mt-2">
                                         <div class="col-12 d-flex align-items-center px-0">
                                             <div class="col-3">
                                                 <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>

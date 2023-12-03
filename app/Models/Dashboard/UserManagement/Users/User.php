@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
 use App\Models\Dashboard\UserManagement\Users\Traits\UserMethods;
 
 /**
@@ -37,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * My own traits
      */
-    use UserMethods;
+    use UserMethods, GetPictureTrait;
 
     /**
      * The attributes that are mass assignable.

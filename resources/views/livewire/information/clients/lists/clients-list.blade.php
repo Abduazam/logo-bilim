@@ -43,6 +43,9 @@
                     <td class="text-center">{{ $client->relatives_count }}</td>
                     <td class="text-center">{{ $client->created_at }}</td>
                     <td class="text-center">
+                        <a href="{{ route('dashboard.information.clients.show', $client) }}" class="btn btn-sm btn-secondary text-white">
+                            <i class="fa fa-eye"></i>
+                        </a>
                         @if(!$client->trashed())
                             <a href="{{ route('dashboard.information.clients.edit', $client) }}" class="btn btn-sm btn-primary text-white">
                                 <i class="fa fa-pen"></i>

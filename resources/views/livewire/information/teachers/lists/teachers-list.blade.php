@@ -43,6 +43,9 @@
                     <td class="text-center">{{ $teacher->services_count }}</td>
                     <td class="text-center">{{ $teacher->created_at }}</td>
                     <td class="text-center">
+                        <a href="{{ route('dashboard.information.teachers.show', $teacher) }}" class="btn btn-sm btn-secondary text-white">
+                            <i class="fa fa-eye"></i>
+                        </a>
                         @if(!$teacher->trashed())
                             <a href="{{ route('dashboard.information.teachers.edit', $teacher) }}" class="btn btn-sm btn-primary text-white">
                                 <i class="fa fa-pen"></i>

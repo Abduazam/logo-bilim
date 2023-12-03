@@ -9,6 +9,7 @@ use App\Models\Dashboard\Information\Branches\Branch;
 use App\Models\Dashboard\Information\Services\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
 
 /**
  * Table columns
@@ -29,6 +30,10 @@ class Teacher extends Model
      * Application itself traits
      */
     use HasFactory, SoftDeletes;
+    /**
+     * My own traits
+     */
+    use GetPictureTrait;
 
     /**
      * The attributes that are mass assignable.

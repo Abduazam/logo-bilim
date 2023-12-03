@@ -42,6 +42,9 @@
                     <td class="text-center">{{ $role->created_at }}</td>
                     <td class="text-center">
                         @if(!$role->trashed())
+                            <a href="{{ route('dashboard.user-management.roles.show', $role) }}" class="btn btn-sm btn-secondary text-white">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a href="{{ route('dashboard.user-management.roles.edit', $role) }}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-pen"></i>
                             </a>
