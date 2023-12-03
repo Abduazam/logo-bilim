@@ -2,11 +2,11 @@
 
 namespace App\Services\Dashboard\Information\Clients\ClientRelatives\Update;
 
-use App\Services\Dashboard\Information\Clients\ClientRelatives\Delete\ClientRelativeDeleteService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Clients\Client;
 use App\Contracts\Abstracts\Services\Update\UpdateService;
+use App\Services\Dashboard\Information\Clients\ClientRelatives\Delete\ClientRelativeDeleteService;
 
 class ClientRelativeUpdateService extends UpdateService
 {
@@ -33,7 +33,8 @@ class ClientRelativeUpdateService extends UpdateService
                                 $clientRelative->update($cleanRelative);
                             }
                         } else {
-                            $this->client->relatives()->create($relative);
+                            $newRelative = $this->client->relatives()->create($relative);
+                            $relativeIds[] = $newRelative->id;
                         }
                     }
 

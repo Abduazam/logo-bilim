@@ -12,13 +12,13 @@ class TableRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $tables = Table::select(['id', 'name', 'created_at'])
+        $result = Table::select(['id', 'name', 'created_at'])
             ->withCount('columns')
             ->when($search, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $tables->get() : $tables->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

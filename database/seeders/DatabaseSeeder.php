@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
              */
             Dashboard\Information\Branches\BranchSeeder::class,
             Dashboard\Information\Services\ServiceSeeder::class,
+            Dashboard\Information\RelativeStatuses\RelativeStatusSeeder::class,
         ]);
     }
 }

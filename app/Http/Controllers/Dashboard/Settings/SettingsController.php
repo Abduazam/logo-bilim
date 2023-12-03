@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard\Settings;
 
-use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\View\View;
+use App\Http\Controllers\Dashboard\DashboardController;
 
 class SettingsController extends DashboardController
 {

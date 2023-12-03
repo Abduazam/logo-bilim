@@ -30,7 +30,7 @@ class ServiceRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $branches = Service::select(['id', 'title', 'created_at', 'deleted_at'])
+        $result = Service::select(['id', 'title', 'created_at', 'deleted_at'])
             ->withCount('branches', 'teachers')
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query) => $query->where('title', 'like', "%$search%"))
@@ -38,6 +38,6 @@ class ServiceRepository
                 $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $branches->get() : $branches->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

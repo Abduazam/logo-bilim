@@ -13,7 +13,7 @@ class ClientRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $query = Client::select(['id', 'first_name', 'last_name', 'dob', 'photo', 'created_at', 'deleted_at'])
+        $result = Client::select(['id', 'first_name', 'last_name', 'dob', 'photo', 'created_at', 'deleted_at'])
             ->withCount('relatives')
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
@@ -27,6 +27,6 @@ class ClientRepository
                 return $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $query->get() : $query->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

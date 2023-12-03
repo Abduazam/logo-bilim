@@ -12,6 +12,7 @@ use App\Livewire\Information\Clients\Traits\ActionOnRelative;
 use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Services\Dashboard\Information\Clients\Client\Update\ClientUpdateService;
+use App\Repositories\Dashboard\Information\RelativeStatuses\RelativeStatusRepository;
 
 class Update extends Component
 {
@@ -49,8 +50,10 @@ class Update extends Component
         }
     }
 
-    public function render(): View
+    public function render(RelativeStatusRepository $relativeStatusRepository): View
     {
-        return view('livewire.information.clients.update');
+        return view('livewire.information.clients.update', [
+            'relativeStatuses' => $relativeStatusRepository->getAll(),
+        ]);
     }
 }

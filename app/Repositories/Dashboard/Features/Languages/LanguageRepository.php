@@ -30,13 +30,13 @@ class LanguageRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $languages = Language::select(['id', 'slug', 'title', 'created_at', 'deleted_at'])
+        $result = Language::select(['id', 'slug', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query) => $query->where('title', 'like', "%$search%")->orWhere('slug', 'like', "%$search%"))
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $languages->get() : $languages->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

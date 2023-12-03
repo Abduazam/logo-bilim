@@ -19,6 +19,11 @@
             </a>
         </li>
         <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('dashboard.information.relative-statuses.index') }}">
+                <span class="nav-main-link-name">Relatives</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
             <a class="nav-main-link" href="{{ route('dashboard.information.clients.index') }}">
                 <span class="nav-main-link-name">Clients</span>
             </a>

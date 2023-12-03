@@ -19,7 +19,7 @@ class RoleRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $users = Role::select(['id', 'name', 'created_at', 'deleted_at'])
+        $result = Role::select(['id', 'name', 'created_at', 'deleted_at'])
             ->withCount('permissions', 'users')
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
@@ -28,6 +28,6 @@ class RoleRepository
             })
             ->whereNot('name', 'super-admin');
 
-        return $perPage === 0 ? $users->get() : $users->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

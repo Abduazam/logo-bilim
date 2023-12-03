@@ -107,6 +107,16 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             }
         });
 
+        Route::prefix('relative-statuses')->name('relative-statuses.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Information\RelativeStatuses\RelativeStatusController::class, 'index'])->name('index');
+
+            foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
+
         Route::resource('clients', \App\Http\Controllers\Dashboard\Information\Clients\ClientController::class)->except(['store', 'update', 'destroy']);
         Route::prefix('clients')->name('clients.')->group(function () {
             foreach (['delete', 'restore', 'force-delete'] as $action) {

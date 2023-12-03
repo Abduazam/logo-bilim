@@ -14,7 +14,7 @@ class TeacherRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $query = Teacher::select(['id', 'fullname', 'dob', 'phone_number', 'photo', 'created_at', 'deleted_at'])
+        $result = Teacher::select(['id', 'fullname', 'dob', 'phone_number', 'photo', 'created_at', 'deleted_at'])
             ->withCount(['branches' => function ($query) {
                 $query->select(DB::raw('count(distinct branch_id)'));
             }, 'services'])
@@ -30,6 +30,6 @@ class TeacherRepository
                 return $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $query->get() : $query->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

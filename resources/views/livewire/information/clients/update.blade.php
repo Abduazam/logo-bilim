@@ -48,7 +48,12 @@
                                         </div>
                                         <div class="col-md-4 pe-0">
                                             <label class="form-label" for="relative_status_id">Relative status: <span class="text-danger">*</span></label>
-                                            <input wire:model.live="form.relatives.{{ $id }}.relative_status_id" type="text" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.relative_status_id') is-invalid @elseif(strlen($this->form->relatives[$id]['relative_status_id']) > 3) is-valid @enderror" id="relative_status_id" name="relative_status_id" placeholder="Relative status">
+                                            <select wire:model.live="form.relatives.{{ $id }}.relative_status_id" class="form-select form-select-sm w-100 @error('form.relatives.' . $id . '.relative_status_id') is-invalid @elseif(!is_null($this->form->relatives[$id]['relative_status_id'])) is-valid @enderror" id="relative_status_id" name="relative_status_id">
+                                                <option value="null" disabled>Choose</option>
+                                                @foreach($relativeStatuses as $relativeStatus)
+                                                    <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->translation->translation }}</option>
+                                                @endforeach
+                                            </select>
                                             @error('form.relatives.' . $id . '.relative_status_id')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror

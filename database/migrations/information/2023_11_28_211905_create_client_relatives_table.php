@@ -16,8 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->string('fullname', 100);
             $table->string('phone_number', 15);
-            $table->string('relative_status_id', 15);
-            // $table->foreignId('relative_status_id')->references('id')->on('relative_statuses')->onDelete('cascade');
+            $table->foreignId('relative_status_id')->references('id')->on('relative_statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class UserRepository
         string $orderDirection,
         int $role_id,
     ) {
-        $query = User::select(['id', 'photo', 'name', 'email', 'created_at', 'deleted_at'])
+        $result = User::select(['id', 'photo', 'name', 'email', 'created_at', 'deleted_at'])
             ->with('roles:id,name')
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
@@ -32,6 +32,6 @@ class UserRepository
             })
             ->whereNot('id', 1);
 
-        return $perPage === 0 ? $query->get() : $query->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }

@@ -11,6 +11,7 @@ use App\Livewire\Information\Clients\Traits\ActionOnRelative;
 use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Services\Dashboard\Information\Clients\Client\Create\ClientCreateService;
+use App\Repositories\Dashboard\Information\RelativeStatuses\RelativeStatusRepository;
 
 class Create extends Component
 {
@@ -43,8 +44,10 @@ class Create extends Component
         }
     }
 
-    public function render(): View
+    public function render(RelativeStatusRepository $relativeStatusRepository): View
     {
-        return view('livewire.information.clients.create');
+        return view('livewire.information.clients.create', [
+            'relativeStatuses' => $relativeStatusRepository->getAll(),
+        ]);
     }
 }

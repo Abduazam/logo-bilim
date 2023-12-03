@@ -24,7 +24,7 @@ class PermissionRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $permissions = Permission::select(['id', 'name', 'created_at'])
+        $result = Permission::select(['id', 'name', 'created_at'])
             ->with('translation')
             ->withCount(['roles' => function ($query) {
                 $query->where('name', '!=', 'super-admin');
@@ -37,6 +37,6 @@ class PermissionRepository
                 $query->orderBy($orderBy, $orderDirection);
             });
 
-        return $perPage === 0 ? $permissions->get() : $permissions->paginate($perPage);
+        return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }
 }
