@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * Table columns
+ * @property int $id
+ *
  * Relations
  * @property RelativeStatusTranslation $translation
  * @property HasMany $translations

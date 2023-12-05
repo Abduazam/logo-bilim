@@ -6,7 +6,6 @@ use App\Models\Dashboard\Information\Clients\Client;
 use App\Models\Dashboard\Information\Branches\Branch;
 use App\Models\Dashboard\Information\Teachers\Teacher;
 use App\Models\Dashboard\Information\Services\Service;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
 
 class InformationRepository
 {
@@ -28,10 +27,5 @@ class InformationRepository
     public function getClientsCount(): int
     {
         return Client::query()->count();
-    }
-
-    public function getRelativeStatusesCount(): int
-    {
-        return RelativeStatus::query()->count();
     }
 }

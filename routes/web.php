@@ -107,16 +107,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             }
         });
 
-        Route::prefix('relative-statuses')->name('relative-statuses.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Dashboard\Information\RelativeStatuses\RelativeStatusController::class, 'index'])->name('index');
-
-            foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
-                Route::get($action, function () {
-                    abort(404);
-                })->name($action);
-            }
-        });
-
         Route::resource('clients', \App\Http\Controllers\Dashboard\Information\Clients\ClientController::class)->except(['store', 'update', 'destroy']);
         Route::prefix('clients')->name('clients.')->group(function () {
             foreach (['delete', 'restore', 'force-delete'] as $action) {
@@ -125,9 +115,60 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
                 })->name($action);
             }
         });
+
+        Route::prefix('types')->name('types.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Information\Types\TypeController::class, 'index'])->name('index');
+
+            Route::prefix('payments')->name('payments.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Dashboard\Information\Types\Payments\PaymentTypeController::class, 'index'])->name('index');
+
+                foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                    Route::get($action, function () {
+                        abort(404);
+                    })->name($action);
+                }
+            });
+        });
+
+        Route::prefix('statuses')->name('statuses.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Information\Statuses\StatusController::class, 'index'])->name('index');
+
+            Route::prefix('relatives')->name('relatives.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Dashboard\Information\Statuses\Relatives\RelativeController::class, 'index'])->name('index');
+
+                foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                    Route::get($action, function () {
+                        abort(404);
+                    })->name($action);
+                }
+            });
+
+            Route::prefix('appointments')->name('appointments.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Dashboard\Information\Statuses\Appointments\AppointmentController::class, 'index'])->name('index');
+
+                foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
+                    Route::get($action, function () {
+                        abort(404);
+                    })->name($action);
+                }
+            });
+        });
     });
 
     Route::get('settings', [\App\Http\Controllers\Dashboard\Settings\SettingsController::class, 'index'])->name('settings');
+
+    Route::prefix('management')->name('management.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Dashboard\Management\ManagementController::class, 'index'])->name('index');
+
+        Route::resource('appointments', \App\Http\Controllers\Dashboard\Management\Appointments\AppointmentController::class)->except(['store', 'update', 'destroy']);
+        Route::prefix('appointments')->name('appointments.')->group(function () {
+            foreach (['delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
+    });
 
     Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
 })->middleware(['auth', 'verified', 'has_permission']);

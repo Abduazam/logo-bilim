@@ -18,7 +18,6 @@ class InformationController extends DashboardController
             'services' => $repository->getServicesCount(),
             'teachers' => $repository->getTeachersCount(),
             'clients' => $repository->getClientsCount(),
-            'relatives' => $repository->getRelativeStatusesCount(),
         ]);
     }
 }

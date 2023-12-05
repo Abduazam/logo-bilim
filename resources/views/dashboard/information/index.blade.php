@@ -34,17 +34,6 @@
             </a>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.relative-statuses.index') }}">
-                <div class="ribbon-box">{{ $relatives }}</div>
-                <div class="block-content">
-                    <p class="mt-1 mb-2">
-                        <i class="fa fa-user-group fa-2x text-muted"></i>
-                    </p>
-                    <p class="fw-semibold">Relatives</p>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.clients.index') }}">
                 <div class="ribbon-box">{{ $clients }}</div>
                 <div class="block-content">
@@ -52,6 +41,26 @@
                         <i class="far fa-circle-user fa-2x text-muted"></i>
                     </p>
                     <p class="fw-semibold">Clients</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.statuses.index') }}">
+                <div class="block-content">
+                    <p class="mt-1 mb-2">
+                        <i class="fa fa-s fa-2x text-muted"></i>
+                    </p>
+                    <p class="fw-semibold">Statuses</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.types.index') }}">
+                <div class="block-content">
+                    <p class="mt-1 mb-2">
+                        <i class="fa fa-t fa-2x text-muted"></i>
+                    </p>
+                    <p class="fw-semibold">Types</p>
                 </div>
             </a>
         </div>

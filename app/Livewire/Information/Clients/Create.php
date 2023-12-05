@@ -2,16 +2,16 @@
 
 namespace App\Livewire\Information\Clients;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
-use Livewire\WithFileUploads;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Livewire\Information\Clients\Forms\ClientCreateForm;
 use App\Livewire\Information\Clients\Traits\ActionOnRelative;
-use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
 use App\Services\Dashboard\Information\Clients\Client\Create\ClientCreateService;
-use App\Repositories\Dashboard\Information\RelativeStatuses\RelativeStatusRepository;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
@@ -44,7 +44,7 @@ class Create extends Component
         }
     }
 
-    public function render(RelativeStatusRepository $relativeStatusRepository): View
+    public function render(RelativeRepository $relativeStatusRepository): View
     {
         return view('livewire.information.clients.create', [
             'relativeStatuses' => $relativeStatusRepository->getAll(),

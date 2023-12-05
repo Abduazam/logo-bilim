@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +30,8 @@ class DatabaseSeeder extends Seeder
             Dashboard\Information\Branches\BranchSeeder::class,
             Dashboard\Information\Services\ServiceSeeder::class,
             Dashboard\Information\RelativeStatuses\RelativeStatusSeeder::class,
+            Dashboard\Information\PaymentTypes\PaymentTypeSeeder::class,
+            Dashboard\Information\AppointmentStatuses\AppointmentStatusSeeder::class,
         ]);
     }
 }

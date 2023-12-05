@@ -23,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $this->loadMigrationsFrom(database_path('migrations/*'));
+        $this->loadMigrationsFrom(database_path('migrations/*/*'));
     }
 }

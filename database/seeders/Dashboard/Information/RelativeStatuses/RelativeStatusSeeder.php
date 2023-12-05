@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Dashboard\Information\RelativeStatuses;
 
+use Illuminate\Database\Seeder;
 use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
 use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatusTranslation;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class RelativeStatusSeeder extends Seeder
 {
@@ -37,7 +36,6 @@ class RelativeStatusSeeder extends Seeder
             $newRelativeStatus = RelativeStatus::create();
 
             $relativeStatus['relative_status_id'] = $newRelativeStatus->id;
-
             RelativeStatusTranslation::create($relativeStatus);
         }
     }
