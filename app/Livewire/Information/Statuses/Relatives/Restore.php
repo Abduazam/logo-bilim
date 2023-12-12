@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
-use App\Services\Dashboard\Information\RelativeStatuses\Restore\RelativeStatusRestoreService;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Restore\RelativeStatusRestoreService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class Restore extends Component
 {

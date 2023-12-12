@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Helpers\Services\Livewire\Translations\GetLanguagesForTranslations;
 use App\Livewire\Information\Statuses\Relatives\Forms\RelativeStatusCreateForm;
-use App\Services\Dashboard\Information\RelativeStatuses\Create\RelativeStatusCreateService;
+use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Create\RelativeStatusCreateService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class Create extends Component
 {

@@ -10,6 +10,7 @@ use App\Models\Dashboard\Information\Services\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 
 /**
  * Table columns
@@ -75,5 +76,15 @@ class Teacher extends Model
     public function myServices(): HasMany
     {
         return $this->hasMany(TeacherService::class);
+    }
+
+    /**
+     * Defines has many data in appointments.
+     *
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

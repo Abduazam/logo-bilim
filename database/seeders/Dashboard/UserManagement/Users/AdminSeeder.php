@@ -16,6 +16,7 @@ class AdminSeeder extends Seeder
     {
         $superAdmin = Role::create(['name' => 'super-admin']);
         $admin = Role::create(['name' => 'admin']);
+        Role::create(['name' => 'manager']);
 
         $superAdminUser = User::create([
             'name' => 'Softify',

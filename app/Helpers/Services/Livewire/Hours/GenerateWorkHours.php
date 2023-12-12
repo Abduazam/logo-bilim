@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Helpers\Services\Livewire\Hours;
+
+use Carbon\Carbon;
+
+class GenerateWorkHours
+{
+    const START_TIME = '09:00:00';
+    const END_TIME = '17:00:00';
+
+    public function generate(): array
+    {
+        $startTime = Carbon::createFromFormat('H:i:s', self::START_TIME);
+        $endTime = Carbon::createFromFormat('H:i:s', self::END_TIME);
+
+        $times = [];
+
+        while ($startTime <= $endTime) {
+            $times[] = $startTime->format('H:i');
+            $startTime->addHour();
+        }
+
+        return $times;
+    }
+}

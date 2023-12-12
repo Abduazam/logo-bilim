@@ -57,7 +57,7 @@
                             @else
                                 <div class="border rounded-3 p-3 text-center">
                                     <span class="text-secondary">Teacher doesn't have photo</span>
-                                    <a href="{{ route('dashboard.information.teacher.edit', $teacher) }}" class="btn btn-sm btn-primary w-100 mt-2">Upload photo</a>
+                                    <a href="{{ route('dashboard.information.teachers.edit', $teacher) }}" class="btn btn-sm btn-primary w-100 mt-2">Upload photo</a>
                                 </div>
                             @endif
                         </div>

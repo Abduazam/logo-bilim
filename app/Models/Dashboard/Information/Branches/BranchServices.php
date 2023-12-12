@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $id
  * @property int $branch_id
  * @property int $service_id
- * @property float $price
+ * @property int $price
  */
 class BranchServices extends Model
 {

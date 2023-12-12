@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->double('payment_amount');
+            $table->bigInteger('payment_amount');
             $table->foreignId('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');
-            $table->double('teacher_salary');
-            $table->double('benefit');
+            $table->bigInteger('teacher_salary');
+            $table->bigInteger('benefit');
             $table->smallInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

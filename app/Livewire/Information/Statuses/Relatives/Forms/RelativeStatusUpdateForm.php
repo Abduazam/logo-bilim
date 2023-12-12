@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Information\Statuses\Relatives\Forms;
 
-use Livewire\Form;
-use Livewire\Attributes\Validate;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
 use App\Helpers\Services\Livewire\Translations\GetExistingTranslations;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use Livewire\Attributes\Validate;
+use Livewire\Form;
 
 class RelativeStatusUpdateForm extends Form
 {

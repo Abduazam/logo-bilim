@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->decimal('price', 10, 2);
+            $table->bigInteger('price');
             $table->timestamps();
 
             $table->unique(['branch_id', 'service_id']);

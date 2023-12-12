@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $teacher_id
  * @property int $branch_id
  * @property int $service_id
- * @property float $salary
+ * @property int $salary
  *
  * Relations
  * @property BelongsTo $teacher

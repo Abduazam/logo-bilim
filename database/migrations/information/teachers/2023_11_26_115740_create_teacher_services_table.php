@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->decimal('salary', 10, 2);
+            $table->bigInteger('salary');
             $table->timestamps();
 
             $table->unique(['teacher_id', 'branch_id', 'service_id']);

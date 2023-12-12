@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
-use App\Models\Dashboard\Information\PaymentTypes\PaymentType;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Services\Dashboard\Information\PaymentTypes\ForceDelete\PaymentTypeForceDeleteService;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use App\Services\Dashboard\Information\Types\PaymentTypes\ForceDelete\PaymentTypeForceDeleteService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class ForceDelete extends Component
 {

@@ -2,12 +2,14 @@
 
 namespace App\Models\Dashboard\Information\Services;
 
-use App\Models\Dashboard\Information\Teachers\Teacher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Dashboard\Information\Branches\Branch;
+use App\Models\Dashboard\Information\Teachers\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 use App\Models\Dashboard\Information\Services\Traits\ServiceMethods;
 
 /**
@@ -56,5 +58,15 @@ class Service extends Model
     public function teachers(): BelongsToMany
     {
         return $this->belongsToMany(Teacher::class, 'teacher_services')->withPivot('branch_id', 'salary');;
+    }
+
+    /**
+     * Defines has many data in appointments.
+     *
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

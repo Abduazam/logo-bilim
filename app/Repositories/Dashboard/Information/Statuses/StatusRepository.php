@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Dashboard\Information\Statuses;
 
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
-use App\Models\Dashboard\Information\AppointmentStatuses\AppointmentStatus;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
 
 class StatusRepository
 {

@@ -2,14 +2,14 @@
 
 namespace App\Repositories\Dashboard\Information\Types\Payments;
 
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\Information\PaymentTypes\PaymentType;
 
 class PaymentRepository
 {
     public function getAll(): Collection
     {
-        return PaymentType::all();
+        return PaymentType::with('translation')->get();
     }
 
     public function getFiltered(

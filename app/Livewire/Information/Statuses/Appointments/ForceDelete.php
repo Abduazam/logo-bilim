@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\AppointmentStatuses\AppointmentStatus;
-use App\Services\Dashboard\Information\AppointmentStatuses\ForceDelete\AppointmentStatusForceDeleteService;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\ForceDelete\AppointmentStatusForceDeleteService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class ForceDelete extends Component
 {

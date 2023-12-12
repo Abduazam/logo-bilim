@@ -18,10 +18,11 @@ class PermissionsSeeder extends Seeder
     {
         $superAdmin = Role::findByName('super-admin');
         $admin = Role::findByName('admin');
+        $manager = Role::findByName('manager');
 
         $routes = collect(Route::getRoutes());
 
-        $routes->each(function ($route) use ($superAdmin, $admin) {
+        $routes->each(function ($route) use ($superAdmin, $admin, $manager) {
             $name = $route->getName();
             if ($name && Str::startsWith($name, 'dashboard.')) {
                 $permission = Permission::create(['name' => $name]);
@@ -33,6 +34,10 @@ class PermissionsSeeder extends Seeder
                     'slug' => app()->getLocale(),
                     'translation' => $translation,
                 ]);
+
+                if (Str::startsWith($name, 'dashboard.management.') or in_array($name, ['dashboard.home', 'dashboard.settings', 'dashboard.change-language'])) {
+                    $manager->givePermissionTo($permission);
+                }
 
                 $superAdmin->givePermissionTo($permission);
                 $admin->givePermissionTo($permission);

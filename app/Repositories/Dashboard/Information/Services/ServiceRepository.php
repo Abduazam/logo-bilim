@@ -23,6 +23,19 @@ class ServiceRepository
         return Service::whereNotIn('id', $ids)->get();
     }
 
+    public function getByBranch(int $branch_id)
+    {
+        return (Branch::findOrFail($branch_id))->services;
+    }
+
+    public function getByUserBranch()
+    {
+        $branchIds = auth()->user()->branches->pluck('id')->toArray();
+        return Service::whereHas('branches', function ($query) use ($branchIds) {
+            $query->whereIn('branch_id', $branchIds);
+        })->get();
+    }
+
     public function getFiltered(
         string $search,
         int $perPage,

@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
 use App\Livewire\Information\Statuses\Relatives\Forms\RelativeStatusUpdateForm;
-use App\Services\Dashboard\Information\RelativeStatuses\Update\RelativeStatusUpdateService;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Update\RelativeStatusUpdateService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class Update extends Component
 {

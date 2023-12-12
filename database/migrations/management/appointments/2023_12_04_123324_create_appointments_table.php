@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->double('service_price');
+            $table->bigInteger('service_price');
             $table->time('start_time');
-            $table->time('end_time');
             $table->foreignId('appointment_status_id')->references('id')->on('appointment_statuses')->onDelete('cascade');
+            $table->date('created_date')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_DATE'));
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6469,6 +6469,7 @@ textarea.form-control-lg {
     width: var(--bs-offcanvas-width);
     border-left: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
     transform: translateX(100%);
+
   }
   .offcanvas-sm.offcanvas-top {
     top: 0;
@@ -6894,7 +6895,7 @@ textarea.form-control-lg {
   opacity: 0;
 }
 .offcanvas-backdrop.show {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .offcanvas-header {
@@ -7800,6 +7801,10 @@ textarea.form-control-lg {
 
 .w-25 {
   width: 25% !important;
+}
+
+.w-40 {
+  width: 40% !important;
 }
 
 .w-50 {

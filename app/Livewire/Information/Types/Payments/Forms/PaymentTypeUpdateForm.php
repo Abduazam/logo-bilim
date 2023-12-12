@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Information\Types\Payments\Forms;
 
-use Livewire\Form;
-use Livewire\Attributes\Validate;
-use App\Models\Dashboard\Information\PaymentTypes\PaymentType;
 use App\Helpers\Services\Livewire\Translations\GetExistingTranslations;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use Livewire\Attributes\Validate;
+use Livewire\Form;
 
 class PaymentTypeUpdateForm extends Form
 {

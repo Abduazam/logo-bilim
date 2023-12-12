@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use App\Services\Dashboard\Information\Types\PaymentTypes\Delete\PaymentTypeDeleteService;
 use Exception;
-use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use App\Models\Dashboard\Information\PaymentTypes\PaymentType;
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Services\Dashboard\Information\PaymentTypes\Delete\PaymentTypeDeleteService;
+use Livewire\Component;
 
 class Delete extends Component
 {

@@ -18,6 +18,11 @@ class BranchRepository
         return Branch::whereNotIn('id', $user->branches->pluck('id'))->get();
     }
 
+    public function getByUser(User $user)
+    {
+        return Branch::select('id', 'title')->whereIn('id', $user->branches->pluck('id'))->get();
+    }
+
     public function getFiltered(
         string $search,
         int $perPage,

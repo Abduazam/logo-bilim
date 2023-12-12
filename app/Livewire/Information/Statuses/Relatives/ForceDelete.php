@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use Exception;
-use Livewire\Component;
-use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
-use App\Services\Dashboard\Information\RelativeStatuses\ForceDelete\RelativeStatusForceDeleteService;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Services\Dashboard\Information\Statuses\RelativeStatuses\ForceDelete\RelativeStatusForceDeleteService;
+use Exception;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class ForceDelete extends Component
 {

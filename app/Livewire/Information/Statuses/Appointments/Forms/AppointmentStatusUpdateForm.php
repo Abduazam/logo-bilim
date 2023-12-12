@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Information\Statuses\Appointments\Forms;
 
-use Livewire\Form;
-use Livewire\Attributes\Validate;
 use App\Helpers\Services\Livewire\Translations\GetExistingTranslations;
-use App\Models\Dashboard\Information\AppointmentStatuses\AppointmentStatus;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use Livewire\Attributes\Validate;
+use Livewire\Form;
 
 class AppointmentStatusUpdateForm extends Form
 {

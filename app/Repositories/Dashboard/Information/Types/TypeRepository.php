@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Dashboard\Information\Types;
 
-use App\Models\Dashboard\Information\PaymentTypes\PaymentType;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 
 class TypeRepository
 {

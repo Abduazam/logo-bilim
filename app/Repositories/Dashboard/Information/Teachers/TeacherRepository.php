@@ -2,11 +2,42 @@
 
 namespace App\Repositories\Dashboard\Information\Teachers;
 
+use App\Models\Dashboard\UserManagement\Users\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Teachers\Teacher;
 
 class TeacherRepository
 {
+    public function getByBranchService(int $branch_id, int $service_id)
+    {
+        return Teacher::whereHas('myServices', function ($query) use ($branch_id, $service_id) {
+            $query->where('branch_id', $branch_id)
+                ->where('service_id', $service_id);
+        })->get();
+    }
+
+    public function getFreeTeachers(int $branch_id, int $service_id, string $start_time)
+    {
+        return Teacher::whereHas('myServices', function ($query) use ($branch_id, $service_id) {
+            $query->where('branch_id', $branch_id)
+                ->where('service_id', $service_id);
+            })
+            ->whereDoesntHave('appointments', function ($query) use ($branch_id, $service_id, $start_time) {
+                $query->where('branch_id', $branch_id)
+                    ->where('service_id', $service_id)
+                    ->where('start_time', $start_time)
+                    ->whereDate('created_date', today());
+            })->get();
+    }
+
+    public function getByBranch()
+    {
+        $branchIds = auth()->user()->branches->pluck('id')->toArray();
+        return Teacher::whereHas('branches', function ($query) use ($branchIds) {
+            $query->whereIn('branch_id', $branchIds);
+        })->get();
+    }
+
     public function getFiltered(
         string $search,
         int $perPage,

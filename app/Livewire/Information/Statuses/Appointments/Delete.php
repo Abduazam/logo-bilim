@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\Delete\AppointmentStatusDeleteService;
 use Exception;
-use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\AppointmentStatuses\AppointmentStatus;
-use App\Services\Dashboard\Information\AppointmentStatuses\Delete\AppointmentStatusDeleteService;
+use Livewire\Component;
 
 class Delete extends Component
 {

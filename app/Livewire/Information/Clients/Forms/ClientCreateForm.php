@@ -10,7 +10,7 @@ class ClientCreateForm extends Form
     #[Validate('required|string|min:3|max:75')]
     public ?string $first_name = null;
 
-    #[Validate('nullable|string|min:3|max:75')]
+    #[Validate('required|string|min:3|max:75')]
     public ?string $last_name = null;
 
     #[Validate('required|date', as: 'date of birth')]
@@ -22,7 +22,7 @@ class ClientCreateForm extends Form
     #[Validate([
         'relatives' => 'nullable|array',
         'relatives.*' => 'array',
-        'relatives.*.fullname' => ['required', 'string', 'min:3', 'max:100'],
+        'relatives.*.fullname' => 'required|string|min:3|max:100',
         'relatives.*.phone_number' => 'required|numeric|digits_between:9,15',
         'relatives.*.relative_status_id' => 'required|numeric|exists:relative_statuses,id',
     ], as: [

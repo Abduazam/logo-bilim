@@ -2,14 +2,14 @@
 
 namespace App\Repositories\Dashboard\Information\Statuses\Relatives;
 
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
 
 class RelativeRepository
 {
     public function getAll(): Collection
     {
-        return RelativeStatus::all();
+        return RelativeStatus::with('translation')->get();
     }
 
     public function getFiltered(

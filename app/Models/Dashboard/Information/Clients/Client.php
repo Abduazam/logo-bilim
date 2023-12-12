@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 
 /**
  * Table columns
@@ -50,5 +51,15 @@ class Client extends Model
     public function relatives(): HasMany
     {
         return $this->hasMany(ClientRelative::class);
+    }
+
+    /**
+     * Defines has many data in appointments.
+     *
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

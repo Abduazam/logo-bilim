@@ -3,12 +3,15 @@
 namespace App\Models\Dashboard\Information\Branches;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Dashboard\UserManagement\Users\User;
 use App\Models\Dashboard\Information\Services\Service;
 use App\Models\Dashboard\Information\Teachers\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 
 /**
  * Table columns
@@ -17,7 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *
  * Relations
  * @property BelongsToMany $users
- * @property BelongsToMany $services
+ * @property BelongsToMany|Collection $services
+ * @property BelongsToMany $teachers
  */
 class Branch extends Model
 {
@@ -63,5 +67,15 @@ class Branch extends Model
     public function teachers(): BelongsToMany
     {
         return $this->belongsToMany(Teacher::class, 'teacher_services');
+    }
+
+    /**
+     * Defines has many data in appointments.
+     *
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

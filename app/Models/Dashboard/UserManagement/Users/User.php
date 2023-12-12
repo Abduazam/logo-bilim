@@ -7,12 +7,14 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Dashboard\Information\Branches\Branch;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Contracts\Traits\Dashboard\Models\GetPictureTrait;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 use App\Models\Dashboard\UserManagement\Users\Traits\UserMethods;
 
 /**
@@ -81,5 +83,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function branches(): BelongsToMany
     {
         return $this->belongsToMany(Branch::class, 'user_branches');
+    }
+
+    /**
+     * Defines has many data in appointments.
+     *
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Repositories\Dashboard\Information\Statuses\Appointments;
 
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\Information\AppointmentStatuses\AppointmentStatus;
 
 class AppointmentRepository
 {
     public function getAll(): Collection
     {
-        return AppointmentStatus::all();
+        return AppointmentStatus::with('translation')->get();
     }
 
     public function getFiltered(

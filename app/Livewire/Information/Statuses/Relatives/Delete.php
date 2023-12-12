@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Delete\RelativeStatusDeleteService;
 use Exception;
-use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\RelativeStatuses\RelativeStatus;
-use App\Services\Dashboard\Information\RelativeStatuses\Delete\RelativeStatusDeleteService;
+use Livewire\Component;
 
 class Delete extends Component
 {
