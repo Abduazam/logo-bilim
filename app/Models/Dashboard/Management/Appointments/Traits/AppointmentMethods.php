@@ -90,12 +90,30 @@ trait AppointmentMethods
         return $this->appointmentStatus->key === 'canceled';
     }
 
-    public function getAppointmentBenefit()
+    /**
+     * Gets income as format in reports.
+     * @returns bool|string
+     */
+    public function getIncome(): bool|string
     {
-        if (!is_null($this->total_benefit)) {
-            return Number::format($this->total_benefit);
-        }
+        return Number::format($this->income);
+    }
 
-        return $this->total_benefit;
+    /**
+     * Gets outcome as format in reports.
+     * @returns bool|string
+     */
+    public function getOutcome(): bool|string
+    {
+        return Number::format($this->outcome);
+    }
+
+    /**
+     * Gets benefit as format in reports.
+     * @returns bool|string
+     */
+    public function getBenefit(): int|string
+    {
+        return Number::format($this->benefit);
     }
 }
