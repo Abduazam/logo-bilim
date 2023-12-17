@@ -35,7 +35,8 @@ class AppointmentRepository
     ) {
         $branchIds = auth()->user()->branches->pluck('id')->toArray();
 
-        $result = Appointment::with('service', 'teacher', 'clients')
+        $result = Appointment::select('id', 'number', 'user_id', 'branch_id', 'teacher_id', 'service_id', 'service_price', 'start_time', 'appointment_status_id', 'created_date')
+            ->with('service', 'teacher', 'clients')
             ->when($branch_id, function ($query, $branch_id) {
                 return $query->where('branch_id', $branch_id);
             })
@@ -53,7 +54,7 @@ class AppointmentRepository
             })
             ->whereIn('branch_id', $branchIds)
             ->whereDate('created_date', now())
-            ->orderByDesc('created_at');
+            ->orderByDesc('id');
 
         return $perPage === 0 ? $result->get() : $result->paginate($perPage);
     }

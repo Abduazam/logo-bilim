@@ -2,12 +2,16 @@
 
 namespace App\Repositories\Dashboard\Information\Teachers;
 
-use App\Models\Dashboard\UserManagement\Users\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Teachers\Teacher;
 
 class TeacherRepository
 {
+    public function getOne(int $teacher_id)
+    {
+        return Teacher::findOrFail($teacher_id);
+    }
+
     public function getByBranchService(int $branch_id, int $service_id)
     {
         return Teacher::whereHas('myServices', function ($query) use ($branch_id, $service_id) {

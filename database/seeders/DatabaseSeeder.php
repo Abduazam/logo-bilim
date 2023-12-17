@@ -52,6 +52,6 @@ class DatabaseSeeder extends Seeder
         /**
          * Create fake appointments.
          */
-        AppointmentFactory::times(20)->create();
+        AppointmentFactory::times(10)->create();
     }
 }

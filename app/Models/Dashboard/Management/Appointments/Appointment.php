@@ -17,6 +17,7 @@ use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
 /**
  * Table columns
  * @property int $id
+ * @property int $number
  * @property int $user_id
  * @property int $branch_id
  * @property int $teacher_id
@@ -51,6 +52,7 @@ class Appointment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'number',
         'user_id',
         'branch_id',
         'teacher_id',

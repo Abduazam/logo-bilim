@@ -22,7 +22,7 @@ class ClientCreateService extends CreateService
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->dob = $data['dob'];
-        $this->photo = $data['photo'];
+        $this->photo = array_key_exists('photo', $data) ? $data['photo'] : null;
         $this->relatives = $data['relatives'];
     }
 
@@ -43,8 +43,10 @@ class ClientCreateService extends CreateService
                     'photo' => $photo,
                 ]);
 
-                $clientRelativeCreate = new ClientRelativeCreateService($client, $this->relatives);
-                $clientRelativeCreate->callMethod();
+                if (!empty($this->relatives)) {
+                    $clientRelativeCreate = new ClientRelativeCreateService($client, $this->relatives);
+                    $clientRelativeCreate->callMethod();
+                }
             }, 5);
 
             return true;

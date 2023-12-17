@@ -3,12 +3,12 @@
 namespace App\Livewire\Management\Appointments\Forms\Components;
 
 use Livewire\Form;
-use App\Livewire\Management\Appointments\Components\Traits\ClientTrait;
-use App\Livewire\Management\Appointments\Components\Traits\AppointmentTrait;
+use App\Livewire\Management\Appointments\Forms\Traits\PaymentsForm;
+use App\Livewire\Management\Appointments\Forms\Traits\RegistrationForm;
 
 class CreateInSideForm extends Form
 {
-    use AppointmentTrait, ClientTrait;
+    use RegistrationForm, PaymentsForm;
 
-    public string $activeSection = 'appointment';
+    public string $activeSection = 'registration';
 }

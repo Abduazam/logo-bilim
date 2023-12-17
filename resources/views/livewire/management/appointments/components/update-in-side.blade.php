@@ -1,10 +1,12 @@
-<div>
-    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAppointmentCreate" aria-controls="offcanvasAppointmentCreate">New appointment</button>
+<div class="d-inline-block">
+    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAppointmentUpdateId{{ $this->appointment->id }}" aria-controls="offcanvasAppointmentUpdateId{{ $this->appointment->id }}">
+        <i class="fa fa-pen"></i>
+    </button>
 
-    <form wire:submit.prevent="create" class="w-100 position-relative">
-        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasAppointmentCreate" aria-labelledby="offcanvasAppointmentCreateLabel" data-bs-backdrop="false">
+    <form wire:submit.prevent="update" class="w-100 position-relative">
+        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasAppointmentUpdateId{{ $this->appointment->id }}" aria-labelledby="offcanvasAppointmentUpdateId{{ $this->appointment->id }}Label" data-bs-backdrop="false">
             <div class="offcanvas-header bg-body-light">
-                <h6 class="offcanvas-title" id="offcanvasAppointmentCreateLabel">New appointment</h6>
+                <h6 class="offcanvas-title" id="offcanvasAppointmentUpdateId{{ $this->appointment->id }}Label">Update appointment</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body fs-sm text-start overflow-auto">
@@ -85,7 +87,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3 pe-0">
-                                    <label for="start_time" class="form-label">Start time</label>
+                                    <label for="start_time" class="form-label">Start time <small class="text-muted">({{ $this->form->start_time }})</small></label>
                                     <select wire:model.live="form.start_time" class="form-select form-select-sm w-100" name="start_time" id="start_time" @if(is_null($this->form->service_id)) disabled @endif>
                                         <option value="null" disabled>Choose</option>
                                         @if(!empty($this->form->startTimes))
@@ -230,7 +232,7 @@
                                                 <select wire:model.live="form.payments.{{ $id }}.payment_type_id" class="form-select form-select-sm w-100 @error('form.clients.' . $id . '.info.first_name') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->payments[$id]['payment_type_id'])) is-valid @enderror" id="payment_type_id{{ $id }}" name="payment_type_id{{ $id }}">
                                                     <option value="null" disabled>Choose</option>
                                                     @foreach($paymentTypes as $paymentType)
-                                                    <option value="{{ $paymentType->id }}">{{ $paymentType->translation->translation }}</option>
+                                                        <option value="{{ $paymentType->id }}">{{ $paymentType->translation->translation }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('form.payments.' . $id . '.payment_type_id')
@@ -256,8 +258,8 @@
                 <button data-bs-dismiss="offcanvas" type="button" class="btn btn-white border-0">
                     <small>Close</small>
                 </button>
-                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->paymentsForm) wire:target="create" @else disabled @endif>
-                    <small>Create</small>
+                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->paymentsForm) wire:target="update" @else disabled @endif>
+                    <small>Update</small>
                 </button>
             </div>
         </div>

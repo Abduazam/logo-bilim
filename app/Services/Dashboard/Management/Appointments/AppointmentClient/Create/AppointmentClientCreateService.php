@@ -9,18 +9,20 @@ use App\Models\Dashboard\Management\Appointments\AppointmentClients;
 
 class AppointmentClientCreateService extends CreateService
 {
-    protected array $appointmentClient;
+    protected array $appointmentClients;
 
     public function __construct(array $data)
     {
-        $this->appointmentClient = $data;
+        $this->appointmentClients = $data;
     }
 
     protected function create(): bool|Exception
     {
         try {
             DB::transaction(function () {
-                AppointmentClients::create($this->appointmentClient);
+                foreach ($this->appointmentClients as $appointmentClient) {
+                    AppointmentClients::create($appointmentClient);
+                }
             }, 5);
 
             return true;

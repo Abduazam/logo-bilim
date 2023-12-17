@@ -18,10 +18,14 @@ class AppointmentStatusSeeder extends Seeder
                 'slug' => 'en',
                 'translation' => 'Pending',
             ],
-            'began' => [
+            'started' => [
                 'slug' => 'en',
-                'translation' => 'Began',
+                'translation' => 'Started',
             ],
+            'canceled' => [
+                'slug' => 'en',
+                'translation' => 'Canceled',
+            ]
         ];
 
         foreach ($appointmentStatuses as $key => $appointmentStatus) {

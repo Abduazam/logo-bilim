@@ -5,41 +5,44 @@ namespace App\Livewire\Management\Appointments\Components;
 use Exception;
 use Livewire\Component;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Illuminate\Validation\ValidationException;
+use App\Models\Dashboard\Management\Appointments\Appointment;
 use App\Livewire\Management\Appointments\Traits\ActionOnAppointment;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Repositories\Dashboard\Information\Branches\BranchRepository;
-use App\Livewire\Management\Appointments\Forms\Components\CreateInSideForm;
+use App\Livewire\Management\Appointments\Forms\Components\UpdateInSideForm;
 use App\Repositories\Dashboard\Information\Types\Payments\PaymentRepository;
 use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
-use App\Services\Dashboard\Management\Appointments\Appointment\Create\AppointmentCreateService;
+use App\Services\Dashboard\Management\Appointments\Appointment\Update\AppointmentUpdateService;
 
-class CreateInSide extends Component
+class UpdateInSide extends Component
 {
     use ActionOnAppointment, DispatchingTrait;
 
-    public CreateInSideForm $form;
+    public Appointment $appointment;
+    public UpdateInSideForm $form;
 
     public function mount(): void
     {
-        $this->form->addClient();
+        $this->form->setValues($this->appointment);
     }
 
     /**
      * @throws ValidationException
      * @throws Exception
      */
-    public function create(): void
+    public function update(): void
     {
         $validatedData = $this->form->validate();
 
         if ($validatedData) {
-            $service = new AppointmentCreateService($validatedData);
+            $service = new AppointmentUpdateService($validatedData, $this->appointment);
             $response = $service->callMethod();
 
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New appointment</b>");
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Appointment {$this->appointment->id}</b>");
                 $this->form->reset();
                 $this->mount();
             } else {
@@ -48,6 +51,7 @@ class CreateInSide extends Component
         }
     }
 
+    #[On('updated')]
     public function render(
         BranchRepository $branchRepository,
         RelativeRepository $relativeStatusRepository,
@@ -59,7 +63,7 @@ class CreateInSide extends Component
             $this->form->setBranch($branches->first());
         }
 
-        return view('livewire.management.appointments.components.create-in-side', [
+        return view('livewire.management.appointments.components.update-in-side', [
             'branches' => $branches,
             'relativeStatuses' => $relativeStatusRepository->getAll(),
             'paymentTypes' => $paymentTypeRepository->getAll(),

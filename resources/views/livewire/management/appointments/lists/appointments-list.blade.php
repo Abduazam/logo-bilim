@@ -63,6 +63,7 @@
         <table class="own-table w-100">
             <thead>
             <tr>
+                <th class="text-center">number</th>
                 <th class="text-center">teacher</th>
                 <th class="text-center">service</th>
                 <th class="text-center">start time</th>
@@ -74,12 +75,26 @@
             <tbody>
             @foreach($appointments as $appointment)
                 <tr wire:key="appointment-row-{{ $appointment->id }}">
+                    <td class="text-center">{{ $appointment->number }}</td>
                     <td class="text-center">{{ $appointment->teacher->fullname }}</td>
                     <td class="text-center">{{ $appointment->service->title }}</td>
                     <td class="text-center">{{ $appointment->getStartTime() }}</td>
-                    <td class="text-center">{{ $appointment->getClients() }}</td>
+                    <td class="text-center">{!! $appointment->getClients(true) !!}</td>
                     <td class="text-center">{!! $appointment->getAppointmentStatus() !!}</td>
-                    <td></td>
+                    <td class="text-center">
+                        <a href="{{ route('dashboard.management.appointments.show', $appointment) }}" class="btn btn-sm btn-secondary text-white">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        @if($appointment->isPending())
+                            <livewire:management.appointments.reschedule :appointment="$appointment" :wire:key="'reschedule-appointment-id' . $appointment->id"  />
+                            <livewire:management.appointments.cancel :appointment="$appointment" :wire:key="'cancel-appointment-id' . $appointment->id"  />
+                            <livewire:management.appointments.components.update-in-side :appointment="$appointment" :wire:key="'update-appointment-id' . $appointment->id"  />
+                        @endif
+                        @if($appointment->isCanceled())
+                            <livewire:management.appointments.restore :appointment="$appointment" :wire:key="'restore-appointment-id' . $appointment->id"  />
+                            <livewire:management.appointments.force-delete :appointment="$appointment" :wire:key="'force-delete-appointment-id' . $appointment->id"  />
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

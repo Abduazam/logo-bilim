@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('number')->default(0);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
@@ -23,6 +24,8 @@ return new class extends Migration
             $table->date('created_date')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_DATE'));
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['number', 'branch_id', 'teacher_id', 'service_id', 'start_time']);
         });
     }
 
