@@ -15,6 +15,30 @@
 </li>
 @endcan
 
+@can('dashboard.reports.index')
+    <li class="nav-main-item">
+        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="{{ route('dashboard.reports.index') }}">
+            <span class="nav-main-link-name">Reports</span>
+        </a>
+        <ul class="nav-main-submenu">
+            @can('dashboard.reports.daily-reports.index')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('dashboard.reports.daily-reports.index') }}">
+                        <span class="nav-main-link-name">Daily reports</span>
+                    </a>
+                </li>
+            @endcan
+            @can('dashboard.reports.debts.index')
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('dashboard.reports.debts.index') }}">
+                        <span class="nav-main-link-name">Debts</span>
+                    </a>
+                </li>
+            @endcan
+        </ul>
+    </li>
+@endcan
+
 @can('dashboard.information.index')
 <li class="nav-main-item">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="{{ route('dashboard.information.index') }}">

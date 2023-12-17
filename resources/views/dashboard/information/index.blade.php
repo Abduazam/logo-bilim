@@ -1,5 +1,6 @@
 <x-layouts.app>
     <div class="row">
+        @can('dashboard.information.services.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.services.index') }}">
                 <div class="ribbon-box">{{ $services }}</div>
@@ -11,6 +12,9 @@
                 </div>
             </a>
         </div>
+        @endcan
+
+        @can('dashboard.information.branches.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.branches.index') }}">
                 <div class="ribbon-box">{{ $branches }}</div>
@@ -22,6 +26,9 @@
                 </div>
             </a>
         </div>
+        @endcan
+
+        @can('dashboard.information.teachers.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.teachers.index') }}">
                 <div class="ribbon-box">{{ $teachers }}</div>
@@ -33,6 +40,9 @@
                 </div>
             </a>
         </div>
+        @endcan
+
+        @can('dashboard.information.clients.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.clients.index') }}">
                 <div class="ribbon-box">{{ $clients }}</div>
@@ -44,6 +54,9 @@
                 </div>
             </a>
         </div>
+        @endcan
+
+        @can('dashboard.information.statuses.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.statuses.index') }}">
                 <div class="block-content">
@@ -54,6 +67,9 @@
                 </div>
             </a>
         </div>
+        @endcan
+
+        @can('dashboard.information.types.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.types.index') }}">
                 <div class="block-content">
@@ -64,5 +80,6 @@
                 </div>
             </a>
         </div>
+        @endcan
     </div>
 </x-layouts.app>

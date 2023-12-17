@@ -3,6 +3,7 @@
 namespace App\Models\Dashboard\Management\Appointments\Traits;
 
 use App\Contracts\Enums\Management\Appointments\AppointmentStatusEnum;
+use Illuminate\Support\Number;
 
 trait AppointmentMethods
 {
@@ -87,5 +88,14 @@ trait AppointmentMethods
     public function isCanceled(): bool
     {
         return $this->appointmentStatus->key === 'canceled';
+    }
+
+    public function getAppointmentBenefit()
+    {
+        if (!is_null($this->total_benefit)) {
+            return Number::format($this->total_benefit);
+        }
+
+        return $this->total_benefit;
     }
 }

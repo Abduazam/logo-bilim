@@ -34,6 +34,10 @@ use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
  * @property BelongsTo $teacher
  * @property AppointmentStatus $appointmentStatus
  * @property HasMany $clients
+ *
+ * For reports
+ * @property int $appointment_count
+ * @property mixed $total_benefit
  */
 class Appointment extends Model
 {

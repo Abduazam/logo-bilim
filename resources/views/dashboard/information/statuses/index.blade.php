@@ -1,5 +1,6 @@
 <x-layouts.app>
     <div class="row">
+        @can('dashboard.information.statuses.relatives.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.statuses.relatives.index') }}">
                 <div class="ribbon-box">{{ $relatives }}</div>
@@ -11,17 +12,9 @@
                 </div>
             </a>
         </div>
-        {{--        <div class="col-6 col-md-4 col-xl-2">--}}
-        {{--            <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.payment-types.index') }}">--}}
-        {{--                <div class="ribbon-box">{{ $paymentTypes }}</div>--}}
-        {{--                <div class="block-content">--}}
-        {{--                    <p class="mt-1 mb-2">--}}
-        {{--                        <i class="fab fa-paypal fa-2x text-muted"></i>--}}
-        {{--                    </p>--}}
-        {{--                    <p class="fw-semibold">Payment types</p>--}}
-        {{--                </div>--}}
-        {{--            </a>--}}
-        {{--        </div>--}}
+        @endcan
+
+        @can('dashboard.information.statuses.appointments.index')
         <div class="col-6 col-md-4 col-xl-2">
             <a class="block block-rounded block-bordered block-link-shadow ribbon ribbon-primary text-center" href="{{ route('dashboard.information.statuses.appointments.index') }}">
                 <div class="ribbon-box">{{ $appointments }}</div>
@@ -33,5 +26,6 @@
                 </div>
             </a>
         </div>
+        @endcan
     </div>
 </x-layouts.app>

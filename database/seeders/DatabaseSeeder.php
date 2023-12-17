@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Factories\Dashboard\Information\Clients\ClientFactory;
 use Database\Factories\Dashboard\Information\Clients\ClientRelativeFactory;
-use Database\Factories\Dashboard\Management\Appointments\AppointmentFactory;
+use Database\Factories\Dashboard\Management\Appointments\AppointmentClientFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -52,6 +52,6 @@ class DatabaseSeeder extends Seeder
         /**
          * Create fake appointments.
          */
-        AppointmentFactory::times(10)->create();
+        AppointmentClientFactory::times(10)->create();
     }
 }
