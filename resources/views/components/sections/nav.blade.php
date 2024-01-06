@@ -44,8 +44,6 @@
 
         <!-- Right Section -->
         <div class="space-x-1">
-            <livewire:components.sections.fillers.languages />
-
             <x-sections.fillers.user-dropdown />
 
             <!-- Toggle Sidebar -->

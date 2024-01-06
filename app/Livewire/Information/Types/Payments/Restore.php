@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use App\Services\Dashboard\Information\Types\PaymentTypes\Restore\PaymentTypeRestoreService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Services\Dashboard\Information\Types\Payments\Restore\PaymentTypeRestoreService;
 
 class Restore extends Component
 {
@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Payment type restored:</b> {$this->paymentType->translation->translation}");
+            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Payment type restored:</b> {$this->paymentType->title}");
         } else {
             throw $response;
         }

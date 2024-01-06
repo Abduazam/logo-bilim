@@ -2,25 +2,17 @@
 
 namespace App\Livewire\Information\Types\Payments\Forms;
 
-use App\Helpers\Services\Livewire\Translations\GetExistingTranslations;
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Livewire\Attributes\Validate;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 
 class PaymentTypeUpdateForm extends Form
 {
-    #[Validate([
-        'translations' => 'required|array',
-        'translations.*' => 'required|string|min:2',
-    ], as: [
-        'translations' => 'payment type',
-        'translations.*' => 'payment type',
-    ])]
-    public array $translations = [];
+    #[Validate('required|string|min:2')]
+    public ?string $title = null;
 
     public function setValues(PaymentType $paymentType): void
     {
-        $translations = new GetExistingTranslations();
-        $this->translations = $translations->getExistingTranslations($paymentType);
+        $this->title = $paymentType->title;
     }
 }

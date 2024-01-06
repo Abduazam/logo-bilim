@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use App\Services\Dashboard\Information\Types\PaymentTypes\Delete\PaymentTypeDeleteService;
 use Exception;
+use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Services\Dashboard\Information\Types\Payments\Delete\PaymentTypeDeleteService;
 
 class Delete extends Component
 {
@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Payment type deleted:</b> {$this->paymentType->translation->translation}");
+            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Payment type deleted:</b> {$this->paymentType->title}");
         } else {
             throw $response;
         }

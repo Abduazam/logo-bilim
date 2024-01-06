@@ -3,9 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Factories\Dashboard\Information\Clients\ClientFactory;
-use Database\Factories\Dashboard\Information\Clients\ClientRelativeFactory;
-use Database\Factories\Dashboard\Management\Appointments\AppointmentClientFactory;
+use App\Models\Dashboard\Information\Clients\Client;
+use App\Models\Dashboard\Information\Branches\Branch;
+use App\Models\Dashboard\Information\Services\Service;
+use App\Models\Dashboard\Information\Teachers\Teacher;
+use App\Models\Dashboard\Information\Clients\ClientRelative;
+use App\Models\Dashboard\Information\Branches\BranchService;
+use App\Models\Dashboard\Information\Teachers\TeacherService;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,38 +24,40 @@ class DatabaseSeeder extends Seeder
              */
             Dashboard\UserManagement\Users\AdminSeeder::class,
             Dashboard\UserManagement\Permissions\PermissionsSeeder::class,
-
             /**
-             * Default data of features section.
+             * Default data of types and statuses.
              */
-            Dashboard\Features\Languages\LanguageSeeder::class,
-            Dashboard\Features\TableColumns\TableColumnSeeder::class,
-
-            /**
-             * Default data of information section.
-             */
-            Dashboard\Information\Branches\BranchSeeder::class,
-            Dashboard\Information\Services\ServiceSeeder::class,
-            Dashboard\Information\Statuses\Relatives\RelativeStatusSeeder::class,
             Dashboard\Information\Types\Payments\PaymentTypeSeeder::class,
+            Dashboard\Information\Statuses\Relatives\RelativeStatusSeeder::class,
             Dashboard\Information\Statuses\Appointments\AppointmentStatusSeeder::class,
-            Dashboard\Information\Teachers\TeacherSeeder::class,
-
-            /**
-             * Default data of managers.
-             */
-            Dashboard\UserManagement\Users\ManagerSeeder::class,
         ]);
+
+        /**
+         * Create fake branches and services.
+         */
+        //$branches = Branch::factory(5)->create();
+
+        //$services = Service::factory(3)->create();
+
+        //BranchService::factory(15)->recycle($branches, $services)->create();
 
         /**
          * Create fake clients.
          */
-        ClientFactory::times(5)->create();
-        ClientRelativeFactory::times(5)->create();
+        //$clients = Client::factory(10)->create();
+
+        //ClientRelative::factory(20)->recycle($clients)->create();
+
+        /**
+         * Create fake teachers.
+         */
+        //$teachers = Teacher::factory(10)->create();
+
+        //TeacherService::factory(25)->recycle($teachers, $branches, $services)->create();
 
         /**
          * Create fake appointments.
          */
-        AppointmentClientFactory::times(10)->create();
+        // AppointmentClientFactory::times(10)->create();
     }
 }

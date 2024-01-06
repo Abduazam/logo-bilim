@@ -11,6 +11,14 @@
             </a>
         </li>
         @endcan
+
+        @can('dashboard.management.consultations.index')
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="{{ route('dashboard.management.consultations.index') }}">
+                    <span class="nav-main-link-name">Consultations</span>
+                </a>
+            </li>
+        @endcan
     </ul>
 </li>
 @endcan
@@ -108,7 +116,7 @@
                 </li>
                 @endcan
 
-                @can('dashboard.information.appointments.index')
+                @can('dashboard.information.statuses.appointments.index')
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('dashboard.information.statuses.appointments.index') }}">
                         <span class="nav-main-link-name">Appointments</span>
@@ -151,38 +159,6 @@
             </a>
         </li>
         @endcan
-    </ul>
-</li>
-@endcan
-
-@can('dashboard.features.index')
-<li class="nav-main-item">
-    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="{{ route('dashboard.features.index') }}">
-        <span class="nav-main-link-name">Features</span>
-    </a>
-    <ul class="nav-main-submenu">
-        @can('dashboard.features.languages.index')
-        <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('dashboard.features.languages.index') }}">
-                <span class="nav-main-link-name">Languages</span>
-            </a>
-        </li>
-        @endcan
-{{--        <li class="nav-main-item">--}}
-{{--            <a class="nav-main-link" href="{{ route('dashboard.features.tables.index') }}">--}}
-{{--                <span class="nav-main-link-name">Tables</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li class="nav-main-item">--}}
-{{--            <a class="nav-main-link" href="{{ route('dashboard.features.texts.index') }}">--}}
-{{--                <span class="nav-main-link-name">Texts</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li class="nav-main-item">--}}
-{{--            <a class="nav-main-link" href="{{ route('dashboard.features.icons.index') }}">--}}
-{{--                <span class="nav-main-link-name">Icons</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
     </ul>
 </li>
 @endcan

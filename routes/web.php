@@ -21,30 +21,6 @@ Route::redirect('/', '/dashboard');
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Dashboard\Home\HomeController::class, 'index'])->name('home');
 
-    Route::prefix('features')->name('features.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Dashboard\Features\FeatureController::class, 'index'])->name('index');
-
-        Route::prefix('languages')->name('languages.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Languages\LanguageController::class, 'index'])->name('index');
-
-            foreach (['create', 'update', 'delete', 'restore', 'force-delete'] as $action) {
-                Route::get($action, function () {
-                    abort(404);
-                })->name($action);
-            }
-        });
-
-        Route::resource('tables', \App\Http\Controllers\Dashboard\Features\Tables\TableController::class)->except(['create', 'store', 'show', 'update', 'destroy']);
-
-        Route::prefix('texts')->name('texts.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Texts\TextController::class, 'index'])->name('index');
-        });
-
-        Route::prefix('icons')->name('icons.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Dashboard\Features\Icons\IconController::class, 'index'])->name('index');
-        });
-    });
-
     Route::prefix('user-management')->name('user-management.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Dashboard\UserManagement\UserManagementController::class, 'index'])->name('index');
 
@@ -166,6 +142,15 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
                 })->name($action);
             }
         });
+
+        Route::resource('consultations', \App\Http\Controllers\Dashboard\Management\Consultations\ConsultationController::class)->except(['store', 'update', 'destroy']);
+        Route::prefix('consultations')->name('consultations.')->group(function () {
+            foreach (['delete', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
     });
 
     Route::prefix('reports')->name('reports.')->group(function () {
@@ -173,26 +158,13 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
         Route::prefix('debts')->name('debts.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Dashboard\Reports\Debts\DebtController::class, 'index'])->name('index');
-
-            foreach (['export'] as $action) {
-                Route::get($action, function () {
-                    abort(404);
-                })->name($action);
-            }
         });
 
         Route::prefix('daily-reports')->name('daily-reports.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Dashboard\Reports\DailyReports\DailyReportController::class, 'index'])->name('index');
-
-            foreach (['export'] as $action) {
-                Route::get($action, function () {
-                    abort(404);
-                })->name($action);
-            }
         });
     });
 
     Route::get('settings', [\App\Http\Controllers\Dashboard\Settings\SettingsController::class, 'index'])->name('settings');
 
-    Route::get('change-language/{language}', \App\Http\Controllers\Dashboard\Features\Languages\LanguageChangeController::class)->name('change-language');
 })->middleware(['auth', 'verified', 'has_permission']);

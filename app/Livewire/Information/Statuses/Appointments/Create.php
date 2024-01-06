@@ -2,25 +2,18 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Helpers\Services\Livewire\Translations\GetLanguagesForTranslations;
-use App\Livewire\Information\Statuses\Appointments\Forms\AppointmentStatusCreateForm;
-use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\Create\AppointmentStatusCreateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Livewire\Information\Statuses\Appointments\Forms\AppointmentStatusCreateForm;
+use App\Services\Dashboard\Information\Statuses\Appointments\Create\AppointmentStatusCreateService;
 
 class Create extends Component
 {
     use DispatchingTrait;
 
     public AppointmentStatusCreateForm $form;
-
-    public function mount(): void
-    {
-        $translations = new GetLanguagesForTranslations();
-        $this->form->translations = $translations->getLanguageSlugs();
-    }
 
     /**
      * @throws Exception
@@ -33,11 +26,9 @@ class Create extends Component
             $service = new AppointmentStatusCreateService($validatedData);
             $response = $service->callMethod();
 
-            $title = $this->form->translations[app()->getLocale()];
-
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New appointment status:</b> {$title}");
+                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New appointment status:</b> {$this->form->title}");
                 $this->form->reset();
             } else {
                 throw $response;

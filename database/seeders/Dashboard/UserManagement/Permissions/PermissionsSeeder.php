@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
+use Spatie\Permission\Models\Permission;
 use App\Models\Dashboard\UserManagement\Permissions\PermissionTranslation;
 
 class PermissionsSeeder extends Seeder
@@ -25,17 +25,14 @@ class PermissionsSeeder extends Seeder
         $routes->each(function ($route) use ($superAdmin, $admin, $manager) {
             $name = $route->getName();
             if ($name && Str::startsWith($name, 'dashboard.')) {
-                $permission = Permission::create(['name' => $name]);
-
                 $translation = implode(' ', explode('.', ucfirst($name)));
 
-                PermissionTranslation::create([
-                    'permission_id' => $permission->id,
-                    'slug' => app()->getLocale(),
+                $permission = Permission::create([
+                    'name' => $name,
                     'translation' => $translation,
                 ]);
 
-                if (Str::startsWith($name, 'dashboard.management.') or in_array($name, ['dashboard.home', 'dashboard.settings', 'dashboard.change-language'])) {
+                if (Str::startsWith($name, 'dashboard.management.') or in_array($name, ['dashboard.home', 'dashboard.settings'])) {
                     $manager->givePermissionTo($permission);
                 }
 

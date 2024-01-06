@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Dashboard\UserManagement;
 
+use Spatie\Permission\Models\Permission;
 use App\Models\Dashboard\UserManagement\Roles\Role;
 use App\Models\Dashboard\UserManagement\Users\User;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 class UserManagementRepository
 {

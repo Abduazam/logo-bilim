@@ -4,29 +4,27 @@ namespace App\Services\Dashboard\UserManagement\Permissions\Update;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use App\Contracts\Abstracts\Services\Update\UpdateService;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 class PermissionUpdateService extends UpdateService
 {
     protected Permission $permission;
-    protected array $translations;
+    protected string $translation;
 
     public function __construct(array $data, Permission $permission)
     {
         $this->permission = $permission;
-        $this->translations = $data['translations'];
+        $this->translation = $data['translation'];
     }
 
     protected function update(): bool|Exception
     {
         try {
             DB::transaction(function () {
-                foreach ($this->translations as $key => $translation) {
-                    $this->permission->translations->where('slug', $key)->first()->update([
-                        'translation' => $translation,
-                    ]);
-                }
+                $this->permission->update([
+                    'translation' => $this->translation,
+                ]);
             }, 5);
 
             return true;

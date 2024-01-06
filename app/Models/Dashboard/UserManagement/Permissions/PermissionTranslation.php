@@ -3,15 +3,14 @@
 namespace App\Models\Dashboard\UserManagement\Permissions;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Permission;
 
 /**
  * Table columns
  * @property int $id
  * @property int $permission_id
- * @property string $slug
  * @property string $translation
  *
  * Relations
@@ -31,7 +30,6 @@ class PermissionTranslation extends Model
      */
     protected $fillable = [
         'permission_id',
-        'slug',
         'translation',
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\UserManagement\Users;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\UserManagement\Users\User;
 
 class UserRepository
@@ -20,11 +21,14 @@ class UserRepository
                 return $query->onlyTrashed();
             })
             ->when($role_id, function ($query, $role_id) {
-                return $query->whereHas('roles', fn ($query) => $query->whereIn('id', $role_id));
+                return $query->whereHas('roles', fn ($query) => $query->where('id', $role_id));
             })
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {
-                    $query->where('name', 'like', "%$search%")->orWhere('email', 'like', "%$search%");
+                    $search = strtolower($search);
+
+                    $query->where(DB::raw('LOWER(name)'), 'like', "%$search%")
+                        ->orWhere(DB::raw('LOWER(email)'), 'like', "%$search%");
                 });
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

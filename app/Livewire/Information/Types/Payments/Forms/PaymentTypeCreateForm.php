@@ -7,12 +7,6 @@ use Livewire\Attributes\Validate;
 
 class PaymentTypeCreateForm extends Form
 {
-    #[Validate([
-        'translations' => 'required|array',
-        'translations.*' => 'required|string|min:2',
-    ], as: [
-        'translations' => 'payment type',
-        'translations.*' => 'payment type',
-    ])]
-    public array $translations = [];
+    #[Validate('required|string|min:2')]
+    public ?string $title = null;
 }

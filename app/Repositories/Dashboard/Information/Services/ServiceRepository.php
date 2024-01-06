@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\Information\Services;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Dashboard\Information\Branches\Branch;
 use App\Models\Dashboard\Information\Services\Service;
@@ -31,6 +32,7 @@ class ServiceRepository
     public function getByUserBranch()
     {
         $branchIds = auth()->user()->branches->pluck('id')->toArray();
+
         return Service::whereHas('branches', function ($query) use ($branchIds) {
             $query->whereIn('branch_id', $branchIds);
         })->get();
@@ -46,7 +48,11 @@ class ServiceRepository
         $result = Service::select(['id', 'title', 'created_at', 'deleted_at'])
             ->withCount('branches', 'teachers')
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
-            ->when($search, fn ($query) => $query->where('title', 'like', "%$search%"))
+            ->when($search, function ($query, $search) {
+                $search = strtolower($search);
+
+                $query->where(DB::raw('LOWER(title)'), 'like', "%$search%");
+            })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

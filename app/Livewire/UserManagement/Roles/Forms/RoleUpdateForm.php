@@ -23,13 +23,10 @@ class RoleUpdateForm extends Form
     {
         $this->name = $role->name;
         $this->role_permissions = $role->permissions->mapWithKeys(function ($permission) {
-            $translation = PermissionTranslation::where('permission_id', $permission->id)->first();
-            $translationText = $translation ? $translation->translation : '';
-
             return [
                 $permission->id => [
                     'name' => $permission->name,
-                    'translation' => $translationText,
+                    'translation' => $permission->translation,
                 ]
             ];
         })->all();

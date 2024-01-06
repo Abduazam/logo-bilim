@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Livewire\Information\Statuses\Relatives\Forms\RelativeStatusUpdateForm;
-use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
-use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Update\RelativeStatusUpdateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Livewire\Information\Statuses\Relatives\Forms\RelativeStatusUpdateForm;
+use App\Services\Dashboard\Information\Statuses\Relatives\Update\RelativeStatusUpdateService;
 
 class Update extends Component
 {
@@ -35,7 +35,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Relative status updated:</b><br>{$this->relativeStatus->translation->translation} => {$this->form->translations[app()->getLocale()]}");
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Relative status updated:</b> {$this->form->title}");
             } else {
                 throw $response;
             }

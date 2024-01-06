@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
+use Exception;
+use Livewire\Component;
+use Illuminate\View\View;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Livewire\Information\Types\Payments\Forms\PaymentTypeUpdateForm;
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use App\Services\Dashboard\Information\Types\PaymentTypes\Update\PaymentTypeUpdateService;
-use Exception;
-use Illuminate\View\View;
-use Livewire\Component;
+use App\Services\Dashboard\Information\Types\Payments\Update\PaymentTypeUpdateService;
 
 class Update extends Component
 {
@@ -35,7 +35,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Payment type updated:</b><br>{$this->paymentType->translation->translation} => {$this->form->translations[app()->getLocale()]}");
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Payment type updated:</b> {$this->form->title}");
             } else {
                 throw $response;
             }

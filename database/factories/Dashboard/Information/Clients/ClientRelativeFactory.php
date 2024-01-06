@@ -2,14 +2,17 @@
 
 namespace Database\Factories\Dashboard\Information\Clients;
 
-use App\Models\Dashboard\Information\Clients\ClientRelative;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Dashboard\Information\Clients\Client;
+use App\Models\Dashboard\Information\Clients\ClientRelative;
 
 /**
  * @extends Factory<ClientRelative>
  */
 class ClientRelativeFactory extends Factory
 {
+    protected $model = ClientRelative::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,13 +20,10 @@ class ClientRelativeFactory extends Factory
      */
     public function definition(): array
     {
-        $phoneNumbers = ['998901111111', '998912222222', '998993333333', '998924444444', '998935555555', '998946666666'];
-        $randomIndex = array_rand($phoneNumbers);
-
         return [
-            'client_id' => $this->faker->numberBetween(1, 5),
+            'client_id' => Client::factory(),
             'fullname' => $this->faker->name,
-            'phone_number' => $phoneNumbers[$randomIndex],
+            'phone_number' => $this->faker->e164PhoneNumber,
             'relative_status_id' => $this->faker->numberBetween(1, 4),
         ];
     }

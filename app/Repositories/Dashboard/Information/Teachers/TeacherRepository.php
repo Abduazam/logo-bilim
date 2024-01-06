@@ -58,7 +58,9 @@ class TeacherRepository
             })
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {
-                    $query->where('fullname', 'like', "%$search%");
+                    $search = strtolower($search);
+
+                    $query->where(DB::raw('LOWER(fullname)'), 'like', "%$search%");
                 });
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

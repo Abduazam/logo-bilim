@@ -2,7 +2,7 @@
 
 namespace App\Services\Dashboard\Information\Branches\Create;
 
-use App\Models\Dashboard\Information\Branches\BranchServices;
+use App\Models\Dashboard\Information\Branches\BranchService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Branches\Branch;

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('relative_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 20)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

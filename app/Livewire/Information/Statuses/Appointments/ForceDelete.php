@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
+use Exception;
+use Livewire\Component;
+use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
-use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\ForceDelete\AppointmentStatusForceDeleteService;
-use Exception;
-use Illuminate\View\View;
-use Livewire\Component;
+use App\Services\Dashboard\Information\Statuses\Appointments\ForceDelete\AppointmentStatusForceDeleteService;
 
 class ForceDelete extends Component
 {
@@ -25,7 +25,7 @@ class ForceDelete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Appointment status completely deleted:</b> {$this->appointmentStatus->translation->translation}");
+            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Appointment status completely deleted:</b> {$this->appointmentStatus->title}");
         } else {
             throw $response;
         }

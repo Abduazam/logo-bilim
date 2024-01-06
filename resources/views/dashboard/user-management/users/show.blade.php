@@ -12,7 +12,7 @@
                                 <label class="form-label mb-0" for="name">Name:</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm w-75" id="name" name="name" value="{{ $user->name }}" placeholder="Name" readonly>
+                                <input type="text" class="form-control form-control-sm w-75" id="name" name="name" value="{{ $user->name }}" readonly>
                             </div>
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
@@ -20,7 +20,7 @@
                                 <label class="form-label mb-0" for="email">Email: </label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm w-75" id="email" name="email" value="{{ $user->email }}" placeholder="Email" readonly>
+                                <input type="text" class="form-control form-control-sm w-75" id="email" name="email" value="{{ $user->email }}" readonly>
                             </div>
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
@@ -28,7 +28,7 @@
                                 <label class="form-label mb-0" for="role">Role: </label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm w-75" id="role" name="role" value="{{ $user->getRolesName() }}" placeholder="Role" readonly>
+                                <input type="text" class="form-control form-control-sm w-75" id="role" name="role" value="{{ $user->getRolesName() }}" readonly>
                             </div>
                         </div>
                         @if(!$user->admin())
@@ -37,7 +37,7 @@
                                 <label class="form-label mb-0" for="role">Branches: </label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm w-75" id="role" name="role" value="{{ $user->getBranchName() }}" placeholder="Branches" readonly>
+                                <input type="text" class="form-control form-control-sm w-75" id="role" name="role" value="{{ $user->getBranchName() }}" readonly>
                             </div>
                         </div>
                         @endif
@@ -62,7 +62,7 @@
                                         @foreach($user->getPermissions() as $permission)
                                             <tr>
                                                 <td class="text-center">{{ $permission->name }}</td>
-                                                <td class="text-center">{{ $permission->translation->translation }}</td>
+                                                <td class="text-center">{{ $permission->translation }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

@@ -26,7 +26,6 @@
             <tr>
                 <th class="text-center">id</th>
                 <th class="text-center">title</th>
-                <th class="text-center">translations</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
             </tr>
@@ -35,8 +34,7 @@
             @foreach($paymentTypes as $paymentType)
                 <tr wire:key="payment-type-row-{{ $paymentType->id }}">
                     <td class="text-center">{{ $paymentType->id }}</td>
-                    <td class="text-center">{{ $paymentType->translation->translation }}</td>
-                    <td class="text-center">{{ $paymentType->translations_count }}</td>
+                    <td class="text-center">{{ $paymentType->title }}</td>
                     <td class="text-center">{{ $paymentType->created_at }}</td>
                     <td class="text-center">
                         @if(!$paymentType->trashed())

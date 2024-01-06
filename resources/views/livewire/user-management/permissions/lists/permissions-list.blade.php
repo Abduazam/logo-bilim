@@ -20,14 +20,14 @@
     <div class="table-responsive text-nowrap mb-4">
         <table class="own-table w-100">
             <thead>
-            <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">name</th>
-                <th class="text-center">roles</th>
-                <th class="text-center">description</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
-            </tr>
+                <tr>
+                    <th class="text-center">id</th>
+                    <th class="text-center">name</th>
+                    <th class="text-center">roles</th>
+                    <th class="text-center">description</th>
+                    <th class="text-center">created_at</th>
+                    <th class="text-center">actions</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($permissions as $permission)
@@ -35,7 +35,7 @@
                     <td class="text-center">{{ $permission->id }}</td>
                     <td class="text-center">{{ $permission->name }}</td>
                     <td class="text-center">{{ $permission->roles_count }}</td>
-                    <td class="text-center">{{ $permission->translation->translation }}</td>
+                    <td class="text-center">{{ $permission->translation }}</td>
                     <td class="text-center">{{ $permission->created_at }}</td>
                     <td class="text-center">
                         <livewire:user-management.permissions.update :permission="$permission" :wire:key="'update-permission-id' . $permission->id" />

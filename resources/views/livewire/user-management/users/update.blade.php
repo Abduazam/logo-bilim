@@ -9,7 +9,7 @@
                                 <label class="form-label mb-0" for="name">Name: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
-                                <input wire:model.live="form.name" type="text" class="form-control form-control-sm w-75 @error('form.name') is-invalid @elseif(!empty($this->form->name)) is-valid @enderror" id="name" name="name" placeholder="Name">
+                                <input wire:model.blur="form.name" type="text" class="form-control form-control-sm w-75 @error('form.name') is-invalid @elseif(!empty($this->form->name)) is-valid @enderror" id="name" name="name" placeholder="Name">
                                 @error('form.name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -20,7 +20,7 @@
                                 <label class="form-label mb-0" for="email">Email: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
-                                <input wire:model.live="form.email" type="text" class="form-control form-control-sm w-75 @error('form.email') is-invalid @elseif(!empty($this->form->email)) is-valid @enderror" id="email" name="email" placeholder="Email">
+                                <input wire:model.blur="form.email" type="text" class="form-control form-control-sm w-75 @error('form.email') is-invalid @elseif(!empty($this->form->email)) is-valid @enderror" id="email" name="email" placeholder="Email">
                                 @error('form.email')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -31,7 +31,7 @@
                                 <label class="form-label mb-0" for="role">Role: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
-                                <select wire:model.live="form.role_id" class="form-select form-select-sm w-75 @error('form.role_id') is-invalid @elseif(!empty($this->form->role_id)) is-valid @enderror" name="role" id="role">
+                                <select wire:model.blur="form.role_id" class="form-select form-select-sm w-75 @error('form.role_id') is-invalid @elseif(!empty($this->form->role_id)) is-valid @enderror" name="role" id="role">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -47,7 +47,7 @@
                                 <label class="form-label mb-0" for="branch_id">Branches: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
-                                <select wire:model.live="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('branch_id') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
+                                <select wire:model.blur="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('branch_id') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($branches as $id => $title)
                                         <option value="{{ $id }}">{{ $title }}</option>
@@ -71,8 +71,8 @@
                                 <label class="form-label mb-0" for="password">Password: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8 position-relative">
-                                <input wire:model.live="form.password" wire:keydown="showEyeButton" type="{{ $this->passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
-                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $this->passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 31px; right: 7px;">
+                                <input wire:model.blur="form.password" wire:keydown="showEyeButton" type="{{ $this->passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
+                                <button wire:click="showPassword" type="button" class="text-dark opacity-{{ $this->passwordInputShowButtonOpacity }} bg-transparent border-0 position-absolute" style="top: 4px; right: 155px;">
                                     <i class="fa {{ $this->passwordInputEyeIcon }}"></i>
                                 </button>
                                 @error('form.password')

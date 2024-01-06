@@ -35,7 +35,7 @@
             <tbody>
             @foreach($roles as $role)
                 <tr wire:key="language-row-{{ $role->id }}">
-                    <td class="text-center">{{ $role->id }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $role->name }}</td>
                     <td class="text-center">{{ $role->permissions_count }}</td>
                     <td class="text-center">{{ $role->users_count }}</td>

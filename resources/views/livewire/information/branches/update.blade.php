@@ -20,14 +20,14 @@
                             <div class="row w-100 h-100 p-0 m-0">
                                 <div class="col-6 ps-0 mb-4">
                                     <label class="form-label" for="title">Title</label>
-                                    <input wire:model.live.debounce.500ms="form.title" type="text" class="form-control form-control-sm @error('form.title') is-invalid @elseif(!empty($this->form->title)) is-valid @enderror" id="title" name="title" placeholder="Title">
+                                    <input wire:model.blur.debounce.500ms="form.title" type="text" class="form-control form-control-sm @error('form.title') is-invalid @elseif(!empty($this->form->title)) is-valid @enderror" id="title" name="title" placeholder="Title">
                                     @error('form.title')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-6 pe-0 mb-4">
                                     <label class="form-label" for="chosen_services">Services</label>
-                                    <select wire:model.live="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.chosen_services') is-invalid @elseif(!empty($this->form->chosen_services)) is-valid @enderror" name="chosen_services" id="chosen_services">
+                                    <select wire:model.blur="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.chosen_services') is-invalid @elseif(!empty($this->form->chosen_services)) is-valid @enderror" name="chosen_services" id="chosen_services">
                                         <option value="null" disabled>Choose</option>
                                         @foreach($services as $id => $service)
                                             <option value="{{ $id }}">{{ $service['title'] }}</option>
@@ -43,18 +43,18 @@
                                         @foreach($this->form->chosen_services as $id => $service)
                                             <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative @if(!$loop->first) mt-2 @endif">
                                                 <div class="col-12 d-flex align-items-center px-0">
-                                                    <div class="col-3">
+                                                    <div class="col-4 text-wrap">
                                                         <label for="{{ $service['title'] }}" class="form-label mb-0 me-2">{{ $service['title'] }}:</label>
                                                     </div>
-                                                    <div class="col-9">
-                                                        <input wire:model.live="form.chosen_services.{{ $id }}.price" type="text" class="form-control form-control-sm w-100 @error('form.chosen_services.' . $id . '.price') is-invalid @elseif(!is_null($this->form->chosen_services[$id]['price']) && is_numeric($this->form->chosen_services[$id]['price'])) is-valid @enderror" name="{{ $service['title'] }}" id="{{ $service['title'] }}" placeholder="Price">
+                                                    <div class="col-8 pe-3">
+                                                        <input wire:model.blur="form.chosen_services.{{ $id }}.price" type="text" class="form-control form-control-sm w-100 @error('form.chosen_services.' . $id . '.price') is-invalid @elseif(!is_null($this->form->chosen_services[$id]['price']) && is_numeric($this->form->chosen_services[$id]['price'])) is-valid @enderror" name="{{ $service['title'] }}" id="{{ $service['title'] }}" placeholder="Price">
                                                         @error('form.chosen_services.' . $id . '.price')
                                                         <span class="invalid-feedback">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <button wire:click="removeService({{ $id }})" wire:loading.attr="disabled" type="button" class="btn btn-alt-danger w-auto px-1 d-flex align-items-center justify-content-center position-absolute" style="height: 25px; top: 7px; right: 7px;">
-                                                    <i class="fa fa-times" style="font-size: 14px"></i>
+                                                <button wire:click="removeService({{ $id }})" wire:loading.attr="disabled" type="button" class="btn btn-alt-danger position-absolute w-auto py-0 px-1" style="font-size: 12px; top: 5px; right: 5px;">
+                                                    <i class="fa fa-times"></i>
                                                 </button>
                                             </div>
                                         @endforeach

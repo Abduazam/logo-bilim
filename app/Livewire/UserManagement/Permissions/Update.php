@@ -5,7 +5,7 @@ namespace App\Livewire\UserManagement\Permissions;
 use Exception;
 use Livewire\Component;
 use Illuminate\View\View;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
+use Spatie\Permission\Models\Permission;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Livewire\UserManagement\Permissions\Forms\PermissionUpdateForm;
 use App\Services\Dashboard\UserManagement\Permissions\Update\PermissionUpdateService;

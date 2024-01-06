@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Dashboard\Information\Statuses\Relatives;
 
-use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
 
 class RelativeRepository
 {
     public function getAll(): Collection
     {
-        return RelativeStatus::with('translation')->get();
+        return RelativeStatus::all();
     }
 
     public function getFiltered(
@@ -19,11 +20,13 @@ class RelativeRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = RelativeStatus::select(['id', 'created_at', 'deleted_at'])
-            ->with('translation')
-            ->withCount('translations')
+        $result = RelativeStatus::select(['id', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
-            ->when($search, fn ($query) => $query->whereHas('translation', fn ($translationQuery) => $translationQuery->where('translation', 'like', "%$search%")))
+            ->when($search, function ($query, $search) {
+                $search = strtolower($search);
+
+                $query->where(DB::raw('LOWER(translation)'), 'like', "%$search%");
+            })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

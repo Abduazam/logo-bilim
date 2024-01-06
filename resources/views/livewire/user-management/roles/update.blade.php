@@ -7,7 +7,7 @@
                         <div class="col-4 ps-0">
                             <div class="mb-4">
                                 <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                                <input wire:model.live="form.name" type="text" class="form-control form-control-sm @error('form.name') is-invalid @elseif(!empty($this->form->name)) is-valid @enderror" id="name" name="name" placeholder="Name">
+                                <input wire:model.blur="form.name" type="text" class="form-control form-control-sm @error('form.name') is-invalid @elseif(!empty($this->form->name)) is-valid @enderror" id="name" name="name" placeholder="Name">
                                 @error('form.name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -16,7 +16,7 @@
                         <div class="col-8 pe-0">
                             <div class="mb-4">
                                 <label class="form-label" for="role_permissions">Permissions <span class="text-danger">*</span></label>
-                                <select wire:model.live="current_permission" wire:change="addPermission($event.target.value)" class="form-select form-select-sm @error('form.role_permissions') is-invalid @elseif(!empty($this->form->role_permissions)) is-valid @enderror" name="role_permissions" id="role_permissions">
+                                <select wire:model.blur="current_permission" wire:change="addPermission($event.target.value)" class="form-select form-select-sm @error('form.role_permissions') is-invalid @elseif(!empty($this->form->role_permissions)) is-valid @enderror" name="role_permissions" id="role_permissions">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($permissions as $id => $values)
                                     <option value="{{ $id }}">{{ $values['name'] }} - {{ $values['translation'] }}</option>

@@ -4,7 +4,7 @@
             <div class="col-md-5 ps-md-0">
                 <div class="block block-rounded">
                     <div class="block-header bg-primary-dark text-white">
-                        <p class="small mb-0 fw-bold">Permission info</p>
+                        <p class="small mb-0 fw-bold">Role info</p>
                     </div>
                     <div class="block-content fs-sm">
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
@@ -68,7 +68,7 @@
                                         <tbody>
                                         @foreach($role->getPermissions() as $permission)
                                             <tr>
-                                                <td class="text-center" title="{{ $permission->translation->translation }}" style="cursor: pointer;">{{ $permission->name }}</td>
+                                                <td class="text-center" title="{{ $permission->translation }}" style="cursor: pointer;">{{ $permission->name }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="col-12">
-            <x-forms.buttons.default.back route="{{ route('dashboard.information.clients.index') }}" />
+            <x-forms.buttons.default.back route="{{ route('dashboard.user-management.roles.index') }}" />
         </div>
     </div>
 </x-layouts.app>

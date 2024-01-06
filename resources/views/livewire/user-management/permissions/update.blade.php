@@ -4,7 +4,7 @@
     </button>
 
     <div wire:ignore.self class="modal fade" id="modal-update-permission-id{{ $this->permission->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-update-permission-id{{ $this->permission->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content fs-sm text-start">
                 <form wire:submit.prevent="update" class="form-border-radius">
                     <div class="block block-rounded shadow-none mb-0">
@@ -18,12 +18,10 @@
                         </div>
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
-                                @foreach($this->form->translations as $key => $translation)
-                                    <div class="col-12 d-flex align-items-center px-0 mb-4">
-                                        <label for="translation-{{ $key }}-id{{ $this->permission->id }}" class="form-label mb-0 me-2">{{ $key }}:</label>
-                                        <input wire:model.live="form.translations.{{ $key }}" type="text" class="form-control form-control-sm w-100 @error('form.translations.' . $key) is-invalid @elseif(!is_null($this->form->translations[$key])) is-valid @enderror" name="translation-{{ $key }}-id{{ $this->permission->id }}" id="translation-{{ $key }}-id{{ $this->permission->id }}">
-                                    </div>
-                                @endforeach
+                                <div class="col-12  px-0 mb-4">
+                                    <label for="translation-id{{ $this->permission->id }}" class="form-label">Translation:</label>
+                                    <textarea wire:model.blur="form.translation" class="form-control form-control-sm w-100 @error('form.translations') is-invalid @elseif(!is_null($this->form->translation)) is-valid @enderror" name="translation-id{{ $this->permission->id }}" id="translation-id{{ $this->permission->id }}"></textarea>
+                                </div>
                             </div>
                         </div>
                         <div class="block-content block-content-full block-content-sm d-flex align-items-center justify-content-between border-top">

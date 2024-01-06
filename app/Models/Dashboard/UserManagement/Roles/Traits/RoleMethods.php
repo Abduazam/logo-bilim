@@ -2,8 +2,8 @@
 
 namespace App\Models\Dashboard\UserManagement\Roles\Traits;
 
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 trait RoleMethods
 {
@@ -16,8 +16,7 @@ trait RoleMethods
     {
         $role_id = $this->id;
 
-        return Permission::with('translation')
-            ->whereHas('roles', function ($query) use ($role_id) {
+        return Permission::whereHas('roles', function ($query) use ($role_id) {
                 $query->where('role_id', $role_id);
             })->get();
     }

@@ -21,10 +21,10 @@ class Update extends Component
 
     public function mount(): void
     {
-        $this->permissions = (new PermissionRepository())->getNotChosenAll($this->role)->mapWithKeys(function ($permission) {
-            $translation = $permission->translation ? $permission->translation->translation : '';
-            return [$permission->id => ['name' => $permission->name, 'translation' => $translation]];
+        $this->permissions = (new PermissionRepository())->getNotBelongedToRole($this->role)->mapWithKeys(function ($permission) {
+            return [$permission->id => ['name' => $permission->name, 'translation' => $permission->translation]];
         })->all();
+
         $this->form->setValues($this->role);
     }
 

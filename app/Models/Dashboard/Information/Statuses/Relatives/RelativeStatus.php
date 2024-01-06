@@ -4,17 +4,12 @@ namespace App\Models\Dashboard\Information\Statuses\Relatives;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Table columns
  * @property int $id
- *
- * Relations
- * @property RelativeStatusTranslation $translation
- * @property HasMany $translations
+ * @property int $title
  */
 class RelativeStatus extends Model
 {
@@ -28,32 +23,7 @@ class RelativeStatus extends Model
      *
      * @var array<>
      */
-    protected $fillable = [];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<RelativeStatusTranslation>
-     */
-    protected $with = ['translation'];
-
-    /**
-     * Accesses only one translation which slug equal to current locale.
-     *
-     * @return HasOne
-     */
-    public function translation(): HasOne
-    {
-        return $this->hasOne(RelativeStatusTranslation::class)->where('slug', app()->getLocale());
-    }
-
-    /**
-     * Accesses all translations.
-     *
-     * @return HasMany
-     */
-    public function translations(): HasMany
-    {
-        return $this->hasMany(RelativeStatusTranslation::class);
-    }
+    protected $fillable = [
+        'title',
+    ];
 }

@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
+use Exception;
+use Livewire\Component;
+use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
-use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Restore\RelativeStatusRestoreService;
-use Exception;
-use Illuminate\View\View;
-use Livewire\Component;
+use App\Services\Dashboard\Information\Statuses\Relatives\Restore\RelativeStatusRestoreService;
 
 class Restore extends Component
 {
@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Relative status restored:</b> {$this->relativeStatus->translation->translation}");
+            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Relative status restored:</b> {$this->relativeStatus->title}");
         } else {
             throw $response;
         }

@@ -18,12 +18,10 @@
                         </div>
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
-                                @foreach($this->form->translations as $key => $translation)
-                                    <div class="col-12 d-flex align-items-center px-0 mb-4">
-                                        <label for="translation-{{ $key }}-id{{ $this->appointmentStatus->id }}" class="form-label mb-0 me-2">{{ $key }}:</label>
-                                        <input wire:model.live="form.translations.{{ $key }}" type="text" class="form-control form-control-sm w-100 @error('form.translations.' . $key) is-invalid @elseif(!is_null($this->form->translations[$key])) is-valid @enderror" name="translation-{{ $key }}-id{{ $this->appointmentStatus->id }}" id="translation-{{ $key }}-id{{ $this->appointmentStatus->id }}">
-                                    </div>
-                                @endforeach
+                                <div class="col-12 px-0 mb-4">
+                                    <label for="title" class="form-label">Title:</label>
+                                    <input wire:model.live="form.title" type="text" class="form-control form-control-sm w-100 @error('form.title') is-invalid @elseif(!is_null($this->form->title)) is-valid @enderror" name="title" id="title">
+                                </div>
                             </div>
                         </div>
                         <div class="block-content block-content-full block-content-sm d-flex align-items-center justify-content-between border-top">

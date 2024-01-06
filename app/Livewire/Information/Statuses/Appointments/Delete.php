@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
-use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\Delete\AppointmentStatusDeleteService;
 use Exception;
+use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use App\Services\Dashboard\Information\Statuses\Appointments\Delete\AppointmentStatusDeleteService;
 
 class Delete extends Component
 {
@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Appointment status deleted:</b> {$this->appointmentStatus->translation->translation}");
+            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Appointment status deleted:</b> {$this->appointmentStatus->title}");
         } else {
             throw $response;
         }

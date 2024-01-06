@@ -2,25 +2,18 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Helpers\Services\Livewire\Translations\GetLanguagesForTranslations;
-use App\Livewire\Information\Types\Payments\Forms\PaymentTypeCreateForm;
-use App\Services\Dashboard\Information\Types\PaymentTypes\Create\PaymentTypeCreateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Livewire\Information\Types\Payments\Forms\PaymentTypeCreateForm;
+use App\Services\Dashboard\Information\Types\Payments\Create\PaymentTypeCreateService;
 
 class Create extends Component
 {
     use DispatchingTrait;
 
     public PaymentTypeCreateForm $form;
-
-    public function mount(): void
-    {
-        $translations = new GetLanguagesForTranslations();
-        $this->form->translations = $translations->getLanguageSlugs();
-    }
 
     /**
      * @throws Exception
@@ -33,11 +26,9 @@ class Create extends Component
             $service = new PaymentTypeCreateService($validatedData);
             $response = $service->callMethod();
 
-            $title = $this->form->translations[app()->getLocale()];
-
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New payment type:</b> {$title}");
+                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New payment type:</b> {$this->form->title}");
                 $this->form->reset();
             } else {
                 throw $response;

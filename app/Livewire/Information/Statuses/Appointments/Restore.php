@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
+use Exception;
+use Livewire\Component;
+use Illuminate\View\View;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
-use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\Restore\AppointmentStatusRestoreService;
-use Exception;
-use Illuminate\View\View;
-use Livewire\Component;
+use App\Services\Dashboard\Information\Statuses\Appointments\Restore\AppointmentStatusRestoreService;
 
 class Restore extends Component
 {
@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Appointment status restored:</b> {$this->appointmentStatus->translation->translation}");
+            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Appointment status restored:</b> {$this->appointmentStatus->title}");
         } else {
             throw $response;
         }

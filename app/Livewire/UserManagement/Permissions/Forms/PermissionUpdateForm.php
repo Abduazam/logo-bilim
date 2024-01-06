@@ -4,20 +4,15 @@ namespace App\Livewire\UserManagement\Permissions\Forms;
 
 use Livewire\Form;
 use Livewire\Attributes\Validate;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
+use Spatie\Permission\Models\Permission;
 
 class PermissionUpdateForm extends Form
 {
-    #[Validate([
-        'translations' => 'required|array',
-        'translations.*' => 'required|string',
-    ])]
-    public array $translations = [];
+    #[Validate('required|string')]
+    public ?string $translation = null;
 
     public function setValues(Permission $permission): void
     {
-        foreach ($permission->translations as $translation) {
-            $this->translations[$translation->slug] = $translation->translation;
-        }
+        $this->translation = $permission->translation;
     }
 }

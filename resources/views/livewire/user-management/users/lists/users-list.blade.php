@@ -33,21 +33,21 @@
     <div class="table-responsive text-nowrap mb-4">
         <table class="own-table w-100">
             <thead>
-            <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">photo</th>
-                <th class="text-center">name</th>
-                <th class="text-center">role</th>
-                <th class="text-center">permissions</th>
-                <th class="text-center">email</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
-            </tr>
+                <tr>
+                    <th class="text-center">id</th>
+                    <th class="text-center">photo</th>
+                    <th class="text-center">name</th>
+                    <th class="text-center">role</th>
+                    <th class="text-center">permissions</th>
+                    <th class="text-center">email</th>
+                    <th class="text-center">created_at</th>
+                    <th class="text-center">actions</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($users as $user)
                 <tr wire:key="user-row-{{ $user->id }}">
-                    <td class="text-center">{{ $user->id }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{!! $user->getPhoto() !!}</td>
                     <td class="text-center">{{ $user->name }}</td>
                     <td class="text-center">{{ $user->getRolesName() }}</td>

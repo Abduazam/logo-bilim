@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Information\Types\Payments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use App\Services\Dashboard\Information\Types\PaymentTypes\ForceDelete\PaymentTypeForceDeleteService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Services\Dashboard\Information\Types\Payments\ForceDelete\PaymentTypeForceDeleteService;
 
 class ForceDelete extends Component
 {
@@ -25,7 +25,7 @@ class ForceDelete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Payment type completely deleted:</b> {$this->paymentType->translation->translation}");
+            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Payment type completely deleted:</b> {$this->paymentType->title}");
         } else {
             throw $response;
         }

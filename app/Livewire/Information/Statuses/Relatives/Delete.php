@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Relatives;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
-use App\Services\Dashboard\Information\Statuses\RelativeStatuses\Delete\RelativeStatusDeleteService;
 use Exception;
+use Livewire\Component;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Relatives\RelativeStatus;
+use App\Services\Dashboard\Information\Statuses\Relatives\Delete\RelativeStatusDeleteService;
 
 class Delete extends Component
 {
@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Relative status deleted:</b> {$this->relativeStatus->translation->translation}");
+            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Relative status deleted:</b> {$this->relativeStatus->title}");
         } else {
             throw $response;
         }

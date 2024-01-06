@@ -3,35 +3,27 @@
 namespace App\Services\Dashboard\Information\Types\Payments\Create;
 
 use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\Abstracts\Services\Create\CreateService;
 use App\Models\Dashboard\Information\Types\Payments\PaymentType;
-use App\Models\Dashboard\Information\Types\Payments\PaymentTypeTranslation;
 
 class PaymentTypeCreateService extends CreateService
 {
-    protected array $translations;
+    protected string $title;
 
     public function __construct(array $data)
     {
-        $this->translations = $data['translations'];
+        $this->title = $data['title'];
     }
 
     protected function create(): bool|Exception
     {
         try {
             DB::transaction(function () {
-                $newPaymentType = PaymentType::create([
-                    'key' => strtolower($this->translations['en'])
-                ]);
+                $title = Str::title($this->title);
 
-                foreach ($this->translations as $key => $translation) {
-                    PaymentTypeTranslation::create([
-                        'payment_type_id' => $newPaymentType->id,
-                        'slug' => $key,
-                        'translation' => $translation,
-                    ]);
-                }
+                PaymentType::create(['title' => $title]);
             }, 5);
 
             return true;

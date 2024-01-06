@@ -3,6 +3,7 @@
 namespace Database\Factories\Dashboard\Management\Appointments;
 
 use App\Helpers\Services\Livewire\Hours\GenerateWorkHours;
+use App\Models\Dashboard\Information\Teachers\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Dashboard\Management\Appointments\Appointment;
 
@@ -33,6 +34,8 @@ class AppointmentFactory extends Factory
             2 => $this->faker->numberBetween(7, 8),
             1 => $this->faker->numberBetween(1, 6)
         };
+
+        $service = (Teacher::findOrFail($teacher_id))->services;
 
         return [
             'user_id' => $user_id,

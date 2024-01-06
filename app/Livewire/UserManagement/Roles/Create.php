@@ -20,8 +20,7 @@ class Create extends Component
     public function mount(): void
     {
         $this->permissions = (new PermissionRepository())->getAll()->mapWithKeys(function ($permission) {
-            $translation = $permission->translation ? $permission->translation->translation : '';
-            return [$permission->id => ['name' => $permission->name, 'translation' => $translation]];
+            return [$permission->id => ['name' => $permission->name, 'translation' => $permission->translation]];
         })->all();
     }
 

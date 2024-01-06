@@ -7,21 +7,21 @@
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
                                 <label class="form-label" for="fullname">Fullname: <span class="text-danger">*</span></label>
-                                <input wire:model.live="form.fullname" type="text" class="form-control form-control-sm w-100 @error('form.fullname') is-invalid @elseif(!empty($this->form->fullname)) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
+                                <input wire:model.blur="form.fullname" type="text" class="form-control form-control-sm w-100 @error('form.fullname') is-invalid @elseif(!empty($this->form->fullname)) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
                                 @error('form.fullname')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
                                 <label class="form-label" for="dob">Date of birth:</label>
-                                <input wire:model.live="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
+                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 pe-0">
                                 <label class="form-label" for="phone_number">Phone number:</label>
-                                <input wire:model.live="form.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.phone_number') is-invalid @elseif(!empty($this->form->phone_number)) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
+                                <input wire:model.blur="form.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.phone_number') is-invalid @elseif(!empty($this->form->phone_number)) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
                                 @error('form.phone_number')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -30,7 +30,7 @@
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
                                 <label class="form-label" for="branches">Branch:</label>
-                                <select wire:model.live="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->branches)) is-valid @enderror" name="branches" id="branches">
+                                <select wire:model.blur="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->branches)) is-valid @enderror" name="branches" id="branches">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($this->branches as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
                                 <label class="form-label" for="services">Service:</label>
-                                <select wire:model.live="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->services)) is-valid @enderror" name="services" id="services" @if(is_null($this->branch_id)) disabled @endif>
+                                <select wire:model.blur="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->services)) is-valid @enderror" name="services" id="services" @if(is_null($this->branch_id)) disabled @endif>
                                     <option value="null" disabled>Choose</option>
                                     @foreach($this->services as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -64,7 +64,7 @@
                                                 <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-9">
-                                                <input wire:model.live="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="Price: {{ $values['price'] }}">
+                                                <input wire:model.blur="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="Price: {{ $values['price'] }}">
                                                 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary')
                                                 <span class="invalid-feedback">{{ $message }}</span>
                                                 @enderror

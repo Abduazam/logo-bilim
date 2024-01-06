@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Dashboard\Information\Types\Payments;
 
-use App\Models\Dashboard\Information\Types\Payments\PaymentType;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 
 class PaymentRepository
 {
     public function getAll(): Collection
     {
-        return PaymentType::with('translation')->get();
+        return PaymentType::all();
     }
 
     public function getFiltered(
@@ -19,11 +20,13 @@ class PaymentRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = PaymentType::select(['id', 'key', 'created_at', 'deleted_at'])
-            ->with('translation')
-            ->withCount('translations')
+        $result = PaymentType::select(['id', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
-            ->when($search, fn ($query) => $query->whereHas('translation', fn ($translationQuery) => $translationQuery->where('translation', 'like', "%$search%")))
+            ->when($search, function ($query, $search) {
+                $search = strtolower($search);
+
+                $query->where(DB::raw('LOWER(title)'), 'like', "%$search%");
+            })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

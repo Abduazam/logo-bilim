@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Dashboard\Information\Statuses\Appointments;
 
-use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
 
 class AppointmentRepository
 {
     public function getAll(): Collection
     {
-        return AppointmentStatus::with('translation')->get();
+        return AppointmentStatus::all();
     }
 
     public function getFiltered(
@@ -19,11 +20,13 @@ class AppointmentRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = AppointmentStatus::select(['id', 'key', 'created_at', 'deleted_at'])
-            ->with('translation')
-            ->withCount('translations')
+        $result = AppointmentStatus::select(['id', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
-            ->when($search, fn ($query) => $query->whereHas('translation', fn ($translationQuery) => $translationQuery->where('translation', 'like', "%$search%")))
+            ->when($search, function ($query, $search) {
+                $search = strtolower($search);
+
+                $query->where(DB::raw('LOWER(title)'), 'like', "%$search%");
+            })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

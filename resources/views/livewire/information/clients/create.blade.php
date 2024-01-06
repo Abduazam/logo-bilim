@@ -7,21 +7,21 @@
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
                                 <label class="form-label" for="first_name">First name: <span class="text-danger">*</span></label>
-                                <input wire:model.live="form.first_name" type="text" class="form-control form-control-sm w-100 @error('form.first_name') is-invalid @elseif(!empty($this->form->first_name)) is-valid @enderror" id="first_name" name="first_name" placeholder="First name">
+                                <input wire:model.blur="form.first_name" type="text" class="form-control form-control-sm w-100 @error('form.first_name') is-invalid @elseif(!empty($this->form->first_name)) is-valid @enderror" id="first_name" name="first_name" placeholder="First name">
                                 @error('form.first_name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
                                 <label class="form-label" for="last_name">Last name:</label>
-                                <input wire:model.live="form.last_name" type="text" class="form-control form-control-sm w-100 @error('form.last_name') is-invalid @elseif(!empty($this->form->last_name)) is-valid @enderror" id="last_name" name="last_name" placeholder="Last name">
+                                <input wire:model.blur="form.last_name" type="text" class="form-control form-control-sm w-100 @error('form.last_name') is-invalid @elseif(!empty($this->form->last_name)) is-valid @enderror" id="last_name" name="last_name" placeholder="Last name">
                                 @error('form.last_name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 pe-0">
                                 <label class="form-label" for="dob">Date of birth: <span class="text-danger">*</span></label>
-                                <input wire:model.live="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
+                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -34,24 +34,24 @@
                                     <div class="row w-100 h-100 p-3 mx-0 mb-4 bg-light rounded-2 position-relative">
                                         <div class="col-md-4 ps-0">
                                             <label class="form-label" for="fullname">Fullname: <span class="text-danger">*</span></label>
-                                            <input wire:model.live="form.relatives.{{ $id }}.fullname" type="text" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.fullname') is-invalid @elseif(strlen($this->form->relatives[$id]['fullname']) > 3) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
+                                            <input wire:model.blur="form.relatives.{{ $id }}.fullname" type="text" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.fullname') is-invalid @elseif(strlen($this->form->relatives[$id]['fullname']) > 3) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
                                             @error('form.relatives.' . $id . '.fullname')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 px-md-2 px-0">
                                             <label class="form-label" for="phone_number">Phone number: <span class="text-danger">*</span></label>
-                                            <input wire:model.live="form.relatives.{{ $id }}.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.phone_number') is-invalid @elseif(strlen($this->form->relatives[$id]['phone_number']) > 3) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
+                                            <input wire:model.blur="form.relatives.{{ $id }}.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.phone_number') is-invalid @elseif(strlen($this->form->relatives[$id]['phone_number']) > 3) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
                                             @error('form.relatives.' . $id . '.phone_number')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 pe-0">
                                             <label class="form-label" for="relative_status_id">Relative status: <span class="text-danger">*</span></label>
-                                            <select wire:model.live="form.relatives.{{ $id }}.relative_status_id" class="form-select form-select-sm w-100 @error('form.relatives.' . $id . '.relative_status_id') is-invalid @elseif(!is_null($this->form->relatives[$id]['relative_status_id'])) is-valid @enderror" id="relative_status_id" name="relative_status_id">
+                                            <select wire:model.blur="form.relatives.{{ $id }}.relative_status_id" class="form-select form-select-sm w-100 @error('form.relatives.' . $id . '.relative_status_id') is-invalid @elseif(!is_null($this->form->relatives[$id]['relative_status_id'])) is-valid @enderror" id="relative_status_id" name="relative_status_id">
                                                 <option value="null" disabled>Choose</option>
                                                 @foreach($relativeStatuses as $relativeStatus)
-                                                <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->translation->translation }}</option>
+                                                <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->title }}</option>
                                                 @endforeach
                                             </select>
                                             @error('form.relatives.' . $id . '.relative_status_id')

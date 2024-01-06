@@ -26,7 +26,6 @@
             <tr>
                 <th class="text-center">id</th>
                 <th class="text-center">title</th>
-                <th class="text-center">translations</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
             </tr>
@@ -35,8 +34,7 @@
             @foreach($relativeStatuses as $relativeStatus)
                 <tr wire:key="relative-status-row-{{ $relativeStatus->id }}">
                     <td class="text-center">{{ $relativeStatus->id }}</td>
-                    <td class="text-center">{{ $relativeStatus->translation->translation }}</td>
-                    <td class="text-center">{{ $relativeStatus->translations_count }}</td>
+                    <td class="text-center">{{ $relativeStatus->title }}</td>
                     <td class="text-center">{{ $relativeStatus->created_at }}</td>
                     <td class="text-center">
                         @if(!$relativeStatus->trashed())

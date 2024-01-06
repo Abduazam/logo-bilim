@@ -2,8 +2,8 @@
 
 namespace App\Models\Dashboard\UserManagement\Users\Traits;
 
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 trait UserMethods
 {
@@ -24,12 +24,7 @@ trait UserMethods
      */
     public function getPermissionsCount(): int
     {
-        $count = 0;
-        foreach ($this->roles as $role) {
-            $count += $role->permissions->count();
-        }
-
-        return $count;
+        return $this->roles->flatMap->permissions->count();
     }
 
     /**
@@ -51,8 +46,7 @@ trait UserMethods
     {
         $roleIds = $this->roles->pluck('id')->toArray();
 
-        return Permission::with('translation')
-            ->whereHas('roles', function ($query) use ($roleIds) {
+        return Permission::whereHas('roles', function ($query) use ($roleIds) {
                 $query->whereIn('role_id', $roleIds);
             })->get();
     }

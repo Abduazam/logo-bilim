@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Information\Statuses\Appointments;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
-use App\Livewire\Information\Statuses\Appointments\Forms\AppointmentStatusUpdateForm;
-use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
-use App\Services\Dashboard\Information\Statuses\AppointmentStatuses\Update\AppointmentStatusUpdateService;
 use Exception;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
+use App\Livewire\Information\Statuses\Appointments\Forms\AppointmentStatusUpdateForm;
+use App\Services\Dashboard\Information\Statuses\Appointments\Update\AppointmentStatusUpdateService;
 
 class Update extends Component
 {
@@ -35,7 +35,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Appointment status updated:</b><br>{$this->appointmentStatus->translation->translation} => {$this->form->translations[app()->getLocale()]}");
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Appointment status updated:</b> {$this->form->title}");
             } else {
                 throw $response;
             }

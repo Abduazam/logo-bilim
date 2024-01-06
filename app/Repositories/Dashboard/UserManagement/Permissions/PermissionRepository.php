@@ -2,18 +2,19 @@
 
 namespace App\Repositories\Dashboard\UserManagement\Permissions;
 
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Dashboard\UserManagement\Roles\Role;
-use App\Models\Dashboard\UserManagement\Permissions\Permission;
 
 class PermissionRepository
 {
     public function getAll(): Collection
     {
-        return Permission::with('translation')->get();
+        return Permission::all();
     }
 
-    public function getNotChosenAll(Role $role)
+    public function getNotBelongedToRole(Role $role)
     {
         return Permission::whereNotIn('id', $role->permissions->pluck('id'))->get();
     }
@@ -24,15 +25,16 @@ class PermissionRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = Permission::select(['id', 'name', 'created_at'])
-            ->with('translation')
+        $result = Permission::select(['id', 'name', 'translation', 'created_at'])
             ->withCount(['roles' => function ($query) {
                 $query->where('name', '!=', 'super-admin');
             }])
-            ->when($search, fn ($query, $search) => $query->where(function ($subQuery) use ($search) {
-                $subQuery->where('name', 'like', "%$search%")
-                    ->orWhereHas('translation', fn ($translationQuery) => $translationQuery->where('translation', 'like', "%$search%"));
-            }))
+            ->when($search, function ($query, $search) {
+                $search = strtolower($search);
+
+                $query->where(DB::raw('LOWER(name)'), 'like', "%$search%")
+                    ->orWhere(DB::raw('LOWER(translation)'), 'like', "%$search%");
+            })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 $query->orderBy($orderBy, $orderDirection);
             });

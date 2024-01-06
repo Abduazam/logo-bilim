@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\Information\Clients;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Clients\Client;
 
 class ClientRepository
@@ -35,7 +36,10 @@ class ClientRepository
             })
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {
-                    $query->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%");
+                    $search = strtolower($search);
+
+                    $query->where(DB::raw('LOWER(first_name)'), 'like', "%$search%")
+                        ->orWhere(DB::raw('LOWER(last_name)'), 'like', "%$search%");
                 });
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {

@@ -20,7 +20,7 @@
                             <div class="row w-100 h-100 p-0 m-0">
                                 <div class="col-12 px-0 mb-4">
                                     <label class="form-label" for="title">Title</label>
-                                    <input value="{{ $this->relativeStatus->translation->translation }}" type="text" class="form-control form-control-sm" id="title" name="title" placeholder="Title" readonly disabled>
+                                    <input value="{{ $this->relativeStatus->title }}" type="text" class="form-control form-control-sm" id="title" name="title" placeholder="Title" readonly disabled>
                                 </div>
                             </div>
                         </div>
