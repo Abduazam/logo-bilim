@@ -9,20 +9,15 @@ use Livewire\Attributes\On;
 use App\Models\Dashboard\Management\Appointments\Appointment;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Livewire\Management\Appointments\Forms\RescheduleAppointmentForm;
-use App\Repositories\Dashboard\Management\Appointments\Reschedule\AppointmentRescheduleRepository;
+use App\Livewire\Management\Appointments\Traits\ActionOnAppointmentReschedule;
 use App\Services\Dashboard\Management\Appointments\Appointment\Reschedule\AppointmentRescheduleService;
 
 class Reschedule extends Component
 {
-    use DispatchingTrait;
+    use DispatchingTrait, ActionOnAppointmentReschedule;
 
     public Appointment $appointment;
     public RescheduleAppointmentForm $form;
-
-    public function mount(): void
-    {
-        $this->form->setValues($this->appointment);
-    }
 
     /**
      * @throws Exception
@@ -38,7 +33,7 @@ class Reschedule extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-clock-rotate-left text-info', 'updated-successfully', "<b>Appointment rescheduled:</b> {$time} => {$this->form->start_time}");
+                $this->dispatchSuccess('fa fa-clock-rotate-left text-info', 'updated-successfully', "<b>Appointment rescheduled:</b> <br> {$this->appointment->created_date} => {$this->form->date} <br> $time => {$this->form->start_time}");
             } else {
                 throw $response;
             }
@@ -46,10 +41,8 @@ class Reschedule extends Component
     }
 
     #[On('updated')]
-    public function render(AppointmentRescheduleRepository $rescheduleAppointmentRepository): View
+    public function render(): View
     {
-        return view('livewire.management.appointments.reschedule', [
-            'times' => $rescheduleAppointmentRepository->getHours($this->appointment),
-        ]);
+        return view('livewire.management.appointments.reschedule');
     }
 }

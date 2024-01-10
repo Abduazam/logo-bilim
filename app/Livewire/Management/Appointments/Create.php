@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Livewire\Management\Appointments\Components;
+namespace App\Livewire\Management\Appointments;
 
 use Exception;
 use Livewire\Component;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException;
-use App\Livewire\Management\Appointments\Traits\ActionOnAppointment;
 use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Livewire\Management\Appointments\Forms\CreateAppointmentForm;
 use App\Repositories\Dashboard\Information\Branches\BranchRepository;
-use App\Livewire\Management\Appointments\Forms\Components\CreateInSideForm;
+use App\Livewire\Management\Appointments\Traits\ActionOnAppointmentCreate;
 use App\Repositories\Dashboard\Information\Types\Payments\PaymentRepository;
 use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
 use App\Services\Dashboard\Management\Appointments\Appointment\Create\AppointmentCreateService;
 
-class CreateInSide extends Component
+class Create extends Component
 {
-    use ActionOnAppointment, DispatchingTrait;
+    use ActionOnAppointmentCreate, DispatchingTrait;
 
-    public CreateInSideForm $form;
+    public CreateAppointmentForm $form;
 
     public function mount(): void
     {
@@ -59,7 +59,7 @@ class CreateInSide extends Component
             $this->form->setBranch($branches->first());
         }
 
-        return view('livewire.management.appointments.components.create-in-side', [
+        return view('livewire.management.appointments.create', [
             'branches' => $branches,
             'relativeStatuses' => $relativeStatusRepository->getAll(),
             'paymentTypes' => $paymentTypeRepository->getAll(),

@@ -35,25 +35,56 @@ class DatabaseSeeder extends Seeder
         /**
          * Create fake branches and services.
          */
-        //$branches = Branch::factory(5)->create();
+        $branches = Branch::factory(3)->create();
 
-        //$services = Service::factory(3)->create();
+        $services = Service::factory(3)->create();
 
-        //BranchService::factory(15)->recycle($branches, $services)->create();
+        $services = $services->shuffle();
 
-        /**
-         * Create fake clients.
-         */
-        //$clients = Client::factory(10)->create();
+        foreach ($branches as $branch) {
+            $assignedServices = $services->random(2);
 
-        //ClientRelative::factory(20)->recycle($clients)->create();
+            foreach ($assignedServices as $service) {
+                BranchService::factory()->create([
+                    'branch_id' => $branch->id,
+                    'service_id' => $service->id,
+                    'price' => rand(70, 150) * 1000,
+                ]);
+            }
+        }
 
         /**
          * Create fake teachers.
          */
-        //$teachers = Teacher::factory(10)->create();
+        $teachers = Teacher::factory(10)->create();
 
-        //TeacherService::factory(25)->recycle($teachers, $branches, $services)->create();
+        $combinations = collect();
+
+        foreach ($teachers as $teacher) {
+            foreach ($branches as $branch) {
+                foreach ($services as $service) {
+                    $combinations->push([
+                        'teacher_id' => $teacher->id,
+                        'branch_id' => $branch->id,
+                        'service_id' => $service->id,
+                        'salary' => rand(50, 100) * 1000,
+                    ]);
+                }
+            }
+        }
+
+        $combinations = $combinations->shuffle();
+
+        $combinations->take(25)->each(function ($combination) {
+            TeacherService::factory()->create($combination);
+        });
+
+        /**
+         * Create fake clients.
+         */
+        $clients = Client::factory(10)->create();
+
+        ClientRelative::factory(20)->recycle($clients)->create();
 
         /**
          * Create fake appointments.

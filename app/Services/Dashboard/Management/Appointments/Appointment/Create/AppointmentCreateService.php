@@ -5,9 +5,9 @@ namespace App\Services\Dashboard\Management\Appointments\Appointment\Create;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\Abstracts\Services\Create\CreateService;
-use App\DTO\Dashboard\Management\Appointments\AppointmentDTO;
 use App\Models\Dashboard\Management\Appointments\Appointment;
 use App\DTO\Dashboard\Management\Appointments\AppointmentClientDTO;
+use App\DTO\Dashboard\Management\Appointments\Create\AppointmentDTO;
 use App\Repositories\Dashboard\Information\Clients\ClientRepository;
 use App\Services\Dashboard\Information\Clients\Client\Create\ClientCreateService;
 use App\Services\Dashboard\Management\Appointments\AppointmentClient\Create\AppointmentClientCreateService;
@@ -19,7 +19,7 @@ class AppointmentCreateService extends CreateService
 
     public function __construct(array $data)
     {
-        $this->appointmentDTO = new AppointmentDTO($data['branch_id'], $data['teacher_id'], $data['service_id'], $data['service_price'], $data['start_time']);
+        $this->appointmentDTO = new AppointmentDTO($data['branch_id'], $data['service_id'], $data['teacher_id'], $data['service_price'], $data['dates']);
         $this->appointmentClientDTO = new AppointmentClientDTO($data['clients'], $data['payments']);
     }
 
@@ -27,34 +27,34 @@ class AppointmentCreateService extends CreateService
     {
         try {
             DB::transaction(function () {
-                $newAppointmentArray = $this->appointmentDTO->getAsArray();
-                $appointment = Appointment::create($newAppointmentArray);
+                $appointments = $this->appointmentDTO->getAsArray();
 
-                $newAppointmentClients = [];
+                $clients = $this->appointmentClientDTO->getAsArray();
 
-                $appointmentClients = $this->appointmentClientDTO->getAsArray();
-
-                foreach ($appointmentClients as $appointmentClient) {
-                    $newAppointmentClient = $appointmentClient;
-
-                    if (is_array($appointmentClient['client_id'])) {
-                        $clientCreateService = new ClientCreateService($appointmentClient['client_id']);
+                foreach ($clients as &$client) {
+                    if (is_array($client['client_id'])) {
+                        $clientCreateService = new ClientCreateService($client['client_id']);
                         $response = $clientCreateService->callMethod();
 
                         if ($response) {
                             $clientRepository = new ClientRepository();
-                            $client = $clientRepository->findByNameAndLastname($appointmentClient['client_id']['first_name'], $appointmentClient['client_id']['last_name']);
-                            $newAppointmentClient['client_id'] = $client->id;
+                            $mewClient = $clientRepository->findByNameAndLastname($client['client_id']['first_name'], $client['client_id']['last_name']);
+                            $client['client_id'] = $mewClient->id;
                         }
                     }
-
-                    $newAppointmentClient['appointment_id'] = $appointment->id;
-                    $newAppointmentClients[] = $newAppointmentClient;
                 }
 
-                $appointmentClientCreateService = new AppointmentClientCreateService($newAppointmentClients);
-                $appointmentClientCreateService->callMethod();
-            }, 5);
+                foreach ($appointments as $appointment) {
+                    $newAppointment = Appointment::create($appointment);
+
+                    foreach ($clients as &$client) {
+                        $client['appointment_id'] = $newAppointment->id;
+                    }
+
+                    $appointmentClientCreateService = new AppointmentClientCreateService($clients);
+                    $appointmentClientCreateService->callMethod();
+                }
+            });
 
             return true;
         } catch (Exception $exception) {

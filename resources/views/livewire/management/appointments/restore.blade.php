@@ -31,12 +31,16 @@
                                     <input type="text" class="form-control form-control-sm w-100" id="teacher" name="teacher" value="{{ $appointment->teacher->fullname }}" disabled>
                                 </div>
                                 <div class="col-md-6 pe-0 mb-4">
-                                    <label for="start_time" class="form-label">Time</label>
-                                    <input type="text" class="form-control form-control-sm w-100" id="start_time" name="start_time" value="{{ $appointment->getStartTime() }}" disabled>
-                                </div>
-                                <div class="col-12 px-0 mb-4">
                                     <label for="clients" class="form-label">Clients</label>
                                     <input type="text" class="form-control form-control-sm w-100" id="clients" name="clients" value="{{ $appointment->getClients() }}" disabled>
+                                </div>
+                                <div class="col-md-6 ps-0 mb-4">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="text" class="form-control form-control-sm w-100" id="date" name="date" value="{{ $appointment->created_date }}" disabled>
+                                </div>
+                                <div class="col-md-6 pe-0 mb-4">
+                                    <label for="start_time" class="form-label">Time</label>
+                                    <input type="text" class="form-control form-control-sm w-100" id="start_time" name="start_time" value="{{ $appointment->getStartTime() }}" disabled>
                                 </div>
                             </div>
                         </div>

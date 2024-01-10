@@ -21,11 +21,11 @@ return new class extends Migration
             $table->bigInteger('service_price');
             $table->time('start_time');
             $table->foreignId('appointment_status_id')->references('id')->on('appointment_statuses')->onDelete('cascade');
-            $table->date('created_date')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_DATE'));
+            $table->date('created_date');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['number', 'branch_id', 'teacher_id', 'service_id', 'start_time']);
+            $table->unique(['number', 'branch_id', 'teacher_id', 'service_id', 'start_time', 'created_date']);
         });
     }
 

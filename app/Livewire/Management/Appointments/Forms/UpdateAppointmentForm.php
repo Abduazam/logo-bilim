@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Livewire\Management\Appointments\Forms\Components;
+namespace App\Livewire\Management\Appointments\Forms;
 
 use Livewire\Form;
 use App\Models\Dashboard\Management\Appointments\Appointment;
+use App\Livewire\Management\Appointments\Forms\Traits\ClientsForm;
 use App\Livewire\Management\Appointments\Forms\Traits\PaymentsForm;
-use App\Livewire\Management\Appointments\Forms\Traits\RegistrationForm;
+use App\Livewire\Management\Appointments\Forms\Traits\UpdateRegistrationForm;
 
-class UpdateInSideForm extends Form
+class UpdateAppointmentForm extends Form
 {
-    use RegistrationForm, PaymentsForm;
+    use UpdateRegistrationForm, ClientsForm, PaymentsForm;
 
     public string $activeSection = 'registration';
 
@@ -23,8 +24,13 @@ class UpdateInSideForm extends Form
         $this->service_id = $appointment->service_id;
         $this->setTeachers();
         $this->teacher_id = $appointment->teacher_id;
-        $this->setTimes();
         $this->start_time = $appointment->getStartTime();
+        $this->setTimes();
+        $this->created_date = $appointment->created_date;
+
+        /**
+         * Clients form filling.
+         */
         $this->clients = $appointment->clients->map(function ($client) {
             return [
                 'client_id' => $client->client_id,

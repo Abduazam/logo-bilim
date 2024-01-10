@@ -20,7 +20,7 @@ class AppointmentRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = AppointmentStatus::select(['id', 'title', 'created_at', 'deleted_at'])
+        $result = AppointmentStatus::select(['id', 'key', 'title', 'created_at', 'deleted_at'])
             ->when($with_trashed, fn ($query) => $query->onlyTrashed())
             ->when($search, function ($query, $search) {
                 $search = strtolower($search);

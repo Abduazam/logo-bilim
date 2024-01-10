@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\Management\Appointments;
 
+use App\Models\Dashboard\Information\Branches\Branch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Dashboard\Management\Appointments\Appointment;
@@ -13,11 +14,13 @@ class AppointmentRepository
         return Appointment::all();
     }
 
-    public function getBusyHours(int $branch_id, int $service_id, ?int $teacher_id): array
+    public function getBusyHours(int $branch_id, int $service_id, ?int $teacher_id, mixed $created_date = null): array
     {
+        !is_null($created_date) ? $now = $created_date : $now = now();
+
         return Appointment::where('branch_id', $branch_id)
             ->where('service_id', $service_id)
-            ->whereDate('created_date', now())
+            ->whereDate('created_date', $now)
             ->when($teacher_id, function ($query, $teacher_id) {
                 return $query->where('teacher_id', $teacher_id);
             })->pluck('start_time')->map(function ($time) {
@@ -33,7 +36,13 @@ class AppointmentRepository
         int $appointment_status_id,
         int $perPage,
     ) {
-        $branchIds = auth()->user()->branches->pluck('id')->toArray();
+        $user = auth()->user();
+
+        $branchIds = $user->branches->pluck('id')->toArray();
+
+        if ($user->hasRole('admin')) {
+            $branchIds = Branch::pluck('id')->toArray();
+        }
 
         $result = Appointment::select('id', 'number', 'user_id', 'branch_id', 'teacher_id', 'service_id', 'service_price', 'start_time', 'appointment_status_id', 'created_date')
             ->with('service', 'teacher', 'clients')

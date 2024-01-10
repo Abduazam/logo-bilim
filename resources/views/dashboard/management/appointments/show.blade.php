@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="payment_type{{ $client->id }}">Payment type:</label>
-                                    <input type="text" class="form-control form-control-sm w-100" id="payment_type{{ $client->id }}" name="payment_type{{ $client->id }}" value="{{ $client->paymentType->translation->translation }}" placeholder="Last name" readonly>
+                                    <input type="text" class="form-control form-control-sm w-100" id="payment_type{{ $client->id }}" name="payment_type{{ $client->id }}" value="{{ $client->paymentType->title }}" placeholder="Last name" readonly>
                                 </div>
                                 <div class="col-md-4 pe-0">
                                     <label class="form-label" for="benefit{{ $client->id }}">Benefit:</label>

@@ -47,21 +47,4 @@ class BranchService extends Model
     {
         return $this->belongsTo(Service::class);
     }
-
-    /**
-     * Factory function: checks duplications before creating.
-     */
-    public function scopeRecycle($query, $branches, $services)
-    {
-        foreach ($branches as $branch) {
-            foreach ($services as $service) {
-                $query->firstOrCreate([
-                    'branch_id' => $branch->id,
-                    'service_id' => $service->id,
-                ]);
-            }
-        }
-
-        return $query;
-    }
 }

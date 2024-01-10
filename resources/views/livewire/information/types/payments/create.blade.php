@@ -19,6 +19,9 @@
                                 <div class="col-12 px-0 mb-4">
                                     <label for="title" class="form-label">Title:</label>
                                     <input wire:model.blur="form.title" type="text" class="form-control form-control-sm w-100 @error('form.title') is-invalid @elseif(!is_null($this->form->title)) is-valid @enderror" name="title" id="title" placeholder="Payment type title">
+                                    @error('form.title')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

@@ -31,10 +31,18 @@
                                     <input type="text" class="form-control form-control-sm w-100" id="teacher" name="teacher" value="{{ $appointment->teacher->fullname }}" disabled>
                                 </div>
                                 <div class="col-md-6 pe-0 mb-4">
-                                    <label for="start_time" class="form-label">Time</label>
-                                    <select wire:model.live="form.start_time" class="form-select form-select-sm w-100" name="start_time" id="start_time">
+                                    <label for="clients" class="form-label">Clients</label>
+                                    <input type="text" class="form-control form-control-sm w-100" id="clients" name="clients" value="{{ $appointment->getClients(true) }}" disabled>
+                                </div>
+                                <div class="col-md-6 ps-0 mb-4">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input wire:model.live="form.date" type="date" class="form-control form-control-sm w-100" id="date" name="date">
+                                </div>
+                                <div class="col-md-6 pe-0 mb-4">
+                                    <label for="start_time" class="form-label">Time <small class="text-muted">({{ $this->appointment->getStartTime() }})</small></label>
+                                    <select wire:model.live="form.start_time" class="form-select form-select-sm w-100" name="start_time" id="start_time" @if(is_null($this->form->date)) disabled @endif>
                                         <option value="null" disabled>Choose</option>
-                                        @foreach($times as $time)
+                                        @foreach($this->times as $time)
                                             <option value="{{ $time }}">{{ $time }}</option>
                                         @endforeach
                                     </select>

@@ -16,17 +16,26 @@ trait AppointmentMethods
         parent::boot();
 
         static::creating(function ($appointment) {
-            $latestAppointment = self::where('branch_id', $appointment->branch_id)
-                ->whereDate('created_date', $appointment->created_date)
-                ->latest('number')
-                ->first();
-
-            if ($latestAppointment) {
-                $appointment->number = $latestAppointment->number + 1;
-            } else {
-                $appointment->number = 1;
-            }
+            self::setAppointmentNumber($appointment);
         });
+
+        static::updating(function ($appointment) {
+            self::setAppointmentNumber($appointment);
+        });
+    }
+
+    private static function setAppointmentNumber($appointment): void
+    {
+        $latestAppointment = self::where('branch_id', $appointment->branch_id)
+            ->whereDate('created_date', $appointment->created_date)
+            ->latest('number')
+            ->first();
+
+        if ($latestAppointment) {
+            $appointment->number = $latestAppointment->id === $appointment->id ? $latestAppointment->number : $latestAppointment->number + 1;
+        } else {
+            $appointment->number = 1;
+        }
     }
 
     /**
@@ -60,7 +69,7 @@ trait AppointmentMethods
     public function getAppointmentStatus(): string
     {
         $ase = AppointmentStatusEnum::getValueByText($this->appointmentStatus->key);
-        return "<span class='btn py-0 px-2 btn-alt-$ase' style='font-size: 14px!important;'><small>{$this->appointmentStatus->translation->translation}</small></span>";
+        return "<span class='btn py-0 px-2 btn-alt-$ase' style='font-size: 14px!important;'><small>{$this->appointmentStatus->title}</small></span>";
     }
 
     /**

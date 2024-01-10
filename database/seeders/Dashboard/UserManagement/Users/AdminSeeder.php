@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
         Role::create(['name' => 'manager']);
 
         $superAdminUser = User::create([
-            'name' => 'Softify',
+            'name' => 'Softify Group',
             'email' => 'softify@gmail.com',
             'password' => Hash::make('123'),
             'email_verified_at' => now(),

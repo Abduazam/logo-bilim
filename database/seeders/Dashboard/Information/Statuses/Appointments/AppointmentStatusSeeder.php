@@ -15,7 +15,10 @@ class AppointmentStatusSeeder extends Seeder
         $appointmentStatuses = ['Pending', 'Started', 'Canceled'];
 
         foreach ($appointmentStatuses as $appointmentStatus) {
-            AppointmentStatus::create(['title' => $appointmentStatus]);
+            AppointmentStatus::create([
+                'key' => strtolower($appointmentStatus),
+                'title' => $appointmentStatus,
+            ]);
         }
     }
 }

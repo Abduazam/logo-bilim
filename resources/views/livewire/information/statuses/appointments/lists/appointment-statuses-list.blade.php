@@ -15,9 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-4 text-end pe-0">
-                <livewire:information.statuses.appointments.create />
-            </div>
+            <div class="col-md-3 col-4 text-end pe-0"></div>
         </div>
     </div>
     <div class="table-responsive text-nowrap mb-4">
@@ -25,6 +23,7 @@
             <thead>
             <tr>
                 <th class="text-center">id</th>
+                <th class="text-center">key</th>
                 <th class="text-center">title</th>
                 <th class="text-center">created_at</th>
                 <th class="text-center">actions</th>
@@ -34,16 +33,11 @@
             @foreach($appointmentStatuses as $appointmentStatus)
                 <tr wire:key="appointment-status-row-{{ $appointmentStatus->id }}">
                     <td class="text-center">{{ $appointmentStatus->id }}</td>
+                    <td class="text-center"><code>{{ $appointmentStatus->key }}</code></td>
                     <td class="text-center">{{ $appointmentStatus->title }}</td>
                     <td class="text-center">{{ $appointmentStatus->created_at }}</td>
                     <td class="text-center">
-                        @if(!$appointmentStatus->trashed())
-                            <livewire:information.statuses.appointments.update :appointmentStatus="$appointmentStatus" :wire:key="'update-appointment-status-id' . $appointmentStatus->id" />
-                            <livewire:information.statuses.appointments.delete :appointmentStatus="$appointmentStatus" :wire:key="'delete-appointment-status-id' . $appointmentStatus->id" />
-                        @else
-                            <livewire:information.statuses.appointments.restore :appointmentStatus="$appointmentStatus" :wire:key="'restore-appointment-status-id' . $appointmentStatus->id" />
-                            <livewire:information.statuses.appointments.force-delete :appointmentStatus="$appointmentStatus" :wire:key="'force-delete-appointment-status-id' . $appointmentStatus->id" />
-                        @endif
+                        <livewire:information.statuses.appointments.update :appointmentStatus="$appointmentStatus" :wire:key="'update-appointment-status-id' . $appointmentStatus->id" />
                     </td>
                 </tr>
             @endforeach

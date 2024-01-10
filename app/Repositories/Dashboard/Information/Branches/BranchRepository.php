@@ -21,6 +21,10 @@ class BranchRepository
 
     public function getByUser(User $user)
     {
+        if ($user->hasRole('admin')) {
+            return Branch::all();
+        }
+
         return Branch::select('id', 'title')->whereIn('id', $user->branches->pluck('id'))->get();
     }
 

@@ -20,8 +20,14 @@ class AppointmentClientUpdateService extends UpdateService
     {
         try {
             DB::transaction(function () {
+                $appointmentId = $this->appointmentClients[0]['appointment_id'];
+
+                $clientIds = collect($this->appointmentClients)->pluck('client_id')->toArray();
+
+                AppointmentClients::where('appointment_id', $appointmentId)->whereNotIn('client_id', $clientIds)->forceDelete();
+
                 foreach ($this->appointmentClients as $appointmentClient) {
-                    AppointmentClients::firstOrCreate(
+                    AppointmentClients::updateOrCreate(
                         [
                             'appointment_id' => $appointmentClient['appointment_id'],
                             'client_id' => $appointmentClient['client_id'],

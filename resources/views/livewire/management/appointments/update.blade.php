@@ -1,10 +1,12 @@
-<div>
-    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAppointmentCreate" aria-controls="offcanvasAppointmentCreate">New appointment</button>
+<div class="d-inline-block">
+    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAppointmentUpdateId{{ $this->appointment->id }}" aria-controls="offcanvasAppointmentUpdateId{{ $this->appointment->id }}">
+        <i class="fa fa-pen"></i>
+    </button>
 
-    <form wire:submit.prevent="create" class="w-100 position-relative">
-        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasAppointmentCreate" aria-labelledby="offcanvasAppointmentCreateLabel" data-bs-backdrop="false">
+    <form wire:submit.prevent="update" class="w-100 position-relative">
+        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasAppointmentUpdateId{{ $this->appointment->id }}" aria-labelledby="offcanvasAppointmentUpdateId{{ $this->appointment->id }}Label" data-bs-backdrop="false">
             <div class="offcanvas-header bg-body-light">
-                <h6 class="offcanvas-title" id="offcanvasAppointmentCreateLabel">New appointment</h6>
+                <h6 class="offcanvas-title" id="offcanvasAppointmentUpdateId{{ $this->appointment->id }}Label">Update appointment</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body fs-sm text-start overflow-auto">
@@ -46,7 +48,7 @@
                             <div class="row w-100 p-0 m-0">
                                 <div class="col-md-6 mb-3 ps-0">
                                     <label for="branch_id" class="form-label">Branch</label>
-                                    <select wire:model.blur="form.branch_id" class="form-select form-select-sm w-100" name="branch_id" id="branch_id">
+                                    <select wire:model.live="form.branch_id" class="form-select form-select-sm w-100" name="branch_id" id="branch_id">
                                         <option value="null" disabled>Choose</option>
                                         @foreach($branches as $branch)
                                             <option value="{{ $branch->id }}">{{ $branch->title }}</option>
@@ -58,7 +60,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3 pe-0">
                                     <label for="service_id" class="form-label">Service</label>
-                                    <select wire:model.blur="form.service_id" class="form-select form-select-sm w-100" name="service_id" id="service_id" @if(is_null($this->form->branch_id)) disabled @endif>
+                                    <select wire:model.live="form.service_id" class="form-select form-select-sm w-100" name="service_id" id="service_id" @if(is_null($this->form->branch_id)) disabled @endif>
                                         <option value="null" disabled>Choose</option>
                                         @if(!empty($this->form->services))
                                             @foreach($this->form->services as $service)
@@ -70,9 +72,9 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mb-3 ps-0">
+                                <div class="col-12 mb-3 px-0">
                                     <label for="teacher_id" class="form-label">Teacher</label>
-                                    <select wire:model.blur="form.teacher_id" class="form-select form-select-sm w-100" name="teacher_id" id="teacher_id" @if(is_null($this->form->service_id)) disabled @endif>
+                                    <select wire:model.live="form.teacher_id" class="form-select form-select-sm w-100" name="teacher_id" id="teacher_id" @if(is_null($this->form->service_id)) disabled @endif>
                                         <option value="null">Choose</option>
                                         @if(!empty($this->form->teachers))
                                             @foreach($this->form->teachers as $teacher)
@@ -84,9 +86,16 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 mb-3 ps-0">
+                                    <label for="created_date" class="form-label">Date</label>
+                                    <input wire:model.live="form.created_date" type="date" class="form-control form-control-sm w-100" name="created_date" id="created_date" @if(is_null($this->form->teacher_id)) disabled @endif min="{{ date('Y-m-d') }}">
+                                    @error('form.created_date')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="col-md-6 mb-3 pe-0">
-                                    <label for="start_time" class="form-label">Start time</label>
-                                    <select wire:model.blur="form.start_time" class="form-select form-select-sm w-100" name="start_time" id="start_time" @if(is_null($this->form->service_id)) disabled @endif>
+                                    <label for="start_time" class="form-label">Start time <small class="text-muted">({{ $this->appointment->getStartTime() }})</small></label>
+                                    <select wire:model.live="form.start_time" class="form-select form-select-sm w-100" name="start_time" id="start_time" @if(is_null($this->form->service_id)) disabled @endif>
                                         <option value="null" disabled>Choose</option>
                                         @if(!empty($this->form->startTimes))
                                             @foreach($this->form->startTimes as $start_time)
@@ -102,7 +111,7 @@
                                 <div class="col-12 px-0 mb-3 position-relative">
                                     <label for="search_client" class="form-label">Search client</label>
                                     <div class="d-flex w-100 h-auto">
-                                        <input wire:model.blur="form.search" type="text" class="form-control form-control-sm w-100 me-2" id="search_client" name="search_client" placeholder="Search client">
+                                        <input wire:model.live.debounce.500ms="form.search" type="text" class="form-control form-control-sm w-100 me-2" id="search_client" name="search_client" placeholder="Search client">
                                         <button wire:click="addClient" type="button" class="btn btn-sm btn-alt-info"><i class="fa fa-plus"></i></button>
                                         @if(!empty($this->form->searchedClients))
                                             <div class="search-result-block w-100 bg-white h-auto position-absolute top-100 z-3">
@@ -175,7 +184,7 @@
                                                         <select wire:model.blur="form.clients.{{ $id }}.info.relatives.{{ $relativeId }}.relative_status_id" class="form-select form-select-sm w-100 @error('form.clients.' . $id . '.info.relatives.' . $relativeId . '.relative_status_id') is-invalid @elseif(!is_null($this->form->clients[$id]['info']['relatives'][$relativeId]['relative_status_id'])) is-valid @enderror" id="relative_status_id{{ $relativeId }}" name="relative_status_id{{ $relativeId }}">
                                                             <option value="null" disabled>Choose</option>
                                                             @foreach($relativeStatuses as $relativeStatus)
-                                                                <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->translation->translation }}</option>
+                                                                <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->title }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('form.clients.' . $id . '.info.relatives.' . $relativeId . '.relative_status_id')
@@ -206,7 +215,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3 pe-0">
                                                 <label for="service_price{{ $id }}" class="form-label">Service price</label>
-                                                <input wire:model.blur="form.service_price" type="number" class="form-control form-control-sm w-100 @error('form.service_price') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->service_price)) is-valid @enderror" id="service_price{{ $id }}" name="service_price{{ $id }}" placeholder="Service price" disabled>
+                                                <input wire:model.live="form.service_price" type="number" class="form-control form-control-sm w-100 @error('form.service_price') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->service_price)) is-valid @enderror" id="service_price{{ $id }}" name="service_price{{ $id }}" placeholder="Service price" disabled>
                                                 @error('form.service_price')
                                                 <span class="invalid-feedback">{{ $message }}</span>
                                                 @enderror
@@ -230,7 +239,7 @@
                                                 <select wire:model.blur="form.payments.{{ $id }}.payment_type_id" class="form-select form-select-sm w-100 @error('form.clients.' . $id . '.info.first_name') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->payments[$id]['payment_type_id'])) is-valid @enderror" id="payment_type_id{{ $id }}" name="payment_type_id{{ $id }}">
                                                     <option value="null" disabled>Choose</option>
                                                     @foreach($paymentTypes as $paymentType)
-                                                    <option value="{{ $paymentType->id }}">{{ $paymentType->title }}</option>
+                                                        <option value="{{ $paymentType->id }}">{{ $paymentType->title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('form.payments.' . $id . '.payment_type_id')
@@ -256,8 +265,8 @@
                 <button data-bs-dismiss="offcanvas" type="button" class="btn btn-white border-0">
                     <small>Close</small>
                 </button>
-                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->paymentsForm) wire:target="create" @else disabled @endif>
-                    <small>Create</small>
+                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->paymentsForm) wire:target="update" @else disabled @endif>
+                    <small>Update</small>
                 </button>
             </div>
         </div>

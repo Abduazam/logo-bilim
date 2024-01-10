@@ -8,11 +8,14 @@ use App\Models\Dashboard\Management\Appointments\Appointment;
 
 class RescheduleAppointmentForm extends Form
 {
+    #[Validate('required|date')]
+    public mixed $date;
+
     #[Validate('required')]
-    public string $start_time;
+    public ?string $start_time = null;
 
     public function setValues(Appointment $appointment): void
     {
-        $this->start_time = $appointment->getStartTime();
+        $this->date = $appointment->created_date;
     }
 }

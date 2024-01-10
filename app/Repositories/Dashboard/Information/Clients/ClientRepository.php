@@ -17,7 +17,10 @@ class ClientRepository
         return Client::select(['id', 'first_name', 'last_name', 'dob'])
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {
-                    $query->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%");
+                    $search = strtolower($search);
+
+                    $query->where(DB::raw('LOWER(first_name)'), 'like', "%$search%")
+                        ->orWhere(DB::raw('LOWER(last_name)'), 'like', "%$search%");
                 });
             })->take(3)->get();
     }

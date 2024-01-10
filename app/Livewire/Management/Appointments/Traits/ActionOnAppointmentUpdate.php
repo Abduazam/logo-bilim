@@ -4,29 +4,30 @@ namespace App\Livewire\Management\Appointments\Traits;
 
 use App\Models\Dashboard\Information\Clients\Client;
 
-trait ActionOnAppointment
+trait ActionOnAppointmentUpdate
 {
     public function updated($property): void
     {
         switch ($property) {
             case 'form.branch_id':
                 $this->form->setServices();
-                $this->form->clearIds(true, true, true);
+                $this->form->clearIds(true, true, true, true);
                 break;
             case 'form.service_id':
                 $this->form->setTeachers();
-                $this->form->setTimes();
                 $this->form->setServicePrice();
-                $this->form->clearIds(false, true, true);
+                $this->form->clearIds(false, true, true, true);
                 break;
             case 'form.teacher_id':
-                $this->form->setTimes();
                 $this->form->setTeacherSalary();
+                $this->form->clearIds(false, false, true, true);
+                break;
+            case 'form.created_date':
+                $this->form->setTimes();
+                $this->form->clearIds(false, false, false, true);
                 $this->form->checkRegistrationFormTrue();
                 break;
             case 'form.start_time':
-                $this->form->setFreeTeachers();
-                $this->form->clearIds(false, true, false);
                 $this->form->checkRegistrationFormTrue();
                 break;
             case 'form.search':

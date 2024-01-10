@@ -36,7 +36,7 @@
                                         </div>
                                         <div class="col-md-4 pe-0">
                                             <label class="form-label" for="relative_status_id">Relative status:</label>
-                                            <input type="text" class="form-control form-control-sm w-100" id="relative_status_id" name="relative_status_id" value="{{ $relative->relativeStatus->title }}" placeholder="Relative status" readonly>
+                                            <input type="text" class="form-control form-control-sm w-100" id="relative_status_id" name="relative_status_id" value="{{ $relative->relativeStatus?->title }}" placeholder="Relative status" readonly>
                                         </div>
                                     </div>
                                 @endforeach

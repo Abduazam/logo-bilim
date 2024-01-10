@@ -5,35 +5,14 @@ namespace App\Livewire\Management\Appointments\Forms\Traits;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Collection;
 use App\Models\Dashboard\Information\Clients\Client;
-use App\Models\Dashboard\Information\Branches\Branch;
-use App\Helpers\Services\Livewire\Hours\GenerateWorkHours;
 use App\Repositories\Dashboard\Information\Clients\ClientRepository;
-use App\Repositories\Dashboard\Information\Services\ServiceRepository;
-use App\Repositories\Dashboard\Information\Teachers\TeacherRepository;
-use App\Repositories\Dashboard\Management\Appointments\AppointmentRepository;
 
-trait RegistrationForm
+trait ClientsForm
 {
-    public bool $registrationForm = false;
-
-    public ?Collection $services;
-    public ?Collection $teachers;
-    public array $startTimes = [];
+    public bool $clientsForm = false;
 
     public string $search = '';
     public ?Collection $searchedClients;
-
-    #[Validate('required|numeric|exists:branches,id')]
-    public ?int $branch_id = null;
-
-    #[Validate('required|numeric|exists:services,id')]
-    public ?int $service_id = null;
-
-    #[Validate('required|numeric|exists:teachers,id')]
-    public ?int $teacher_id = null;
-
-    #[Validate('required|string')]
-    public mixed $start_time = null;
 
     #[Validate([
         'clients' => 'required|array',
@@ -74,59 +53,6 @@ trait RegistrationForm
         'relative_status_id' => null,
     ];
 
-    public function setBranch(Branch $branch): void
-    {
-        $this->branch_id = $branch->id;
-        $this->setServices();
-    }
-
-    public function setServices(): void
-    {
-        $serviceRepository = new ServiceRepository();
-        $this->services = $serviceRepository->getByBranch($this->branch_id);
-    }
-
-    public function setTeachers(): void
-    {
-        $this->teacher_id = null;
-
-        $teacherRepository = new TeacherRepository();
-        $this->teachers = $teacherRepository->getByBranchService($this->branch_id, $this->service_id);
-    }
-
-    public function setTimes(): void
-    {
-        $getHoursHelper = new GenerateWorkHours();
-        $hours = $getHoursHelper->generate();
-
-        $appointmentRepository = new AppointmentRepository();
-        $busyHours = $appointmentRepository->getBusyHours($this->branch_id, $this->service_id, $this->teacher_id);
-
-        $freeHours = $this->teacher_id ? array_diff($hours, $busyHours) : $hours;
-
-        sort($freeHours);
-
-        $this->startTimes = $freeHours;
-    }
-
-    public function clearIds($service, $teacher, $start_time): void
-    {
-        if ($service)
-            $this->service_id = null;
-
-        if ($teacher)
-            $this->teacher_id = null;
-
-        if ($start_time)
-            $this->start_time = null;
-    }
-
-    public function setFreeTeachers(): void
-    {
-        $teacherRepository = new TeacherRepository();
-        $this->teachers = $teacherRepository->getFreeTeachers($this->branch_id, $this->service_id, $this->start_time);
-    }
-
     public function setSearchedClients(): void
     {
         $clientRepository = new ClientRepository();
@@ -143,7 +69,7 @@ trait RegistrationForm
     {
         $this->clients[] = $this->client;
         $this->addPayment();
-        $this->checkRegistrationFormTrue();
+        $this->checkClientsFormTrue();
     }
 
     public function removeClient(int $index): void
@@ -166,20 +92,20 @@ trait RegistrationForm
         }
 
         $this->clearSearch();
-        $this->checkRegistrationFormTrue();
+        $this->checkClientsFormTrue();
         $this->setClientName($index);
     }
 
     public function clearClientInfo(int $index): void
     {
         $this->clients[$index] = $this->client;
-        $this->checkRegistrationFormTrue();
+        $this->checkClientsFormTrue();
     }
 
     public function addRelative(int $index): void
     {
         $this->clients[$index]['info']['relatives'][] = $this->relative;
-        $this->checkRegistrationFormTrue();
+        $this->checkClientsFormTrue();
     }
 
     public function removeRelative(int $clientIndex, int $relativeIndex): void
@@ -187,17 +113,8 @@ trait RegistrationForm
         unset($this->clients[$clientIndex]['info']['relatives'][$relativeIndex]);
     }
 
-    public function checkRegistrationFormTrue(): void
+    public function checkClientsFormTrue(): void
     {
-        $requiredFields = [
-            $this->branch_id,
-            $this->service_id,
-            $this->teacher_id,
-            $this->start_time,
-        ];
-
-        $allFieldsNotNull = !in_array(null, $requiredFields, true);
-
         $clientNotNull = false;
         foreach ($this->clients as $client) {
             $clientInfo = $client['info'];
@@ -224,6 +141,6 @@ trait RegistrationForm
             }
         }
 
-        $this->registrationForm = $allFieldsNotNull && $clientNotNull;
+        $this->clientsForm = $clientNotNull;
     }
 }

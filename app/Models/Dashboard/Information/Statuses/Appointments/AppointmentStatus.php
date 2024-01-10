@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Table columns
  * @property int $id
+ * @property string $key
  * @property string $title
  */
 class AppointmentStatus extends Model
@@ -24,6 +25,7 @@ class AppointmentStatus extends Model
      * @var array<>
      */
     protected $fillable = [
+        'key',
         'title',
     ];
 }
