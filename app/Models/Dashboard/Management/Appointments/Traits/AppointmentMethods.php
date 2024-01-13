@@ -63,16 +63,6 @@ trait AppointmentMethods
     }
 
     /**
-     * Gets appointment status
-     * @returns string
-     */
-    public function getAppointmentStatus(): string
-    {
-        $ase = AppointmentStatusEnum::getValueByText($this->appointmentStatus->key);
-        return "<span class='btn py-0 px-2 btn-alt-$ase' style='font-size: 14px!important;'><small>{$this->appointmentStatus->title}</small></span>";
-    }
-
-    /**
      * Check is appointment is pending.
      * @returns bool
      */

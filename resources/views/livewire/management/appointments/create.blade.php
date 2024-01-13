@@ -316,7 +316,7 @@
                 <button data-bs-dismiss="offcanvas" type="button" class="btn btn-white border-0">
                     <small>Close</small>
                 </button>
-                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->paymentsForm) wire:target="create" @else disabled @endif>
+                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm && $this->form->clientsForm && $this->form->paymentsForm) wire:target="create" @else disabled @endif>
                     <small>Create</small>
                 </button>
             </div>

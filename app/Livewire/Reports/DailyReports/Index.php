@@ -4,13 +4,12 @@ namespace App\Livewire\Reports\DailyReports;
 
 use Livewire\Component;
 use Illuminate\View\View;
-use App\Livewire\Reports\DailyReports\Traits\ChartTrait;
 use App\Livewire\Reports\DailyReports\Traits\FilterTrait;
 use App\Repositories\Dashboard\Reports\DailyReports\DailyReportRepository;
 
 class Index extends Component
 {
-    use FilterTrait, ChartTrait;
+    use FilterTrait;
 
     public function mount(): void
     {
@@ -23,8 +22,6 @@ class Index extends Component
 
         return view('livewire.reports.daily-reports.index', [
             'reports' => $reports,
-            'countChart' => $this->getCountChart($reports),
-            'benefitChart' => $this->getBenefitChart($reports),
         ]);
     }
 }

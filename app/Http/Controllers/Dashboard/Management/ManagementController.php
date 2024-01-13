@@ -15,6 +15,7 @@ class ManagementController extends DashboardController
     {
         return view('dashboard.management.index', [
             'appointments' => $repository->getAppointmentsCount(),
+            'consultations' => $repository->getConsultationsCount(),
         ]);
     }
 }

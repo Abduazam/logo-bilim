@@ -2,6 +2,7 @@
 
 namespace App\Models\Dashboard\Management\Appointments;
 
+use App\Contracts\Traits\Dashboard\Models\AppointmentStatusTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,7 +51,7 @@ class Appointment extends Model
     /**
      * My own traits
      */
-    use AppointmentMethods;
+    use AppointmentMethods, AppointmentStatusTrait;
 
     /**
      * The attributes that are mass assignable.
