@@ -44,6 +44,8 @@
 
         <!-- Right Section -->
         <div class="space-x-1">
+            <livewire:management.consumptions.create-in-outside />
+
             <x-sections.fillers.user-dropdown />
 
             <!-- Toggle Sidebar -->

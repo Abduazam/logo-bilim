@@ -19,6 +19,14 @@
                 </a>
             </li>
         @endcan
+
+        @can('dashboard.management.consumptions.index')
+            <li class="nav-main-item">
+                <a class="nav-main-link" href="{{ route('dashboard.management.consumptions.index') }}">
+                    <span class="nav-main-link-name">Consumptions</span>
+                </a>
+            </li>
+        @endcan
     </ul>
 </li>
 @endcan

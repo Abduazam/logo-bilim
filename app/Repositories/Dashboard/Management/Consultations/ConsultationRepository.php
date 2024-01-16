@@ -12,6 +12,21 @@ class ConsultationRepository
         return Consultation::all();
     }
 
+    public function getTotalInToday()
+    {
+        return Consultation::whereDate('created_date', now())->count();
+    }
+
+    public function getTotalNextHours()
+    {
+        return Consultation::whereDate('created_date', now())
+            ->whereTime('start_time', '>', now())
+            ->whereHas('appointmentStatus', function ($query) {
+                $query->where('key', 'pending');
+            })
+            ->count();
+    }
+
     public function getBusyHours(string $createdDate)
     {
         return Consultation::whereDate('created_date', $createdDate)->pluck('start_time')->toArray();

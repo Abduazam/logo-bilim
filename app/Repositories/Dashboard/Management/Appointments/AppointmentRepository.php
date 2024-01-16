@@ -14,6 +14,16 @@ class AppointmentRepository
         return Appointment::all();
     }
 
+    public function getTotalInToday()
+    {
+        return Appointment::whereDate('created_date', now())->count();
+    }
+
+    public function getTotalCreatedInToday()
+    {
+        return Appointment::whereDate('created_at', now())->count();
+    }
+
     public function getBusyHours(int $branch_id, int $service_id, ?int $teacher_id, mixed $created_date = null): array
     {
         !is_null($created_date) ? $now = $created_date : $now = now();

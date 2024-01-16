@@ -17,26 +17,10 @@ class ConsultationController extends DashboardController
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        return view('dashboard.management.consultations.create');
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Consultation $consultation): View
     {
         return view('dashboard.management.consultations.show', compact('consultation'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Consultation $consultation): View
-    {
-        return view('dashboard.management.consultations.edit', compact('consultation'));
     }
 }

@@ -17,26 +17,10 @@ class AppointmentController extends DashboardController
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        return view('dashboard.management.appointments.create');
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Appointment $appointment): View
     {
         return view('dashboard.management.appointments.show', compact('appointment'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Appointment $appointment): View
-    {
-        return view('dashboard.management.appointments.edit', compact('appointment'));
     }
 }

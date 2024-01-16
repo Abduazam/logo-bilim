@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/dashboard');
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
+
     Route::get('/', [\App\Http\Controllers\Dashboard\Home\HomeController::class, 'index'])->name('home');
 
     Route::prefix('user-management')->name('user-management.')->group(function () {
@@ -134,18 +135,32 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('management')->name('management.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Dashboard\Management\ManagementController::class, 'index'])->name('index');
 
-        Route::resource('appointments', \App\Http\Controllers\Dashboard\Management\Appointments\AppointmentController::class)->except(['store', 'update', 'destroy']);
         Route::prefix('appointments')->name('appointments.')->group(function () {
-            foreach (['delete', 'restore', 'force-delete'] as $action) {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Management\Appointments\AppointmentController::class, 'index'])->name('index');
+            Route::get('/{appointment}', [\App\Http\Controllers\Dashboard\Management\Appointments\AppointmentController::class, 'show'])->name('show');
+
+            foreach (['create', 'update', 'cancel', 'restore', 'force-delete'] as $action) {
                 Route::get($action, function () {
                     abort(404);
                 })->name($action);
             }
         });
 
-        Route::resource('consultations', \App\Http\Controllers\Dashboard\Management\Consultations\ConsultationController::class)->except(['store', 'update', 'destroy']);
         Route::prefix('consultations')->name('consultations.')->group(function () {
-            foreach (['delete', 'restore', 'force-delete'] as $action) {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Management\Consultations\ConsultationController::class, 'index'])->name('index');
+            Route::get('/{consultation}', [\App\Http\Controllers\Dashboard\Management\Consultations\ConsultationController::class, 'show'])->name('show');
+
+            foreach (['create', 'update', 'cancel', 'restore', 'force-delete'] as $action) {
+                Route::get($action, function () {
+                    abort(404);
+                })->name($action);
+            }
+        });
+
+        Route::prefix('consumptions')->name('consumptions.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Dashboard\Management\Consumptions\ConsumptionController::class, 'index'])->name('index');
+
+            foreach (['create', 'update', 'delete'] as $action) {
                 Route::get($action, function () {
                     abort(404);
                 })->name($action);
