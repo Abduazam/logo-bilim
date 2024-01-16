@@ -2,51 +2,62 @@
 
 namespace App\Livewire\Management\Consultations;
 
-use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use Exception;
 use Livewire\Component;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Illuminate\Validation\ValidationException;
-use App\Livewire\Management\Consultations\Forms\CreateConsultationForm;
-use App\Repositories\Dashboard\Information\Types\Payments\PaymentRepository;
+use App\Models\Dashboard\Management\Consultations\Consultation;
+use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
+use App\Livewire\Management\Consultations\Forms\UpdateConsultationForm;
 use App\Livewire\Management\Consultations\Traits\ActionOnConsultationCreate;
+use App\Repositories\Dashboard\Information\Types\Payments\PaymentRepository;
 use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
-use App\Services\Dashboard\Management\Consultations\Create\ConsultationCreateService;
+use App\Services\Dashboard\Management\Consultations\Update\ConsultationUpdateService;
 
-class Create extends Component
+class Update extends Component
 {
     use ActionOnConsultationCreate, DispatchingTrait;
 
-    public CreateConsultationForm $form;
+    public Consultation $consultation;
+
+    public UpdateConsultationForm $form;
+
+    public function mount(): void
+    {
+        $this->form->setValues($this->consultation);
+    }
 
     /**
      * @throws ValidationException
      * @throws Exception
      */
-    public function create(): void
+    public function update(): void
     {
         $validatedData = $this->form->validate();
 
         if ($validatedData) {
-            $service = new ConsultationCreateService($validatedData);
+            $service = new ConsultationUpdateService($validatedData, $this->consultation);
             $response = $service->callMethod();
 
             if ($response) {
-                $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New consultation</b>");
+                $this->dispatchMany(['refresh', 'updated']);
+                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Consultation:</b> {$this->consultation->id}");
                 $this->form->reset();
+                $this->mount();
             } else {
                 throw $response;
             }
         }
     }
 
+    #[On('updated')]
     public function render(
         RelativeRepository $relativeStatusRepository,
         PaymentRepository $paymentTypeRepository
     ): View
     {
-        return view('livewire.management.consultations.create', [
+        return view('livewire.management.consultations.update', [
             'relativeStatuses' => $relativeStatusRepository->getAll(),
             'paymentTypes' => $paymentTypeRepository->getAll(),
         ]);

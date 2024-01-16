@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->foreignId('branch_id')->nullable()->references('id')->on('branches')->onDelete('cascade');
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->bigInteger('payment_amount');
             $table->foreignId('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['user_id', 'branch_id', 'client_id', 'start_time', 'end_time', 'created_date']);
+            $table->unique(['user_id', 'client_id', 'start_time', 'end_time', 'created_date']);
         });
     }
 

@@ -12,4 +12,22 @@ trait ConsultationMethods
     {
         return date('H:i', strtotime($this->start_time)) . ' - ' . date('H:i', strtotime($this->end_time));
     }
+
+    /**
+     * Gets start_time value as H:i
+     * @return string
+     */
+    public function getStartTime(): string
+    {
+        return date('H:i', strtotime($this->start_time));
+    }
+
+    /**
+     * Gets end_time value as H:i
+     * @return string
+     */
+    public function getEndTime(): string
+    {
+        return date('H:i', strtotime($this->end_time));
+    }
 }

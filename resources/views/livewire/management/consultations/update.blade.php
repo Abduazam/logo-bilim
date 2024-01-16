@@ -1,10 +1,12 @@
-<div>
-    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasConsultationCreate" aria-controls="offcanvasConsultationCreate">New consultation</button>
+<div class="d-inline-block">
+    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasConsultationUpdateId{{ $this->consultation->id }}" aria-controls="offcanvasConsultationUpdateId{{ $this->consultation->id }}">
+        <i class="fa fa-pen"></i>
+    </button>
 
-    <form wire:submit.prevent="create" class="w-100 position-relative">
-        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasConsultationCreate" aria-labelledby="offcanvasConsultationCreateLabel" data-bs-backdrop="false">
+    <form wire:submit.prevent="update" class="w-100 position-relative">
+        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-40 shadow h-100" tabindex="-1" id="offcanvasConsultationUpdateId{{ $this->consultation->id }}" aria-labelledby="offcanvasConsultationUpdateId{{ $this->consultation->id }}Label" data-bs-backdrop="false">
             <div class="offcanvas-header bg-body-light">
-                <h6 class="offcanvas-title" id="offcanvasConsultationCreateLabel">New consultation</h6>
+                <h6 class="offcanvas-title" id="offcanvasConsultationUpdateId{{ $this->consultation->id }}Label">Update consultation</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body fs-sm text-start overflow-auto">
@@ -131,7 +133,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 ps-0">
-                                <label for="start_time" class="form-label">Start time</label>
+                                <label for="start_time" class="form-label">Start time <small class="text-muted">({{ $this->consultation->getStartTime() }})</small></label>
                                 <select wire:model.live="form.start_time" class="form-select form-select-sm w-100 @error('form.start_time') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->start_time)) is-valid @enderror" name="start_time" id="start_time" @if(is_null($this->form->created_date)) disabled @endif>
                                     <option value="null" disabled>Choose</option>
                                     @if(!empty($this->form->startTimes))
@@ -145,7 +147,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 pe-0">
-                                <label for="end_time" class="form-label">End time</label>
+                                <label for="end_time" class="form-label">End time <small class="text-muted">({{ $this->consultation->getEndTime() }})</small></label>
                                 <select wire:model.live="form.end_time" class="form-select form-select-sm w-100 @error('form.end_time') is-invalid @elseif(isNotNullAndNotEmptyString($this->form->end_time)) is-valid @enderror" name="end_time" id="end_time" @if(is_null($this->form->start_time)) disabled @endif>
                                     <option value="null" disabled>Choose</option>
                                     @if(!empty($this->form->endTimes))
@@ -166,8 +168,8 @@
                 <button data-bs-dismiss="offcanvas" type="button" class="btn btn-white border-0">
                     <small>Close</small>
                 </button>
-                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm) wire:target="create" @else disabled @endif>
-                    <small>Create</small>
+                <button wire:loading.attr="disabled" data-bs-dismiss="offcanvas" type="submit" class="btn btn-success border-0" @if($this->form->registrationForm) wire:target="update" @else disabled @endif>
+                    <small>Update</small>
                 </button>
             </div>
         </div>

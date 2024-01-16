@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dashboard\Management\Consultations\Consultation;
 use Illuminate\Database\Seeder;
 use App\Models\Dashboard\Information\Clients\Client;
 use App\Models\Dashboard\Information\Branches\Branch;
@@ -11,6 +10,7 @@ use App\Models\Dashboard\Information\Teachers\Teacher;
 use App\Models\Dashboard\Information\Clients\ClientRelative;
 use App\Models\Dashboard\Information\Branches\BranchService;
 use App\Models\Dashboard\Information\Teachers\TeacherService;
+use App\Models\Dashboard\Management\Consultations\Consultation;
 
 class DatabaseSeeder extends Seeder
 {
@@ -90,6 +90,6 @@ class DatabaseSeeder extends Seeder
         /**
          * Create fake consultations.
          */
-        Consultation::factory(7)->recycle($clients)->create();
+        Consultation::factory(8)->recycle($clients)->create();
     }
 }

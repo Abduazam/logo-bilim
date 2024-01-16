@@ -29,7 +29,7 @@ class ConsultationFactory extends Factory
 
         $branch_id = $this->faker->numberBetween(1, 3);
 
-        $start_time = Carbon::createFromFormat('H:i', $hours[$randomHourIndex]);
+        $start_time = Carbon::createFromFormat('H:i:s', $hours[$randomHourIndex]);
         $end_time = $start_time->copy()->addHours(rand(1, 2));
 
         return [

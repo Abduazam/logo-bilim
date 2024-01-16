@@ -17,7 +17,7 @@ class GenerateWorkHours
         $times = [];
 
         while ($startTime <= $endTime) {
-            $times[] = $startTime->format('H:i');
+            $times[] = $startTime->format('H:i:s');
             $startTime->addHour();
         }
 

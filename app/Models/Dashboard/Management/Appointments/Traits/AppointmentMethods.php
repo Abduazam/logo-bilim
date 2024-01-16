@@ -63,33 +63,6 @@ trait AppointmentMethods
     }
 
     /**
-     * Check is appointment is pending.
-     * @returns bool
-     */
-    public function isPending(): bool
-    {
-        return $this->appointmentStatus->key === 'pending';
-    }
-
-    /**
-     * Check is appointment is started.
-     * @returns bool
-     */
-    public function isStarted(): bool
-    {
-        return $this->appointmentStatus->key === 'started';
-    }
-
-    /**
-     * Check is appointment is canceled.
-     * @returns bool
-     */
-    public function isCanceled(): bool
-    {
-        return $this->appointmentStatus->key === 'canceled';
-    }
-
-    /**
      * Gets income as format in reports.
      * @returns bool|string
      */

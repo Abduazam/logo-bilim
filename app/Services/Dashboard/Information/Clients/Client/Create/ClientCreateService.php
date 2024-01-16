@@ -23,7 +23,7 @@ class ClientCreateService extends CreateService
         $this->last_name = $data['last_name'];
         $this->dob = $data['dob'];
         $this->photo = array_key_exists('photo', $data) ? $data['photo'] : null;
-        $this->relatives = $data['relatives'];
+        $this->relatives = array_key_exists('relatives', $data) ? $data['relatives'] : [];
     }
 
     protected function create(): bool|Exception
