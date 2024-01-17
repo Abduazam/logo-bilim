@@ -1,7 +1,7 @@
 <div class="pb-4">
     <div class="row w-100 h-100 p-0 m-0">
-        <div class="col-lg-3 col-md-4 ps-0">
-            <div class="block block-rounded">
+        <div class="col-lg-3 col-md-4 ps-0 position-relative">
+            <div class="block block-rounded position-fixed">
                 <div class="block-content fs-sm">
                     <div class="col-12 px-0 mb-4">
                         <label for="begin_date" class="form-label">Begin date:</label>
