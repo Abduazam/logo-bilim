@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\Information\Teachers;
 
+use App\Models\Dashboard\Information\Branches\Branch;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Teachers\Teacher;
 
@@ -36,7 +37,14 @@ class TeacherRepository
 
     public function getByBranch()
     {
-        $branchIds = auth()->user()->branches->pluck('id')->toArray();
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            $branchIds = Branch::pluck('id')->toArray();
+        } else {
+            $branchIds = $user->branches->pluck('id')->toArray();
+        }
+
         return Teacher::whereHas('branches', function ($query) use ($branchIds) {
             $query->whereIn('branch_id', $branchIds);
         })->get();

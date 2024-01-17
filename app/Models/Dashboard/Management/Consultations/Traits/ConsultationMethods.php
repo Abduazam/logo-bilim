@@ -30,4 +30,9 @@ trait ConsultationMethods
     {
         return date('H:i', strtotime($this->end_time));
     }
+
+    public function getDate()
+    {
+        return date('Y-m-d', strtotime($this->created_at));
+    }
 }
