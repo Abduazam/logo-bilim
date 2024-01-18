@@ -27,6 +27,12 @@
     padding: 5px 12px;
     font-size: 14px;
 }
+.own-table tbody tr:hover {
+    color: #2c3034;
+    background: #ebeef2;
+    cursor: pointer;
+}
+
 .table-responsive::-webkit-scrollbar {
     width: 0;
     height: 3px;

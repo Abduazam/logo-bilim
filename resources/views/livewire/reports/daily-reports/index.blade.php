@@ -1,7 +1,7 @@
 <div class="pb-4">
     <div class="row w-100 h-100 p-0 m-0">
         <div class="col-lg-3 col-md-4 ps-0">
-            <div class="block block-rounded">
+            <div class="block block-rounded position-sticky" style="top: 100px;">
                 <div class="block-content fs-sm">
                     <div class="col-12 px-0 mb-4">
                         <label for="begin_date" class="form-label">Begin date:</label>
@@ -22,20 +22,34 @@
                 </div>
                 <div class="block-content fs-sm">
                     <div class="table-responsive text-nowrap mb-4">
-                        <table class="own-table w-100">
+                        <table class="own-table own-table-hover w-100">
                             <thead>
                                 <tr>
-                                    <th class="text-center">number</th>
-                                    <th class="text-center">teacher</th>
-                                    <th class="text-center">service</th>
-                                    <th class="text-center">start time</th>
-                                    <th class="text-center">clients</th>
-                                    <th class="text-center">status</th>
-                                    <th class="text-center">actions</th>
+                                    <th class="text-center">branch</th>
+                                    <th class="text-center">count</th>
+                                    <th class="text-center">income</th>
+                                    <th class="text-center">teachers</th>
+                                    <th class="text-center">consumption</th>
+                                    <th class="text-center">benefit</th>
+                                    <th class="text-center">cash</th>
+                                    <th class="text-center">card</th>
+                                    <th class="text-center">debt</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($appointments as $appointment)
+                                <tr wire:key="daily-report-row-{{ $appointment->id }}">
+                                    <td class="text-center">{{ $appointment->branch->title }}</td>
+                                    <td class="text-center">{{ $appointment->count }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->income) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->teachers) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->consumption) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->benefit - $appointment->consumption) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->cash) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->card) }}</td>
+                                    <td class="text-center">{{ $appointment->getAsFormatted($appointment->debt) }}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

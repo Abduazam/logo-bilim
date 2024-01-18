@@ -66,26 +66,8 @@ trait AppointmentMethods
      * Gets income as format in reports.
      * @returns bool|string
      */
-    public function getIncome(): bool|string
+    public function getAsFormatted(int $value): bool|string
     {
-        return Number::format($this->income);
-    }
-
-    /**
-     * Gets outcome as format in reports.
-     * @returns bool|string
-     */
-    public function getOutcome(): bool|string
-    {
-        return Number::format($this->outcome);
-    }
-
-    /**
-     * Gets benefit as format in reports.
-     * @returns bool|string
-     */
-    public function getBenefit(): int|string
-    {
-        return Number::format($this->benefit);
+        return Number::format($value);
     }
 }

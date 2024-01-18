@@ -5,17 +5,16 @@ namespace App\Livewire\Reports\Debts;
 use Livewire\Component;
 use Illuminate\View\View;
 use App\Repositories\Dashboard\Reports\Debts\DebtRepository;
+use App\Contracts\Traits\Dashboard\Livewire\General\ReportFilterTrait;
 use App\Repositories\Dashboard\Information\Teachers\TeacherRepository;
 
 class Index extends Component
 {
-    public ?string $begin_date = null;
-    public ?string $end_date = null;
-    public ?int $teacher_id = null;
+    use ReportFilterTrait;
 
     public function mount(): void
     {
-        $this->begin_date = date('Y-m-d');
+        $this->setDefaultBeginDate();
     }
 
     public function render(
