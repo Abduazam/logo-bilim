@@ -10,8 +10,15 @@ trait ReportFilterTrait
 
     public ?int $teacher_id = null;
 
+    public ?int $branch_id = null;
+
     protected function setDefaultBeginDate(): void
     {
         $this->begin_date = date('Y-m-d');
+    }
+
+    protected function setDefaultEndDate(): void
+    {
+        $this->end_date = date('Y-m-d');
     }
 }
