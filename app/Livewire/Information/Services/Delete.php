@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Service deleted:</b> {$this->service->title}");
+            $this->dispatchForDelete('service', $this->service->title);
         } else {
             throw $response;
         }

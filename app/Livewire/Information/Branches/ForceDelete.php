@@ -25,7 +25,7 @@ class ForceDelete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>Branch completely deleted:</b> {$this->branch->title}");
+            $this->dispatchForForceDelete('branch', $this->branch->title);
         } else {
             throw $response;
         }

@@ -12,7 +12,7 @@ class PaymentTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $paymentTypes = ['Cash', 'Card', 'Debt'];
+        $paymentTypes = ['Naqd', 'Karta', 'Qarz'];
 
         foreach ($paymentTypes as $paymentType) {
             PaymentType::create(['title' => $paymentType]);

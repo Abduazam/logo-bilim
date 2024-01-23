@@ -15,9 +15,22 @@ class Segment
         $this->segment = $segment;
     }
 
+    private function checkSegment(): string
+    {
+        if (is_numeric($this->segment)) {
+            return $this->segment;
+        }
+
+        if (in_array($this->segment, ['create', 'edit', 'restore', 'delete', 'force-delete'])) {
+            return trans('dashboard.actions.' . $this->segment);
+        }
+
+        return trans('dashboard.sections.' . $this->segment);
+    }
+
     public function name(): string
     {
-        return str_replace('-', ' ', ucfirst($this->segment));
+        return $this->checkSegment();
     }
 
     public function model()

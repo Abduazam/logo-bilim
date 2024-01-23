@@ -40,7 +40,7 @@ class Create extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New user:</b> {$this->form->name}");
+                    $this->dispatchForCreate('user', $this->form->name);
                     $this->form->reset();
                     $this->mount();
                 } else {

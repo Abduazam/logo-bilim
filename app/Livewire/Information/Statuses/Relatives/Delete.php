@@ -26,7 +26,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Relative status deleted:</b> {$this->relativeStatus->title}");
+            $this->dispatchForDelete('relatives', $this->relativeStatus->title);
         } else {
             throw $response;
         }

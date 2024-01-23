@@ -16,21 +16,21 @@
                 </div>
             </div>
             <div class="col-md-2 col-4 text-end pe-0">
-                <a href="{{ route('dashboard.user-management.roles.create') }}" class="btn btn-primary btn-sm">New role</a>
+                <a href="{{ route('dashboard.user-management.roles.create') }}" class="btn btn-primary btn-sm">{{ trans('dashboard.actions.new') }} {{ strtolower(trans('dashboard.sections.role')) }}</a>
             </div>
         </div>
     </div>
     <div class="table-responsive text-nowrap mb-4">
         <table class="own-table w-100">
             <thead>
-            <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">name</th>
-                <th class="text-center">permissions</th>
-                <th class="text-center">users</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
-            </tr>
+                <tr>
+                    <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.title') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.permissions') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.users') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($roles as $role)

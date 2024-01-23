@@ -6,7 +6,7 @@
                     <div class="block-content fs-sm">
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="name">Name: <span class="text-danger">*</span></label>
+                                <label class="form-label mb-0" for="name">{{ trans('dashboard.fields.name') }}: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
                                 <input wire:model.blur="form.name" type="text" class="form-control form-control-sm w-75 @error('form.name') is-invalid @elseif(!empty($this->form->name)) is-valid @enderror" id="name" name="name" placeholder="Name">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="email">Email: <span class="text-danger">*</span></label>
+                                <label class="form-label mb-0" for="email">{{ trans('dashboard.fields.email') }}: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
                                 <input wire:model.blur="form.email" type="text" class="form-control form-control-sm w-75 @error('form.email') is-invalid @elseif(!empty($this->form->email)) is-valid @enderror" id="email" name="email" placeholder="Email">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="role">Role: <span class="text-danger">*</span></label>
+                                <label class="form-label mb-0" for="role">{{ trans('dashboard.fields.role') }}: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
                                 <select wire:model.blur="form.role_id" class="form-select form-select-sm w-75 @error('form.role_id') is-invalid @elseif(!empty($this->form->role_id)) is-valid @enderror" name="role" id="role">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="branch_id">Branches: <span class="text-danger">*</span></label>
+                                <label class="form-label mb-0" for="branch_id">{{ trans('dashboard.sections.branches') }}: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8">
                                 <select wire:model.blur="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm w-75 @error('branch_id') is-invalid @elseif(!is_null($this->branch_id)) is-valid @enderror" name="branch_id" id="branch_id">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4 align-items-center">
                             <div class="col-4 text-end">
-                                <label class="form-label mb-0" for="password">Password: <span class="text-danger">*</span></label>
+                                <label class="form-label mb-0" for="password">{{ trans('dashboard.fields.password') }}: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-8 position-relative">
                                 <input wire:model.blur="form.password" wire:keydown="showEyeButton" type="{{ $this->passwordInputType }}" class="form-control form-control-sm w-75 @error('form.password') is-invalid @elseif(!empty($this->form->password)) is-valid @enderror" id="password" name="password" placeholder="Password">
@@ -83,12 +83,8 @@
                     </div>
                 </div>
                 <x-forms.buttons.default.back route="{{ route('dashboard.user-management.users.index') }}" />
-                <button wire:target="update" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
-                    <small>Update & Stay</small>
-                </button>
-                <button wire:target="update" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
-                    <small>Update</small>
-                </button>
+                <x-forms.buttons.default.update-stay />
+                <x-forms.buttons.default.update />
             </div>
 
             <div class="col-lg-3 col-md-4 pe-0">
@@ -100,7 +96,7 @@
                                  x-on:livewire-upload-finish="uploading = false"
                                  x-on:livewire-upload-error="uploading = false"
                                  x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <label class="form-label" for="photo">Photo</label>
+                                <label class="form-label" for="photo">{{ trans('dashboard.fields.photo') }}</label>
                                 <input wire:model="form.photo" class="form-control form-select-sm" type="file" id="photo" name="photo">
                                 <!-- Progress Bar -->
                                 <div x-show="uploading" class="mt-2">
@@ -118,7 +114,7 @@
                                         <div class="options-overlay bg-black-50">
                                             <div class="options-overlay-content">
                                                 <button type="button" class="btn btn-sm btn-alt-danger" wire:click="removePhoto('photo')">
-                                                    <i class="fa fa-times opacity-50 me-1"></i> Delete
+                                                    <i class="fa fa-times opacity-50 me-1"></i> {{ trans('dashboard.actions.delete') }}
                                                 </button>
                                             </div>
                                         </div>

@@ -12,7 +12,7 @@ class RelativeStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $relativeStatuses = ['father', 'mother', 'uncle', 'aunt'];
+        $relativeStatuses = ['Otasi', 'Onasi'];
 
         foreach ($relativeStatuses as $relativeStatus) {
             RelativeStatus::create(['title' => $relativeStatus]);

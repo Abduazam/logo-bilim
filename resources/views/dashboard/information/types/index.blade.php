@@ -8,7 +8,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fab fa-paypal fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Payments</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.payments') }}</p>
                 </div>
             </a>
         </div>

@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Relative status restored:</b> {$this->relativeStatus->title}");
+            $this->dispatchForRestore('relatives', $this->relativeStatus->title);
         } else {
             throw $response;
         }

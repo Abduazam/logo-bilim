@@ -33,7 +33,7 @@ class Create extends Component
 
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New consultation</b>");
+                $this->dispatchForCreate('consultation', $this->form->clients['info']['first_name'] . ' ' . $this->form->clients['info']['last_name']);
                 $this->form->reset();
             } else {
                 throw $response;

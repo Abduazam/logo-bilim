@@ -7,8 +7,8 @@
                         <div class="mb-3">
                             <i class="far fa-user-circle fa-3x text-corporate"></i>
                         </div>
-                        <div class="fs-4 fw-semibold mb-1">{{ $totalAppointments }} Patients</div>
-                        <div class="fw-medium text-muted">{{ $todaysAppointments }} were added today!</div>
+                        <div class="fs-4 fw-semibold mb-1">{{ $totalAppointments }} {{ trans('dashboard.sections.clients') }}</div>
+                        <div class="fw-medium text-muted">{{ trans('dashboard.warnings.added-clients-today') }} {{ $todaysAppointments }}!</div>
                     </div>
                 </div>
             </a>
@@ -20,8 +20,8 @@
                         <div class="mb-3">
                             <i class="fa fa-calendar-alt fa-3x text-elegance"></i>
                         </div>
-                        <div class="fs-4 fw-semibold mb-1">{{ $totalConsultations }} Consultations</div>
-                        <div class="fw-medium text-muted">{{ $totalNextConsultations }} are scheduled for today!</div>
+                        <div class="fs-4 fw-semibold mb-1">{{ $totalConsultations }} {{ trans('dashboard.sections.consultations') }}</div>
+                        <div class="fw-medium text-muted">{{ trans('dashboard.warnings.scheduled-consultations-today') }} {{ $totalNextConsultations }}!</div>
                     </div>
                 </div>
             </a>
@@ -33,8 +33,8 @@
                         <div class="mb-3">
                             <i class="fab fa-paypal fa-3x text-primary"></i>
                         </div>
-                        <div class="fs-4 fw-semibold mb-1">{{ $totalConsumptions }} Consumptions</div>
-                        <div class="fw-medium text-muted">{{ $sumConsumptions }} for today.</div>
+                        <div class="fs-4 fw-semibold mb-1">{{ $totalConsumptions }} {{ trans('dashboard.sections.consumptions') }}</div>
+                        <div class="fw-medium text-muted">{{ trans('dashboard.warnings.today-consumptions') }} {{ $sumConsumptions }}.</div>
                     </div>
                 </div>
             </a>

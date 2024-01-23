@@ -42,7 +42,6 @@ trait UpdateRegistrationForm
         $busyHours = $appointmentRepository->getBusyHours($this->branch_id, $this->service_id, $this->teacher_id, $this->created_date);
 
         $freeHours = array_diff($allHours, $busyHours);
-        $freeHours[] = $this->start_time;
 
         sort($freeHours);
 

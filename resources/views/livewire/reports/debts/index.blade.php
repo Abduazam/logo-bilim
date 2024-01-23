@@ -4,17 +4,17 @@
             <div class="block block-rounded position-sticky" style="top: 100px;">
                 <div class="block-content fs-sm">
                     <div class="col-12 px-0 mb-4">
-                        <label for="begin_date" class="form-label">Begin date:</label>
+                        <label for="begin_date" class="form-label">{{ trans('dashboard.filters.begin_date') }}:</label>
                         <input wire:model.blur="begin_date" type="date" class="form-control form-control-sm w-100" id="begin_date" name="begin_date">
                     </div>
                     <div class="col-12 px-0 mb-4">
-                        <label for="end_date" class="form-label">End date:</label>
+                        <label for="end_date" class="form-label">{{ trans('dashboard.filters.end_date') }}:</label>
                         <input wire:model.blur="end_date" type="date" class="form-control form-control-sm w-100" id="end_date" name="end_date">
                     </div>
                     <div class="col-12 px-0 mb-4">
-                        <label for="teacher_id" class="form-label">Teacher:</label>
+                        <label for="teacher_id" class="form-label">{{ trans('dashboard.sections.teacher') }}:</label>
                         <select wire:model.live="teacher_id" class="form-select form-select-sm w-100" name="teacher_id" id="teacher_id">
-                            <option value="">Choose</option>
+                            <x-forms.selects.options.choose />
                             @foreach($teachers as $teacher)
                                 <option value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
                             @endforeach
@@ -27,17 +27,17 @@
         <div class="col-lg-9 col-md-8 pe-0">
             <div class="block block-rounded">
                 <div class="block-header bg-primary-dark text-white">
-                    <p class="small mb-0 fw-bold">Appointment</p>
+                    <p class="small mb-0 fw-bold">{{ trans('dashboard.sections.appointments') }}</p>
                 </div>
                 <div class="block-content fs-sm">
                     <div class="table-responsive text-nowrap mb-4">
                         <table class="own-table w-100">
                             <thead>
                             <tr>
-                                <th class="text-center">teacher</th>
-                                <th class="text-center">client</th>
-                                <th class="text-center">date</th>
-                                <th class="text-center">amount</th>
+                                <th class="text-center">{{ trans('dashboard.sections.teacher') }}</th>
+                                <th class="text-center">{{ trans('dashboard.sections.client') }}</th>
+                                <th class="text-center">{{ trans('dashboard.fields.date') }}</th>
+                                <th class="text-center">{{ trans('dashboard.fields.amount') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -58,17 +58,17 @@
             @can('dashboard.management.consultations.index')
             <div class="block block-rounded">
                 <div class="block-header bg-primary-dark text-white">
-                    <p class="small mb-0 fw-bold">Consultation</p>
+                    <p class="small mb-0 fw-bold">{{ trans('dashboard.sections.consultations') }}</p>
                 </div>
                 <div class="block-content fs-sm">
                     <div class="table-responsive text-nowrap mb-4">
                         <table class="own-table w-100">
                             <thead>
                             <tr>
-                                <th class="text-center">client</th>
-                                <th class="text-center">date</th>
-                                <th class="text-center">time</th>
-                                <th class="text-center">amount</th>
+                                <th class="text-center">{{ trans('dashboard.sections.client') }}</th>
+                                <th class="text-center">{{ trans('dashboard.fields.date') }}</th>
+                                <th class="text-center">{{ trans('dashboard.fields.time') }}</th>
+                                <th class="text-center">{{ trans('dashboard.fields.amount') }}</th>
                             </tr>
                             </thead>
                             <tbody>

@@ -7,7 +7,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-user fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Users</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.users') }}</p>
                 </div>
             </a>
         </div>
@@ -19,7 +19,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-gear fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Roles</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.roles') }}</p>
                 </div>
             </a>
         </div>
@@ -31,7 +31,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-gear fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Permissions</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.permissions') }}</p>
                 </div>
             </a>
         </div>

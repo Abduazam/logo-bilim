@@ -42,7 +42,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Appointment:</b> {$this->appointment->number}");
+                $this->dispatchForUpdate('appointment', $this->appointment->number);
                 $this->form->reset();
                 $this->mount();
             } else {

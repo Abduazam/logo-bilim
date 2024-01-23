@@ -8,7 +8,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-calendar-alt fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Appointments</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.appointments') }}</p>
                 </div>
             </a>
         </div>
@@ -21,7 +21,7 @@
                         <p class="mt-1 mb-2">
                             <i class="far fa-address-card fa-2x text-muted"></i>
                         </p>
-                        <p class="fw-semibold">Consultations</p>
+                        <p class="fw-semibold">{{ trans('dashboard.sections.consultations') }}</p>
                     </div>
                 </a>
             </div>
@@ -34,7 +34,7 @@
                         <p class="mt-1 mb-2">
                             <i class="fa fa-sack-dollar fa-2x text-muted"></i>
                         </p>
-                        <p class="fw-semibold">Consumptions</p>
+                        <p class="fw-semibold">{{ trans('dashboard.sections.consumptions') }}</p>
                     </div>
                 </a>
             </div>

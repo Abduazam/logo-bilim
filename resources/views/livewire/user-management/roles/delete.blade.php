@@ -4,12 +4,12 @@
     </button>
 
     <div wire:ignore.self class="modal fade" id="modal-delete-role-id{{ $this->role->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-delete-role-id{{ $this->role->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content fs-sm text-start">
                 <form wire:submit.prevent="delete" class="form-border-radius">
                     <div class="block block-rounded shadow-none mb-0">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title fs-sm mt-1">Delete role</h3>
+                            <h3 class="block-title fs-sm mt-1">{{ trans('dashboard.sections.role') }} {{ strtolower(trans('dashboard.actions.delete')) }}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                     <i class="fa fa-times"></i>
@@ -19,14 +19,14 @@
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
                                 <div class="col-12 px-0 mb-4">
-                                    <label class="form-label" for="name">Name</label>
-                                    <input value="{{ $this->role->name }}" type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Name" readonly disabled>
+                                    <label class="form-label" for="name">{{ trans('dashboard.fields.title') }}</label>
+                                    <input value="{{ $this->role->name }}" type="text" class="form-control form-control-sm" id="name" name="name" placeholder="{{ trans('dashboard.fields.title') }}" readonly disabled>
                                 </div>
                             </div>
                         </div>
                         <div class="block-content block-content-full block-content-sm d-flex align-items-center justify-content-between border-top">
-                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-dismiss="modal">Close</button>
-                            <button wire:target="delete" wire:loading.attr="disabled" type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            <x-forms.buttons.modal.close />
+                            <x-forms.buttons.modal.delete />
                         </div>
                     </div>
                 </form>

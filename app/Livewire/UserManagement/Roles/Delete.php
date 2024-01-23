@@ -25,7 +25,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Role deleted:</b> {$this->role->name}");
+            $this->dispatchForDelete('role', $this->role->name);
         } else {
             throw $response;
         }

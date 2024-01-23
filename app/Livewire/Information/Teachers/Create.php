@@ -38,7 +38,7 @@ class Create extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New teacher:</b> {$this->form->fullname}");
+                    $this->dispatchForCreate('teacher', $this->form->fullname);
                     $this->form->reset();
                     $this->mount();
                 } else {

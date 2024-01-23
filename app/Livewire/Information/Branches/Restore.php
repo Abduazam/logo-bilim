@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Branch restored:</b> {$this->branch->title}");
+            $this->dispatchForRestore('branch', $this->branch->title);
         } else {
             throw $response;
         }

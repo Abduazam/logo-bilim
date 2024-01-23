@@ -24,7 +24,6 @@ class UpdateAppointmentForm extends Form
         $this->service_id = $appointment->service_id;
         $this->setTeachers();
         $this->teacher_id = $appointment->teacher_id;
-        $this->start_time = $appointment->getStartTime();
         $this->setTimes();
         $this->created_date = $appointment->created_date;
 

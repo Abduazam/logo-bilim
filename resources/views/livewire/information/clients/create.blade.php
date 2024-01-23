@@ -6,22 +6,22 @@
                     <div class="block-content fs-sm">
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
-                                <label class="form-label" for="first_name">First name: <span class="text-danger">*</span></label>
-                                <input wire:model.blur="form.first_name" type="text" class="form-control form-control-sm w-100 @error('form.first_name') is-invalid @elseif(!empty($this->form->first_name)) is-valid @enderror" id="first_name" name="first_name" placeholder="First name">
+                                <label class="form-label" for="first_name">{{ trans('dashboard.fields.first_name') }}: <span class="text-danger">*</span></label>
+                                <input wire:model.blur="form.first_name" type="text" class="form-control form-control-sm w-100 @error('form.first_name') is-invalid @elseif(!empty($this->form->first_name)) is-valid @enderror" id="first_name" name="first_name" placeholder="{{ trans('dashboard.fields.first_name') }}">
                                 @error('form.first_name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
-                                <label class="form-label" for="last_name">Last name:</label>
-                                <input wire:model.blur="form.last_name" type="text" class="form-control form-control-sm w-100 @error('form.last_name') is-invalid @elseif(!empty($this->form->last_name)) is-valid @enderror" id="last_name" name="last_name" placeholder="Last name">
+                                <label class="form-label" for="last_name">{{ trans('dashboard.fields.last_name') }}:</label>
+                                <input wire:model.blur="form.last_name" type="text" class="form-control form-control-sm w-100 @error('form.last_name') is-invalid @elseif(!empty($this->form->last_name)) is-valid @enderror" id="last_name" name="last_name" placeholder="{{ trans('dashboard.fields.last_name') }}">
                                 @error('form.last_name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 pe-0">
-                                <label class="form-label" for="dob">Date of birth: <span class="text-danger">*</span></label>
-                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
+                                <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}: <span class="text-danger">*</span></label>
+                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="{{ trans('dashboard.fields.birth_date') }}">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -33,23 +33,23 @@
                                 @foreach($this->form->relatives as $id => $relative)
                                     <div class="row w-100 h-100 p-3 mx-0 mb-4 bg-light rounded-2 position-relative">
                                         <div class="col-md-4 ps-0">
-                                            <label class="form-label" for="fullname">Fullname: <span class="text-danger">*</span></label>
-                                            <input wire:model.blur="form.relatives.{{ $id }}.fullname" type="text" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.fullname') is-invalid @elseif(strlen($this->form->relatives[$id]['fullname']) > 3) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
+                                            <label class="form-label" for="fullname">{{ trans('dashboard.fields.fullname') }}: <span class="text-danger">*</span></label>
+                                            <input wire:model.blur="form.relatives.{{ $id }}.fullname" type="text" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.fullname') is-invalid @elseif(strlen($this->form->relatives[$id]['fullname']) > 3) is-valid @enderror" id="fullname" name="fullname" placeholder="{{ trans('dashboard.fields.fullname') }}">
                                             @error('form.relatives.' . $id . '.fullname')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 px-md-2 px-0">
-                                            <label class="form-label" for="phone_number">Phone number: <span class="text-danger">*</span></label>
-                                            <input wire:model.blur="form.relatives.{{ $id }}.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.phone_number') is-invalid @elseif(strlen($this->form->relatives[$id]['phone_number']) > 3) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
+                                            <label class="form-label" for="phone_number">{{ trans('dashboard.fields.phone_number') }}: <span class="text-danger">*</span></label>
+                                            <input wire:model.blur="form.relatives.{{ $id }}.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.relatives.' . $id . '.phone_number') is-invalid @elseif(strlen($this->form->relatives[$id]['phone_number']) > 3) is-valid @enderror" id="phone_number" name="phone_number" placeholder="{{ trans('dashboard.fields.phone_number') }}">
                                             @error('form.relatives.' . $id . '.phone_number')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-md-4 pe-0">
-                                            <label class="form-label" for="relative_status_id">Relative status: <span class="text-danger">*</span></label>
+                                            <label class="form-label" for="relative_status_id">{{ trans('dashboard.fields.relative_status') }}: <span class="text-danger">*</span></label>
                                             <select wire:model.blur="form.relatives.{{ $id }}.relative_status_id" class="form-select form-select-sm w-100 @error('form.relatives.' . $id . '.relative_status_id') is-invalid @elseif(!is_null($this->form->relatives[$id]['relative_status_id'])) is-valid @enderror" id="relative_status_id" name="relative_status_id">
-                                                <option value="null" disabled>Choose</option>
+                                                <x-forms.selects.options.choose />
                                                 @foreach($relativeStatuses as $relativeStatus)
                                                 <option value="{{ $relativeStatus->id }}">{{ $relativeStatus->title }}</option>
                                                 @endforeach
@@ -64,7 +64,7 @@
                                     </div>
                                 @endforeach
                             @endif
-                            <button wire:click="addRelative" wire:loading.attr="disabled" type="button" class="btn btn-primary btn-sm mb-4">Add relative</button>
+                            <button wire:click="addRelative" wire:loading.attr="disabled" type="button" class="btn btn-primary btn-sm mb-4">{{ trans('dashboard.sections.relative') }} {{ strtolower(trans('dashboard.actions.add')) }}</button>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                                  x-on:livewire-upload-finish="uploading = false"
                                  x-on:livewire-upload-error="uploading = false"
                                  x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <label class="form-label" for="photo">Photo</label>
+                                <label class="form-label" for="photo">{{ trans('dashboard.fields.photo') }}</label>
                                 <input wire:model="form.photo" class="form-control form-select-sm" type="file" id="photo" name="photo">
                                 <!-- Progress Bar -->
                                 <div x-show="uploading" class="mt-2">
@@ -93,7 +93,7 @@
                                         <div class="options-overlay bg-black-50">
                                             <div class="options-overlay-content">
                                                 <button type="button" class="btn btn-sm btn-alt-danger" wire:click="removePhoto('photo')">
-                                                    <i class="fa fa-times opacity-50 me-1"></i> Delete
+                                                    <i class="fa fa-times opacity-50 me-1"></i> {{ trans('dashboard.actions.delete') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -107,11 +107,7 @@
         </div>
 
         <x-forms.buttons.default.back route="{{ route('dashboard.information.clients.index') }}" />
-        <button wire:target="create" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
-            <small>Create & Create another</small>
-        </button>
-        <button wire:target="create" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
-            <small>Create</small>
-        </button>
+        <x-forms.buttons.default.create-another />
+        <x-forms.buttons.default.create />
     </form>
 </div>

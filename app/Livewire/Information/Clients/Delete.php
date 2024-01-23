@@ -25,7 +25,7 @@ class Delete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Client deleted:</b> {$this->client->first_name} {$this->client->last_name}");
+            $this->dispatchForDelete('client', $this->client->first_name . ' ' . $this->client->last_name);
         } else {
             throw $response;
         }

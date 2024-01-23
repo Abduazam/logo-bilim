@@ -41,7 +41,7 @@ class Update extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Teacher updated:</b> {$this->form->fullname}");
+                    $this->dispatchForUpdate('teacher', $this->form->fullname);
                 } else {
                     return to_route('dashboard.information.teachers.index');
                 }

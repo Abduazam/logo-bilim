@@ -33,7 +33,7 @@ class Create extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New client:</b> {$this->form->first_name} {$this->form->last_name}");
+                    $this->dispatchForCreate('client', $this->form->first_name . ' ' .$this->form->last_name);
                     $this->form->reset();
                 } else {
                     return to_route('dashboard.information.clients.index');

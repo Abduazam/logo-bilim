@@ -8,7 +8,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-user-group fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Relatives</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.relatives') }}</p>
                 </div>
             </a>
         </div>
@@ -22,7 +22,7 @@
                     <p class="mt-1 mb-2">
                         <i class="far fa-clock fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Appointments</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.statuses-appointments') }}</p>
                 </div>
             </a>
         </div>

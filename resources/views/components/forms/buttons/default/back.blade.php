@@ -1,3 +1,3 @@
 <a href="{{ $route }}" class="btn btn-white">
-    <small>back</small>
+    <small>{{ trans('dashboard.actions.back') }}</small>
 </a>

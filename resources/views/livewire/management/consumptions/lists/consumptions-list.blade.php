@@ -15,13 +15,13 @@
         <table class="own-table w-100">
             <thead>
                 <tr>
-                    <th class="text-center">id</th>
-                    <th class="text-center">user</th>
-                    <th class="text-center">branch</th>
-                    <th class="text-center">amount</th>
-                    <th class="text-center">comment</th>
-                    <th class="text-center">created_at</th>
-                    <th class="text-center">actions</th>
+                    <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.user') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.branch') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.amount') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.comment') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
                 </tr>
             </thead>
             <tbody>

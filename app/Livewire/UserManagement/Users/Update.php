@@ -43,7 +43,7 @@ class Update extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>User updated:</b> {$this->form->name}");
+                    $this->dispatchForUpdate('user', $this->form->name);
                     $this->mount();
                 } else {
                     return to_route('dashboard.user-management.users.index');

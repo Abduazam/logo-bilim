@@ -39,7 +39,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Consumption updated:</b> {$this->form->comment}");
+                $this->dispatchForUpdate('consumption', $this->consumption->comment);
             } else {
                 throw $response;
             }

@@ -31,7 +31,7 @@ class CreateInOutside extends Component
 
             if ($response) {
                 $this->dispatch('consumption-in-outside');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New consumption:</b> {$this->form->comment}");
+                $this->dispatchForCreate('consumption', $this->form->comment);
                 $this->form->reset();
             } else {
                 throw $response;

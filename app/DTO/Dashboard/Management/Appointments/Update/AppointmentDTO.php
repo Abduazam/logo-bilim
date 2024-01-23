@@ -28,7 +28,7 @@ class AppointmentDTO
             'teacher_id' => $this->teacher_id,
             'service_id' => $this->service_id,
             'service_price' => $this->service_price,
-            'start_time' => $this->start_time . ":00",
+            'start_time' => $this->start_time,
             'created_date' => $this->created_date,
         ];
     }

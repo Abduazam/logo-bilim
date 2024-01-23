@@ -12,11 +12,15 @@ class AppointmentStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $appointmentStatuses = ['Pending', 'Started', 'Canceled'];
+        $appointmentStatuses = [
+            'pending' => 'Kutilmoqda',
+            'started' => 'Boshlangan',
+            'canceled' => 'Bekor qilingan'
+        ];
 
-        foreach ($appointmentStatuses as $appointmentStatus) {
+        foreach ($appointmentStatuses as $key => $appointmentStatus) {
             AppointmentStatus::create([
-                'key' => strtolower($appointmentStatus),
+                'key' => strtolower($key),
                 'title' => $appointmentStatus,
             ]);
         }

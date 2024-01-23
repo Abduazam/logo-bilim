@@ -25,7 +25,7 @@ class Restore extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-rotate-left text-primary', 'restored-successfully', "<b>Teacher restored:</b> {$this->teacher->fullname}");
+            $this->dispatchForRestore('teacher', $this->teacher->fullname);
         } else {
             throw $response;
         }

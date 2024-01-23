@@ -35,7 +35,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Permission updated:</b> {$this->permission->name}");
+                $this->dispatchForUpdate('permission', $this->permission->name);
             } else {
                 throw $response;
             }

@@ -21,12 +21,12 @@
         <table class="own-table w-100">
             <thead>
                 <tr>
-                    <th class="text-center">id</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">roles</th>
-                    <th class="text-center">description</th>
-                    <th class="text-center">created_at</th>
-                    <th class="text-center">actions</th>
+                    <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.title') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.roles') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.translation') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
                 </tr>
             </thead>
             <tbody>

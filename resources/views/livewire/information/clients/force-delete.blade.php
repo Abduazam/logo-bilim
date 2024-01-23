@@ -9,7 +9,7 @@
                 <form wire:submit.prevent="forceDelete" class="form-border-radius">
                     <div class="block block-rounded shadow-none mb-0">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title fs-sm mt-1">Force Delete client</h3>
+                            <h3 class="block-title fs-sm mt-1">{{ trans('dashboard.sections.client') }} {{ strtolower(trans('dashboard.actions.force-delete')) }}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                     <i class="fa fa-times"></i>
@@ -19,18 +19,18 @@
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
                                 <div class="col-6 ps-0 mb-4">
-                                    <label class="form-label" for="first_name">First name</label>
-                                    <input value="{{ $this->client->first_name }}" type="text" class="form-control form-control-sm" id="first_name" name="first_name" placeholder="First name" readonly disabled>
+                                    <label class="form-label" for="first_name">{{ trans('dashboard.fields.first_name') }}</label>
+                                    <input value="{{ $this->client->first_name }}" type="text" class="form-control form-control-sm" id="first_name" name="first_name" readonly disabled>
                                 </div>
                                 <div class="col-6 pe-0 mb-4">
-                                    <label class="form-label" for="last_name">Last name</label>
-                                    <input value="{{ $this->client->last_name }}" type="text" class="form-control form-control-sm" id="last_name" name="last_name" placeholder="Last name" readonly disabled>
+                                    <label class="form-label" for="last_name">{{ trans('dashboard.fields.last_name') }}</label>
+                                    <input value="{{ $this->client->last_name }}" type="text" class="form-control form-control-sm" id="last_name" name="last_name" readonly disabled>
                                 </div>
                             </div>
                         </div>
                         <div class="block-content block-content-full block-content-sm d-flex align-items-center justify-content-between border-top">
-                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-dismiss="modal">Close</button>
-                            <button wire:target="forceDelete" wire:loading.attr="disabled" type="submit" class="btn btn-sm btn-danger">Force Delete</button>
+                            <x-forms.buttons.modal.close />
+                            <x-forms.buttons.modal.force-delete />
                         </div>
                     </div>
                 </form>

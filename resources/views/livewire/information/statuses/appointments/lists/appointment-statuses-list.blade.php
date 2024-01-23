@@ -22,11 +22,11 @@
         <table class="own-table w-100">
             <thead>
             <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">key</th>
-                <th class="text-center">title</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
+                <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.key') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.title') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
             </tr>
             </thead>
             <tbody>

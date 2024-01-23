@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-4 text-end pe-0">
-                <livewire:information.types.payments.create />
+            {{-- <livewire:information.types.payments.create /> --}}
             </div>
         </div>
     </div>
@@ -24,10 +24,10 @@
         <table class="own-table w-100">
             <thead>
             <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">title</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
+                <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.title') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -37,13 +37,14 @@
                     <td class="text-center">{{ $paymentType->title }}</td>
                     <td class="text-center">{{ $paymentType->created_at }}</td>
                     <td class="text-center">
-                        @if(!$paymentType->trashed())
-                            <livewire:information.types.payments.update :paymentType="$paymentType" :wire:key="'update-payment-type-id' . $paymentType->id" />
-                            <livewire:information.types.payments.delete :paymentType="$paymentType" :wire:key="'delete-payment-type-id' . $paymentType->id" />
-                        @else
-                            <livewire:information.types.payments.restore :paymentType="$paymentType" :wire:key="'restore-payment-type-id' . $paymentType->id" />
-                            <livewire:information.types.payments.force-delete :paymentType="$paymentType" :wire:key="'force-delete-payment-type-id' . $paymentType->id" />
-                        @endif
+                        <livewire:information.types.payments.update :paymentType="$paymentType" :wire:key="'update-payment-type-id' . $paymentType->id" />
+                        {{-- @if(!$paymentType->trashed())--}}
+                        {{--     <livewire:information.types.payments.update :paymentType="$paymentType" :wire:key="'update-payment-type-id' . $paymentType->id" />--}}
+                        {{--     <livewire:information.types.payments.delete :paymentType="$paymentType" :wire:key="'delete-payment-type-id' . $paymentType->id" />--}}
+                        {{-- @else--}}
+                        {{--     <livewire:information.types.payments.restore :paymentType="$paymentType" :wire:key="'restore-payment-type-id' . $paymentType->id" />--}}
+                        {{--     <livewire:information.types.payments.force-delete :paymentType="$paymentType" :wire:key="'force-delete-payment-type-id' . $paymentType->id" />--}}
+                        {{-- @endif--}}
                     </td>
                 </tr>
             @endforeach

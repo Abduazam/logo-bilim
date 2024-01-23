@@ -26,7 +26,7 @@ class Cancel extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Consultation canceled:</b> {$this->consultation->id}");
+            $this->dispatchForCancel('consultation', $this->consultation->id);
         } else {
             throw $response;
         }

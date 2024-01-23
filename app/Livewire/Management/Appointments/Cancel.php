@@ -26,7 +26,7 @@ class Cancel extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'deleted-successfully', "<b>Appointment canceled:</b> {$this->appointment->id}");
+            $this->dispatchForCancel('appointment', $this->appointment->id);
         } else {
             throw $response;
         }

@@ -6,7 +6,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="payment_type_id" class="w-100">
                             <select wire:model.live="payment_type_id" class="form-select form-select-sm" name="payment_type_id" id="payment_type_id">
-                                <option value="0">Type</option>
+                                <option value="0">{{ trans('dashboard.sections.payments') }}</option>
                                 @foreach($paymentTypes as $paymentType)
                                     <option value="{{ $paymentType->id }}">{{ $paymentType->title }}</option>
                                 @endforeach
@@ -16,7 +16,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="consultation_status_id" class="w-100">
                             <select wire:model.live="consultation_status_id" class="form-select form-select-sm" name="consultation_status_id" id="consultation_status_id">
-                                <option value="0">Status</option>
+                                <option value="0">{{ trans('dashboard.sections.statuses') }}</option>
                                 @foreach($appointmentStatuses as $appointmentStatus)
                                     <option value="{{ $appointmentStatus->id }}">{{ $appointmentStatus->title }}</option>
                                 @endforeach
@@ -34,13 +34,13 @@
         <table class="own-table w-100">
             <thead>
                 <tr>
-                    <th class="text-center">client</th>
-                    <th class="text-center">phone number</th>
-                    <th class="text-center">cost</th>
-                    <th class="text-center">payment type</th>
-                    <th class="text-center">time</th>
-                    <th class="text-center">status</th>
-                    <th class="text-center">actions</th>
+                    <th class="text-center">{{ trans('dashboard.sections.client') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.phone_number') }} </th>
+                    <th class="text-center">{{ trans('dashboard.fields.price') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.payment') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.time') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.status') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
                 </tr>
             </thead>
             <tbody>

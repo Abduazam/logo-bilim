@@ -6,7 +6,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="branch_id" class="w-100">
                             <select wire:model.live="branch_id" class="form-select form-select-sm" name="branch_id" id="branch_id">
-                                <option value="0">All branches</option>
+                                <option value="0">{{ trans('dashboard.filters.all-with') }} {{ strtolower(trans('dashboard.sections.branches')) }}</option>
                                 @foreach($branches as $branch)
                                     <option value="{{ $branch->id }}">{{ $branch->title }}</option>
                                 @endforeach
@@ -16,7 +16,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="teacher_id" class="w-100">
                             <select wire:model.live="teacher_id" class="form-select form-select-sm" name="teacher_id" id="teacher_id">
-                                <option value="0">All teachers</option>
+                                <option value="0">{{ trans('dashboard.filters.all-with') }} {{ strtolower(trans('dashboard.sections.teachers')) }}</option>
                                 @foreach($teachers as $teacher)
                                     <option value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
                                 @endforeach
@@ -26,7 +26,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="service_id" class="w-100">
                             <select wire:model.live="service_id" class="form-select form-select-sm" name="service_id" id="service_id">
-                                <option value="0">All services</option>
+                                <option value="0">{{ trans('dashboard.filters.all-with') }} {{ strtolower(trans('dashboard.sections.services')) }}</option>
                                 @foreach($services as $service)
                                     <option value="{{ $service->id }}">{{ $service->title }}</option>
                                 @endforeach
@@ -36,7 +36,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="appointment_status_id" class="w-100">
                             <select wire:model.live="appointment_status_id" class="form-select form-select-sm" name="appointment_status_id" id="appointment_status_id">
-                                <option value="0">Status</option>
+                                <option value="0">{{ trans('dashboard.sections.status') }}</option>
                                 @foreach($appointmentStatuses as $appointmentStatus)
                                     <option value="{{ $appointmentStatus->id }}">{{ $appointmentStatus->title }}</option>
                                 @endforeach
@@ -46,7 +46,7 @@
                     <div class="col-md-2 col-6 ps-0">
                         <label for="hour" class="w-100">
                             <select wire:model.live="hour" class="form-select form-select-sm" name="hour" id="hour">
-                                <option value="0">Hour</option>
+                                <option value="0">{{ trans('dashboard.filters.hours') }}</option>
                                 @foreach($hours as $hour)
                                     <option value="{{ $hour }}">{{ $hour }}</option>
                                 @endforeach
@@ -67,13 +67,13 @@
         <table class="own-table w-100">
             <thead>
             <tr>
-                <th class="text-center">number</th>
-                <th class="text-center">teacher</th>
-                <th class="text-center">service</th>
-                <th class="text-center">start time</th>
-                <th class="text-center">clients</th>
-                <th class="text-center">status</th>
-                <th class="text-center">actions</th>
+                <th class="text-center">{{ trans('dashboard.fields.number') }}</th>
+                <th class="text-center">{{ trans('dashboard.sections.teacher') }}</th>
+                <th class="text-center">{{ trans('dashboard.sections.service') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.start_time') }}</th>
+                <th class="text-center">{{ trans('dashboard.sections.clients') }}</th>
+                <th class="text-center">{{ trans('dashboard.sections.status') }}</th>
+                <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
             </tr>
             </thead>
             <tbody>

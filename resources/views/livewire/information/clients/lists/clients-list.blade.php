@@ -16,22 +16,22 @@
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 col-3 text-end pe-0">
-                <a href="{{ route('dashboard.information.clients.create') }}" class="btn btn-primary btn-sm">New client</a>
+                <a href="{{ route('dashboard.information.clients.create') }}" class="btn btn-primary btn-sm">{{ trans('dashboard.actions.new') }} {{ strtolower(trans('dashboard.sections.client')) }}</a>
             </div>
         </div>
     </div>
     <div class="table-responsive text-nowrap mb-4">
         <table class="own-table w-100">
             <thead>
-            <tr>
-                <th class="text-center">id</th>
-                <th class="text-center">first name</th>
-                <th class="text-center">last name</th>
-                <th class="text-center">birth date</th>
-                <th class="text-center">relatives</th>
-                <th class="text-center">created_at</th>
-                <th class="text-center">actions</th>
-            </tr>
+                <tr>
+                    <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.first_name') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.last_name') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.birth_date') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.relatives') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($clients as $client)

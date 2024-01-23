@@ -25,7 +25,7 @@ class ForceDelete extends Component
 
         if ($response) {
             $this->dispatch('refresh');
-            $this->dispatchSuccess('fa fa-trash text-danger', 'force-deleted-successfully', "<b>User completely deleted:</b> {$this->user->name}");
+            $this->dispatchForForceDelete('user', $this->user->name);
         } else {
             throw $response;
         }

@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Dashboard\Management\Appointments;
 
-use App\Models\Dashboard\Information\Branches\Branch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Dashboard\Information\Branches\Branch;
 use App\Models\Dashboard\Management\Appointments\Appointment;
 
 class AppointmentRepository
@@ -34,7 +34,7 @@ class AppointmentRepository
             ->when($teacher_id, function ($query, $teacher_id) {
                 return $query->where('teacher_id', $teacher_id);
             })->pluck('start_time')->map(function ($time) {
-                return Carbon::parse($time)->format('H:s');
+                return Carbon::parse($time)->format('H:i:s');
             })->toArray();
     }
 

@@ -40,7 +40,7 @@ class Update extends Component
 
             if ($response) {
                 if ($this->dispatching) {
-                    $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Client updated:</b> {$this->form->first_name} {$this->form->last_name}");
+                    $this->dispatchForUpdate('client', $this->form->first_name . ' ' . $this->form->last_name);
                 } else {
                     return to_route('dashboard.information.clients.index');
                 }

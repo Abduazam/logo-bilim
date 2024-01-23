@@ -8,7 +8,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-gears fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Services</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.services') }}</p>
                 </div>
             </a>
         </div>
@@ -22,7 +22,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-bank fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Branches</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.branches') }}</p>
                 </div>
             </a>
         </div>
@@ -36,7 +36,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-chalkboard-user fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Teachers</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.teachers') }}</p>
                 </div>
             </a>
         </div>
@@ -50,7 +50,7 @@
                     <p class="mt-1 mb-2">
                         <i class="far fa-circle-user fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Clients</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.clients') }}</p>
                 </div>
             </a>
         </div>
@@ -63,7 +63,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-s fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Statuses</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.statuses') }}</p>
                 </div>
             </a>
         </div>
@@ -76,7 +76,7 @@
                     <p class="mt-1 mb-2">
                         <i class="fa fa-t fa-2x text-muted"></i>
                     </p>
-                    <p class="fw-semibold">Types</p>
+                    <p class="fw-semibold">{{ trans('dashboard.sections.types') }}</p>
                 </div>
             </a>
         </div>

@@ -33,7 +33,7 @@ class Reschedule extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-clock-rotate-left text-info', 'updated-successfully', "<b>Appointment rescheduled:</b> <br> {$this->appointment->created_date} => {$this->form->date} <br> $time => {$this->form->start_time}");
+                $this->dispatchForReschedule('appointment', '<br>' . $this->appointment->created_date . ' => ' . $this->form->date . '<br>' . $time . ' => ' . $this->form->start_time);
             } else {
                 throw $response;
             }

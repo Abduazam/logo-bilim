@@ -6,22 +6,22 @@
                     <div class="block-content fs-sm">
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
-                                <label class="form-label" for="fullname">Fullname: <span class="text-danger">*</span></label>
-                                <input wire:model.blur="form.fullname" type="text" class="form-control form-control-sm w-100 @error('form.fullname') is-invalid @elseif(!empty($this->form->fullname)) is-valid @enderror" id="fullname" name="fullname" placeholder="Fullname">
+                                <label class="form-label" for="fullname">{{ trans('dashboard.fields.fullname') }}: <span class="text-danger">*</span></label>
+                                <input wire:model.blur="form.fullname" type="text" class="form-control form-control-sm w-100 @error('form.fullname') is-invalid @elseif(!empty($this->form->fullname)) is-valid @enderror" id="fullname" name="fullname" placeholder="{{ trans('dashboard.fields.fullname') }}">
                                 @error('form.fullname')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
-                                <label class="form-label" for="dob">Date of birth:</label>
-                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="Date of birth">
+                                <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}:</label>
+                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-4 pe-0">
-                                <label class="form-label" for="phone_number">Phone number:</label>
-                                <input wire:model.blur="form.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.phone_number') is-invalid @elseif(!empty($this->form->phone_number)) is-valid @enderror" id="phone_number" name="phone_number" placeholder="Phone number">
+                                <label class="form-label" for="phone_number">{{ trans('dashboard.fields.phone_number') }}:</label>
+                                <input wire:model.blur="form.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.phone_number') is-invalid @elseif(!empty($this->form->phone_number)) is-valid @enderror" id="phone_number" name="phone_number" placeholder="{{ trans('dashboard.fields.phone_number') }}">
                                 @error('form.phone_number')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -29,7 +29,7 @@
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
                             <div class="col-md-4 ps-0">
-                                <label class="form-label" for="branches">Branch:</label>
+                                <label class="form-label" for="branches">{{ trans('dashboard.sections.branch') }}:</label>
                                 <select wire:model.blur="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->branches)) is-valid @enderror" name="branches" id="branches">
                                     <option value="null" disabled>Choose</option>
                                     @foreach($this->branches as $id => $name)
@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
-                                <label class="form-label" for="services">Service:</label>
+                                <label class="form-label" for="services">{{ trans('dashboard.sections.service') }}:</label>
                                 <select wire:model.blur="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->services)) is-valid @enderror" name="services" id="services" @if(is_null($this->branch_id)) disabled @endif>
                                     <option value="null" disabled>Choose</option>
                                     @foreach($this->services as $id => $name)
@@ -64,7 +64,7 @@
                                                     <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-9">
-                                                    <input wire:model.blur="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="Price: {{ $values['price'] }}">
+                                                    <input wire:model.blur="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="{{ trans('dashboard.fields.price') }}: {{ $values['price'] }}">
                                                     @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary')
                                                     <span class="invalid-feedback">{{ $message }}</span>
                                                     @enderror
@@ -91,7 +91,7 @@
                                  x-on:livewire-upload-finish="uploading = false"
                                  x-on:livewire-upload-error="uploading = false"
                                  x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <label class="form-label" for="photo">Photo</label>
+                                <label class="form-label" for="photo">{{ trans('dashboard.fields.photo') }}</label>
                                 <input wire:model="form.photo" class="form-control form-select-sm" type="file" id="photo" name="photo">
                                 <!-- Progress Bar -->
                                 <div x-show="uploading" class="mt-2">
@@ -109,7 +109,7 @@
                                         <div class="options-overlay bg-black-50">
                                             <div class="options-overlay-content">
                                                 <button type="button" class="btn btn-sm btn-alt-danger" wire:click="removePhoto('photo')">
-                                                    <i class="fa fa-times opacity-50 me-1"></i> Delete
+                                                    <i class="fa fa-times opacity-50 me-1"></i> {{ trans('dashboard.actions.delete') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -123,11 +123,7 @@
         </div>
 
         <x-forms.buttons.default.back route="{{ route('dashboard.information.teachers.index') }}" />
-        <button wire:target="update" wire:click="dispatchTrue" wire:loading.attr="disabled" type="submit" class="btn btn-alt-success border-0">
-            <small>Update & Stay</small>
-        </button>
-        <button wire:target="update" wire:loading.attr="disabled" type="submit" class="btn btn-success border-0">
-            <small>Update</small>
-        </button>
+        <x-forms.buttons.default.update-stay />
+        <x-forms.buttons.default.update />
     </form>
 </div>

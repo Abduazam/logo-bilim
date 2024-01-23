@@ -28,7 +28,7 @@ class Create extends Component
 
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New service:</b> {$this->form->title}");
+                $this->dispatchForCreate('service', $this->form->title);
                 $this->form->reset();
             } else {
                 throw $response;

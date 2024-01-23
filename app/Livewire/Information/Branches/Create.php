@@ -40,7 +40,7 @@ class Create extends Component
 
             if ($response) {
                 $this->dispatch('refresh');
-                $this->dispatchSuccess('fa fa-check text-success', 'created-successfully', "<b>New branch:</b> {$this->form->title}");
+                $this->dispatchForCreate('branch', $this->form->title);
                 $this->form->reset();
                 $this->mount(new ServiceRepository());
             } else {

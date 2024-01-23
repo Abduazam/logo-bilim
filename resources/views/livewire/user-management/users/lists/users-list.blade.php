@@ -10,7 +10,7 @@
                     <div class="col-md-3 col-4 ps-0">
                         <label for="roles" class="w-100">
                             <select wire:model.live="role_id" class="form-select form-select-sm" name="roles" id="roles">
-                                <option value="0">All</option>
+                                <option value="0">{{ trans('dashboard.filters.all') }}</option>
                                 @foreach($roles as $role)
                                 <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                                 @endforeach
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 col-3 text-end pe-0">
-                <a href="{{ route('dashboard.user-management.users.create') }}" class="btn btn-primary btn-sm">New user</a>
+                <a href="{{ route('dashboard.user-management.users.create') }}" class="btn btn-primary btn-sm">{{ trans('dashboard.actions.new') }} {{ strtolower(trans('dashboard.sections.user')) }}</a>
             </div>
         </div>
     </div>
@@ -34,14 +34,14 @@
         <table class="own-table w-100">
             <thead>
                 <tr>
-                    <th class="text-center">id</th>
-                    <th class="text-center">photo</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">role</th>
-                    <th class="text-center">permissions</th>
-                    <th class="text-center">email</th>
-                    <th class="text-center">created_at</th>
-                    <th class="text-center">actions</th>
+                    <th class="text-center">{{ trans('dashboard.fields.id') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.photo') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.name') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.role') }}</th>
+                    <th class="text-center">{{ trans('dashboard.sections.permissions') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.email') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.created_at') }}</th>
+                    <th class="text-center">{{ trans('dashboard.fields.actions') }}</th>
                 </tr>
             </thead>
             <tbody>

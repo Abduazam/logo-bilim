@@ -35,7 +35,7 @@ class Update extends Component
 
             if ($response) {
                 $this->dispatchMany(['refresh', 'updated']);
-                $this->dispatchSuccess('fa fa-pen text-info', 'updated-successfully', "<b>Payment type updated:</b> {$this->form->title}");
+                $this->dispatchForUpdate('payment', $this->form->title);
             } else {
                 throw $response;
             }
