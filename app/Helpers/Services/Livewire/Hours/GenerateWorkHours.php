@@ -6,8 +6,8 @@ use Carbon\Carbon;
 
 class GenerateWorkHours
 {
-    const START_TIME = '09:00:00';
-    const END_TIME = '17:00:00';
+    const START_TIME = '08:00:00';
+    const END_TIME = '19:00:00';
 
     public function generate(): array
     {
