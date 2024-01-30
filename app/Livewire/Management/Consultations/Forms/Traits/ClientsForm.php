@@ -19,7 +19,7 @@ trait ClientsForm
         'clients.info' => 'required|array',
         'clients.info.first_name' => 'required|string|min:3|max:75',
         'clients.info.last_name' => 'required|string|min:3|max:75',
-        'clients.info.dob' => 'required|date',
+        'clients.info.dob' => 'nullable|date',
         'clients.info.relatives' => 'nullable|array',
         'clients.info.relatives.*' => 'nullable|array',
         'clients.info.relatives.*.fullname' => 'required|string|min:3|max:100',

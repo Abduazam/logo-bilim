@@ -14,7 +14,7 @@ class ClientUpdateForm extends Form
     #[Validate('nullable|string|min:3|max:75')]
     public ?string $last_name = null;
 
-    #[Validate('required|date', as: 'date of birth')]
+    #[Validate('nullable|date', as: 'date of birth')]
     public ?string $dob = null;
 
     #[Validate('nullable|image|mimes:jpg,jpeg,png,gif|max:5120')]

@@ -20,7 +20,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-4 pe-0">
-                                <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}: <span class="text-danger">*</span></label>
+                                <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}:</label>
                                 <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" placeholder="{{ trans('dashboard.fields.birth_date') }}">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
