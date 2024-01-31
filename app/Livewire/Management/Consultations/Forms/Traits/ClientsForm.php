@@ -106,7 +106,7 @@ trait ClientsForm
     public function validateClient(): bool
     {
         $clientNotNull = false;
-        if (isNotNullAndNotEmptyString($this->clients['info']['first_name']) && isNotNullAndNotEmptyString($this->clients['info']['last_name']) && isNotNullAndNotEmptyString($this->clients['info']['dob'])) {
+        if (isNotNullAndNotEmptyString($this->clients['info']['first_name']) && isNotNullAndNotEmptyString($this->clients['info']['last_name'])) {
             $clientNotNull = true;
         }
 

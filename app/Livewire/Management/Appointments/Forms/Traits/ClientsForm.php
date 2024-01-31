@@ -118,7 +118,7 @@ trait ClientsForm
         $clientNotNull = false;
         foreach ($this->clients as $client) {
             $clientInfo = $client['info'];
-            $requiredInfo = ['first_name', 'last_name', 'dob'];
+            $requiredInfo = ['first_name', 'last_name'];
 
             $allInfoNotNull = array_reduce($requiredInfo, function ($carry, $field) use ($clientInfo) {
                 return $carry && isNotNullAndNotEmptyString($clientInfo[$field]);
