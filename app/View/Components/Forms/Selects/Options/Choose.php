@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Forms\Selects\Options;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class forms.buttons.default.create extends Component
+class Choose extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class forms.buttons.default.create extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.buttons.default.create');
+        return view('components.forms.selects.options.choose');
     }
 }

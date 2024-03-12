@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Forms\Buttons\Modal;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class forms.buttons.modal.delete extends Component
+class Cancel extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class forms.buttons.modal.delete extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.buttons.modal.delete');
+        return view('components.forms.buttons.modal.cancel');
     }
 }

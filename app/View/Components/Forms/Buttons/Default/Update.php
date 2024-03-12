@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Forms\Buttons\Default;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class forms.buttons.default.update-stay extends Component
+class Update extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class forms.buttons.default.update-stay extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.buttons.default.update-stay');
+        return view('components.forms.buttons.default.update');
     }
 }
