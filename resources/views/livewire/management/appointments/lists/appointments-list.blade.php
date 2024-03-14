@@ -80,7 +80,7 @@
             @foreach($appointments as $appointment)
                 <tr wire:key="appointment-row-{{ $appointment->id }}">
                     <td class="text-center">{{ $appointment->number }}</td>
-                    <td class="text-center">{{ $appointment->teacher->fullname }}</td>
+                    <td class="text-center">{{ $appointment->teacher?->fullname }}</td>
                     <td class="text-center">{{ $appointment->service->title }}</td>
                     <td class="text-center">{{ $appointment->getStartTime() }}</td>
                     <td class="text-center">{!! $appointment->getClients(true) !!}</td>

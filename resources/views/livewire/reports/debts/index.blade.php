@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach($appointments as $appointment)
                                 <tr wire:key="debt-row-{{ $appointment->id }}">
-                                    <td class="text-center">{{ $appointment->teacher->fullname }}</td>
+                                    <td class="text-center">{{ $appointment->teacher?->fullname }}</td>
                                     <td class="text-center">{{ $appointment->getClients() }}</td>
                                     <td class="text-center">{{ $appointment->created_date }}</td>
                                     <td class="text-center">{{ $appointment->total_payment }}</td>

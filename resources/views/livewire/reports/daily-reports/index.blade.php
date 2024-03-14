@@ -84,7 +84,7 @@
                             <tbody>
                             @foreach($teachers as $teacher)
                                 <tr wire:key="teacher-report-row-{{ $teacher->id }}">
-                                    <td class="text-center">{{ $teacher->teacher->fullname }}</td>
+                                    <td class="text-center">{{ $teacher->teacher?->fullname }}</td>
                                     <td class="text-center">{{ $teacher->count }}</td>
                                     <td class="text-center">{{ $teacher->getAsFormatted($teacher->income) }}</td>
                                     <td class="text-center">{{ $teacher->getAsFormatted($teacher->teachers) }}</td>

@@ -3,7 +3,7 @@
         <small>{{ trans('dashboard.filters.showing') }} {{ $from }} {{ trans('dashboard.filters.from') }} {{ $to }} {{ trans('dashboard.filters.to') }} - {{ $total }} {{ trans('dashboard.filters.data') }}</small>
     </div>
     @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
-    {{ $data->links() }}
+        {{ $data->links('components/components/bootstrap') }}
     @endif
 </div>
 
