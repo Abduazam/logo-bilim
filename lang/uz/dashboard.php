@@ -68,6 +68,7 @@ return [
         'translation' => "Ta'rifi",
 
         // CLIENTS
+        'branch_id' => "Filiali",
         'first_name' => "Ismi",
         'last_name' => "Familiyasi",
         'birth_date' => "Tug'ilsan sanasi",

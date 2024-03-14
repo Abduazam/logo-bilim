@@ -57,7 +57,18 @@ class TeacherRepository
         string $orderBy,
         string $orderDirection,
     ) {
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            $branchIds = Branch::pluck('id')->toArray();
+        } else {
+            $branchIds = $user->branches->pluck('id')->toArray();
+        }
+
         $result = Teacher::select(['id', 'fullname', 'dob', 'phone_number', 'photo', 'created_at', 'deleted_at'])
+            ->whereHas('services', function ($query) use ($branchIds) {
+                return $query->whereIn('branch_id', $branchIds);
+            })
             ->withCount(['branches' => function ($query) {
                 $query->select(DB::raw('count(distinct branch_id)'));
             }, 'services'])

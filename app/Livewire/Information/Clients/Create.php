@@ -6,6 +6,7 @@ use App\Contracts\Traits\Dashboard\Livewire\General\DispatchingTrait;
 use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Livewire\Information\Clients\Forms\ClientCreateForm;
 use App\Livewire\Information\Clients\Traits\ActionOnRelative;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
 use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
 use App\Services\Dashboard\Information\Clients\Client\Create\ClientCreateService;
 use Exception;
@@ -44,10 +45,11 @@ class Create extends Component
         }
     }
 
-    public function render(RelativeRepository $relativeStatusRepository): View
+    public function render(RelativeRepository $relativeStatusRepository, BranchRepository $branchRepository): View
     {
         return view('livewire.information.clients.create', [
             'relativeStatuses' => $relativeStatusRepository->getAll(),
+            'branches' => $branchRepository->getByUser(auth()->user())
         ]);
     }
 }

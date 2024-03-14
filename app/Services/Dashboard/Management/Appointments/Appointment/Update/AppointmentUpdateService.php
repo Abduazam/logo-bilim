@@ -37,6 +37,7 @@ class AppointmentUpdateService extends UpdateService
 
                 foreach ($clients as &$client) {
                     if (is_array($client['client_id'])) {
+                        $client['client_id']['branch_id'] = $this->appointment->branch_id;
                         $clientCreateService = new ClientCreateService($client['client_id']);
                         $response = $clientCreateService->callMethod();
 

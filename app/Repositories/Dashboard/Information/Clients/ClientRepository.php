@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard\Information\Clients;
 
+use App\Models\Dashboard\Information\Branches\Branch;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dashboard\Information\Clients\Client;
 
@@ -14,7 +15,17 @@ class ClientRepository
 
     public function getSearched(?string $search)
     {
-        return Client::select(['id', 'first_name', 'last_name', 'dob'])
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            $branchIds = Branch::pluck('id')->toArray();
+        } else {
+            $branchIds = $user->branches->pluck('id')->toArray();
+        }
+
+        return Client::select(['id', 'branch_id', 'first_name', 'last_name', 'dob'])
+            ->whereIn('branch_id', $branchIds)
+            ->orWhereNull('branch_id')
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {
                     $search = strtolower($search);
@@ -32,8 +43,19 @@ class ClientRepository
         string $orderBy,
         string $orderDirection,
     ) {
-        $result = Client::select(['id', 'first_name', 'last_name', 'dob', 'photo', 'created_at', 'deleted_at'])
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            $branchIds = Branch::pluck('id')->toArray();
+        } else {
+            $branchIds = $user->branches->pluck('id')->toArray();
+        }
+
+        $result = Client::select(['id', 'branch_id', 'first_name', 'last_name', 'dob', 'photo', 'created_at', 'deleted_at'])
+            ->with('branch')
             ->withCount('relatives')
+            ->whereIn('branch_id', $branchIds)
+            ->orWhereNull('branch_id')
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
             })

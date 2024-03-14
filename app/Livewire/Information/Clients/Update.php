@@ -7,6 +7,7 @@ use App\Contracts\Traits\Dashboard\Livewire\General\RemoveFileTrait;
 use App\Livewire\Information\Clients\Forms\ClientUpdateForm;
 use App\Livewire\Information\Clients\Traits\ActionOnRelative;
 use App\Models\Dashboard\Information\Clients\Client;
+use App\Repositories\Dashboard\Information\Branches\BranchRepository;
 use App\Repositories\Dashboard\Information\Statuses\Relatives\RelativeRepository;
 use App\Services\Dashboard\Information\Clients\Client\Update\ClientUpdateService;
 use Exception;
@@ -50,10 +51,11 @@ class Update extends Component
         }
     }
 
-    public function render(RelativeRepository $relativeStatusRepository): View
+    public function render(RelativeRepository $relativeStatusRepository, BranchRepository $branchRepository): View
     {
         return view('livewire.information.clients.update', [
             'relativeStatuses' => $relativeStatusRepository->getAll(),
+            'branches' => $branchRepository->getByUser(auth()->user())
         ]);
     }
 }

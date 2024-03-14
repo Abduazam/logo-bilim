@@ -55,7 +55,7 @@ class Teacher extends Model
      */
     public function services(): BelongsToMany
     {
-        return $this->belongsToMany(Service::class, 'teacher_services')->withPivot('branch_id', 'salary');
+        return $this->belongsToMany(Service::class, 'teacher_services', 'teacher_id', 'service_id');
     }
 
     /**
@@ -65,7 +65,7 @@ class Teacher extends Model
      */
     public function branches(): BelongsToMany
     {
-        return $this->belongsToMany(Branch::class, 'teacher_services');
+        return $this->belongsToMany(Branch::class, 'teacher_services', 'teacher_id', 'branch_id');
     }
 
     /**

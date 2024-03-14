@@ -18,6 +18,10 @@
                         </div>
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
+                                <div class="col-12 px-0 mb-4">
+                                    <label class="form-label" for="branch_id">{{ trans('dashboard.fields.branch_id') }}</label>
+                                    <input value="{{ $this->client->branch?->title }}" type="text" class="form-control form-control-sm" id="branch_id" name="branch_id" readonly disabled>
+                                </div>
                                 <div class="col-6 ps-0 mb-4">
                                     <label class="form-label" for="first_name">{{ trans('dashboard.fields.first_name') }}</label>
                                     <input value="{{ $this->client->first_name }}" type="text" class="form-control form-control-sm" id="first_name" name="first_name" readonly disabled>

@@ -8,6 +8,9 @@ use App\Models\Dashboard\Information\Clients\Client;
 
 class ClientUpdateForm extends Form
 {
+    #[Validate('nullable|numeric|exists:branches,id')]
+    public ?int $branch_id = null;
+
     #[Validate('required|string|min:3|max:75')]
     public ?string $first_name = null;
 
@@ -36,6 +39,7 @@ class ClientUpdateForm extends Form
 
     public function setValues(Client $client): void
     {
+        $this->branch_id = $client->branch_id;
         $this->first_name = $client->first_name;
         $this->last_name = $client->last_name;
         $this->dob = $client->dob;

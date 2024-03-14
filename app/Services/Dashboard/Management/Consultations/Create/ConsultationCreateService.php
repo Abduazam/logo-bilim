@@ -28,6 +28,7 @@ class ConsultationCreateService extends CreateService
                 $values = $this->consultationDTO->getAsArray();
 
                 if (is_null($this->clientInfo['client_id'])) {
+                    $this->clientInfo['info']['branch_id'] = null;
                     $clientCreateService = new ClientCreateService($this->clientInfo['info']);
                     $response = $clientCreateService->callMethod();
 

@@ -12,6 +12,7 @@ use App\Contracts\Abstracts\Services\Update\UpdateService;
 class ClientUpdateService extends UpdateService
 {
     protected Client $client;
+    protected ?int $branch_id;
     protected string $first_name;
     protected ?string $last_name;
     protected ?string $dob;
@@ -21,6 +22,7 @@ class ClientUpdateService extends UpdateService
     public function __construct(array $data, Client $client)
     {
         $this->client = $client;
+        $this->branch_id = $data['branch_id'];
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->dob = $data['dob'];
@@ -33,6 +35,7 @@ class ClientUpdateService extends UpdateService
         try {
             DB::transaction(function () {
                 $attributes = [
+                    'branch_id' => $this->branch_id,
                     'first_name' => $this->first_name,
                     'last_name' => $this->last_name,
                     'dob' => $this->dob,

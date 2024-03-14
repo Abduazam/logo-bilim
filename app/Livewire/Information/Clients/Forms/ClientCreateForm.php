@@ -7,6 +7,9 @@ use Livewire\Attributes\Validate;
 
 class ClientCreateForm extends Form
 {
+    #[Validate('nullable|numeric|exists:branches,id')]
+    public ?int $branch_id = null;
+
     #[Validate('required|string|min:3|max:75')]
     public ?string $first_name = null;
 

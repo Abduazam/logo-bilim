@@ -11,6 +11,7 @@ use App\Services\Dashboard\Information\Clients\ClientRelatives\Create\ClientRela
 
 class ClientCreateService extends CreateService
 {
+    protected ?int $branch_id;
     protected string $first_name;
     protected ?string $last_name;
     protected ?string $dob;
@@ -19,6 +20,7 @@ class ClientCreateService extends CreateService
 
     public function __construct(array $data)
     {
+        $this->branch_id = $data['branch_id'];
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->dob = $data['dob'];
@@ -37,6 +39,7 @@ class ClientCreateService extends CreateService
                 }
 
                 $client = Client::create([
+                    'branch_id' => $this->branch_id,
                     'first_name' => $this->first_name,
                     'last_name' => $this->last_name,
                     'dob' => $this->dob,
