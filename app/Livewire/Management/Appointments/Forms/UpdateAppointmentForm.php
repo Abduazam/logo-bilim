@@ -34,9 +34,9 @@ class UpdateAppointmentForm extends Form
             return [
                 'client_id' => $client->client_id,
                 'info' => [
-                    'first_name' => $client->client->first_name,
-                    'last_name' => $client->client->last_name,
-                    'dob' => $client->client->dob,
+                    'first_name' => $client->client?->first_name,
+                    'last_name' => $client->client?->last_name,
+                    'dob' => $client->client?->dob,
                     'relatives' => [],
                 ],
             ];
@@ -49,7 +49,7 @@ class UpdateAppointmentForm extends Form
         $this->service_price = $appointment->service_price;
         $this->payments = $appointment->clients->map(function ($client) {
             return [
-                'client_name' => $client->client->first_name,
+                'client_name' => $client->client?->first_name,
                 'payment_amount' => $client->payment_amount,
                 'payment_type_id' => $client->payment_type_id,
                 'teacher_salary' => $client->teacher_salary,

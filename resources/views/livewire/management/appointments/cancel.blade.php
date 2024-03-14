@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-md-6 ps-0 mb-4">
                                     <label for="teacher" class="form-label">{{ trans('dashboard.sections.teacher') }}</label>
-                                    <input type="text" class="form-control form-control-sm w-100" id="teacher" name="teacher" value="{{ $appointment->teacher->fullname }}" disabled>
+                                    <input type="text" class="form-control form-control-sm w-100" id="teacher" name="teacher" value="{{ $appointment->teacher?->fullname }}" disabled>
                                 </div>
                                 <div class="col-md-6 pe-0 mb-4">
                                     <label for="clients" class="form-label">{{ trans('dashboard.sections.clients') }}</label>

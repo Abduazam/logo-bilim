@@ -56,7 +56,7 @@ trait AppointmentMethods
         $clientsArray = [];
 
         foreach ($this->clients as $client) {
-            $clientsArray[] = "{$client->client->first_name} {$client->client->last_name}";
+            $clientsArray[] = "{$client->client?->first_name} {$client->client?->last_name}";
         }
 
         return $br ? implode(',<br> ', $clientsArray) : implode(', ', $clientsArray);
