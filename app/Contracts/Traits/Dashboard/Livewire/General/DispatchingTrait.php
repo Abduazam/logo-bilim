@@ -27,6 +27,11 @@ trait DispatchingTrait
         $this->dispatching = true;
     }
 
+    public function dispatchFalse(): void
+    {
+        $this->dispatching = false;
+    }
+
     public function dispatchForCreate(string $model, string $value): void
     {
         $icon = 'fa fa-check text-success';

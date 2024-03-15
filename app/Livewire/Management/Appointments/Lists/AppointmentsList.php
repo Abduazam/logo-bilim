@@ -18,6 +18,7 @@ class AppointmentsList extends Component
     public int $teacher_id = 0;
     public int $service_id = 0;
     public mixed $hour = 0;
+    public mixed $created_date = null;
     public int $appointment_status_id = 0;
 
     use PaginatingTrait;
@@ -34,7 +35,7 @@ class AppointmentsList extends Component
     ): View
     {
         return view('livewire.management.appointments.lists.appointments-list', [
-            'appointments' => $appointmentRepository->getFiltered($this->branch_id, $this->teacher_id, $this->service_id, $this->hour, $this->appointment_status_id, $this->perPage),
+            'appointments' => $appointmentRepository->getFiltered($this->branch_id, $this->teacher_id, $this->service_id, $this->hour, $this->created_date, $this->appointment_status_id, $this->perPage),
             'branches' => $branchRepository->getByUser(auth()->user()),
             'teachers' => $teacherRepository->getByBranch(),
             'services' => $serviceRepository->getByUserBranch(),

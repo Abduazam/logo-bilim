@@ -43,6 +43,7 @@ class AppointmentRepository
         int $teacher_id,
         int $service_id,
         mixed $hour,
+        mixed $created_date,
         int $appointment_status_id,
         int $perPage,
     ) {
@@ -68,11 +69,15 @@ class AppointmentRepository
             ->when($hour, function ($query, $hour) {
                 return $query->where('start_time', $hour);
             })
+            ->when($created_date, function ($query, $created_date) {
+                return $query->whereDate('created_date', $created_date);
+            }, function ($query) {
+                return $query->whereDate('created_date', now());
+            })
             ->when($appointment_status_id, function ($query, $appointment_status_id) {
                 return $query->where('appointment_status_id', $appointment_status_id);
             })
             ->whereIn('branch_id', $branchIds)
-            ->whereDate('created_date', now())
             ->orderByDesc('id');
 
         return $perPage === 0 ? $result->get() : $result->paginate($perPage);

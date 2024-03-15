@@ -32,7 +32,7 @@ class PermissionsSeeder extends Seeder
                     'translation' => $translation,
                 ]);
 
-                if (Str::startsWith($name, 'dashboard.management.') or in_array($name, ['dashboard.home', 'dashboard.settings'])) {
+                if (Str::startsWith($name, 'dashboard.management.') or Str::startsWith($name, 'dashboard.reports.') or Str::startsWith($name, 'dashboard.information.') or in_array($name, ['dashboard.home', 'dashboard.settings'])) {
                     $manager->givePermissionTo($permission);
                 }
 
