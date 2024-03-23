@@ -35,6 +35,8 @@ return [
         'relative' => "Qarindosh",
         'statuses-appointments' => "Dars holatlari",
         'statuses-appointment' => "Dars holati",
+        'lessons' => "Darslar",
+        'lesson' => "Dars",
 
         // REPORTS
         'reports' =>  "Hisobotlar",
@@ -72,6 +74,10 @@ return [
         'first_name' => "Ismi",
         'last_name' => "Familiyasi",
         'birth_date' => "Tug'ilsan sanasi",
+        'diagnosis' => "Diagnos",
+        'agreement_date' => "Shartnoma sanasi",
+        'service_id' => "Xizmat nomi",
+        'teacher_id' => "Pedagog",
 
         // RELATIVES
         'fullname' => "To'liq ismi",
@@ -171,5 +177,9 @@ return [
         'force-deleted' => "to'liq o'chirildi",
         'canceled' => "bekor qilindi",
         'rescheduled' => "qayta rejalandi",
+    ],
+
+    'sentences' => [
+        'photo-not-provided' => "Rasm mavjud emas",
     ],
 ];

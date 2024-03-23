@@ -40,6 +40,7 @@ class Create extends Component
                 if ($this->dispatching) {
                     $this->dispatchForCreate('teacher', $this->form->fullname);
                     $this->form->reset();
+                    $this->reset('branch_id', 'branches', 'service_id', 'service_id');
                     $this->mount();
                 } else {
                     return to_route('dashboard.information.teachers.index');

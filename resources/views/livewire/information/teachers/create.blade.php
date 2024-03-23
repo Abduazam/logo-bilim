@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-md-4 px-md-2 px-0">
                                 <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}:</label>
-                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob">
+                                <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob" max="{{ date('Y-m-d') }}">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror

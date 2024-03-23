@@ -13,7 +13,7 @@ class TeacherCreateForm extends Form
     #[Validate('nullable|date', as: 'date of birth')]
     public ?string $dob = null;
 
-    #[Validate('nullable|numeric')]
+    #[Validate('nullable|numeric|unique:teachers,phone_number')]
     public ?string $phone_number = null;
 
     #[Validate('nullable|image|mimes:jpg,jpeg,png,gif|max:5120')]

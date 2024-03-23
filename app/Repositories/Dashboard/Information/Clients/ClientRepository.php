@@ -51,21 +51,17 @@ class ClientRepository
             $branchIds = $user->branches->pluck('id')->toArray();
         }
 
-        $result = Client::select(['id', 'branch_id', 'first_name', 'last_name', 'dob', 'photo', 'created_at', 'deleted_at'])
+        $result = Client::select(['id', 'branch_id', 'first_name', 'last_name', 'dob', 'diagnosis', 'agreement_date', 'deleted_at'])
             ->with('branch')
-            ->withCount('relatives')
-            ->whereIn('branch_id', $branchIds)
-            ->orWhereNull('branch_id')
+            ->withCount('relatives', 'lessons')
             ->when($with_trashed, function ($query) {
                 return $query->onlyTrashed();
             })
             ->when($search, function ($query, $search) {
-                return $query->where(function ($query) use ($search) {
-                    $search = strtolower($search);
-
-                    $query->where(DB::raw('LOWER(first_name)'), 'like', "%$search%")
-                        ->orWhere(DB::raw('LOWER(last_name)'), 'like', "%$search%");
-                });
+                return $query->whereAny(['first_name', 'last_name'], 'like', "%$search%");
+            })
+            ->when($branchIds, function ($query) use ($branchIds) {
+                return $query->whereIn('branch_id', $branchIds)->orWhereNull('branch_id');
             })
             ->when($orderBy, function ($query, $orderBy) use ($orderDirection) {
                 return $query->orderBy($orderBy, $orderDirection);

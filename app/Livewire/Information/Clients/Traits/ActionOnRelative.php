@@ -6,7 +6,7 @@ trait ActionOnRelative
 {
     public function addRelative(): void
     {
-        $this->form->relatives[] = $this->generateItem();
+        $this->form->relatives[] = $this->generateRelative();
     }
 
     public function removeRelative(int $id): void
@@ -14,7 +14,7 @@ trait ActionOnRelative
         unset($this->form->relatives[$id]);
     }
 
-    private function generateItem(): array
+    private function generateRelative(): array
     {
         return [
             'fullname' => null,

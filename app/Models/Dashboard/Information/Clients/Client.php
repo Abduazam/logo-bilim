@@ -18,12 +18,15 @@ use App\Models\Dashboard\Management\Appointments\Appointment;
  * @property string $first_name
  * @property string $last_name
  * @property mixed $dob
+ * @property string $diagnosis
+ * @property mixed $agreement_date
  * @property mixed $photo
  *
  * Relations
  * @property BelongsTo $branch
  * @property HasMany $relatives
  * @property HasMany $appointments
+ * @property HasMany $lessons
  */
 class Client extends Model
 {
@@ -46,6 +49,8 @@ class Client extends Model
         'first_name',
         'last_name',
         'dob',
+        'diagnosis',
+        'agreement_date',
         'photo',
     ];
 
@@ -77,5 +82,15 @@ class Client extends Model
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    /**
+     * Defines has many data in lessons.
+     *
+     * @return HasMany
+     */
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(ClientLesson::class);
     }
 }

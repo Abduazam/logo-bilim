@@ -13,17 +13,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-//        if ($this->app->environment('local')) {
-//            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-//        }
-//
-//        // ...
-//
-//        $this->app->booting(function () {
-//            if ($this->app->environment('production')) {
-//                Debugbar::disable();
-//            }
-//        });
+        if ($this->app->environment('local')) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
+
+        $this->app->booting(function () {
+            if ($this->app->environment('production')) {
+                Debugbar::disable();
+            }
+        });
     }
 
     /**

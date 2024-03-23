@@ -18,9 +18,13 @@
                         </div>
                         <div class="block-content fs-sm">
                             <div class="row w-100 h-100 p-0 m-0">
-                                <div class="col-12 px-0 mb-4">
+                                <div class="col-6 ps-0 mb-4">
                                     <label class="form-label" for="branch_id">{{ trans('dashboard.fields.branch_id') }}</label>
                                     <input value="{{ $this->client->branch?->title }}" type="text" class="form-control form-control-sm" id="branch_id" name="branch_id" readonly disabled>
+                                </div>
+                                <div class="col-6 pe-0 mb-4">
+                                    <label class="form-label" for="agreement_date">{{ trans('dashboard.fields.agreement_date') }}</label>
+                                    <input value="{{ $this->client->agreement_date }}" type="text" class="form-control form-control-sm" id="agreement_date" name="agreement_date" readonly disabled>
                                 </div>
                                 <div class="col-6 ps-0 mb-4">
                                     <label class="form-label" for="first_name">{{ trans('dashboard.fields.first_name') }}</label>
@@ -29,6 +33,14 @@
                                 <div class="col-6 pe-0 mb-4">
                                     <label class="form-label" for="last_name">{{ trans('dashboard.fields.last_name') }}</label>
                                     <input value="{{ $this->client->last_name }}" type="text" class="form-control form-control-sm" id="last_name" name="last_name" readonly disabled>
+                                </div>
+                                <div class="col-6 ps-0 mb-4">
+                                    <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}</label>
+                                    <input value="{{ $this->client->dob }}" type="text" class="form-control form-control-sm" id="dob" name="dob" readonly disabled>
+                                </div>
+                                <div class="col-6 pe-0 mb-4">
+                                    <label class="form-label" for="diagnosis">{{ trans('dashboard.fields.diagnosis') }}</label>
+                                    <input value="{{ $this->client->diagnosis }}" type="text" class="form-control form-control-sm" id="diagnosis" name="diagnosis" readonly disabled>
                                 </div>
                             </div>
                         </div>
