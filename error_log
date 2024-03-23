@@ -1,2 +1,0 @@
-[10-Nov-2023 18:54:39 Asia/Tashkent] PHP Notice:  date_default_timezone_set(): Timezone ID '' is invalid in /home/hilalara/logobilim.hilalarabic.uz/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php on line 47
-[10-Nov-2023 18:54:39 Asia/Tashkent] PHP Notice:  date_default_timezone_set(): Timezone ID '' is invalid in /home/hilalara/logobilim.hilalarabic.uz/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php on line 47
