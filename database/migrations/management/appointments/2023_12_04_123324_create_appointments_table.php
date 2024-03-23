@@ -25,7 +25,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['number', 'branch_id', 'teacher_id', 'service_id', 'start_time', 'created_date']);
+            $table->unique(['number', 'branch_id', 'teacher_id', 'service_id', 'start_time', 'created_date'], 'n_b_id_t_id_s_id_s_t_unique_index');
+
         });
     }
 

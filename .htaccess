@@ -2,6 +2,7 @@
     RewriteEngine On
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php80” package as the default “PHP” programming language.
 <IfModule mime_module>
