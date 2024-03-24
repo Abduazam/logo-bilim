@@ -1,5 +1,5 @@
 <x-layouts.auth>
-    <div class="col-5 mx-auto">
+    <div class="col-md-5 col-11 mx-auto">
         <!-- Header -->
         <div class="py-4 text-center">
             <x-sections.fillers.logo />

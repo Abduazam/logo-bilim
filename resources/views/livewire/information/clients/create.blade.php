@@ -125,7 +125,10 @@
                                         </div>
                                         <div class="col-md-3 px-0 px-md-2 mb-3 mb-md-0">
                                             <label class="form-label" for="price">{{ trans('dashboard.fields.price') }}:</label>
-                                            <input value="{{ $this->form->lessons[$lessonId]['price'] }}" type="text" class="form-control form-control-sm w-100" id="price" name="price" placeholder="{{ trans('dashboard.fields.price') }}" readonly>
+                                            <input wire:model.blur="form.lessons.{{ $lessonId }}.price" type="text" class="form-control form-control-sm w-100 @error('form.lessons.' . $lessonId . '.price') is-invalid @elseif(!is_null($this->form->lessons[$lessonId]['price'])) is-valid @enderror" id="price" name="price" placeholder="{{ trans('dashboard.fields.price') }}">
+                                            @error('form.lessons.' . $lessonId . '.price')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-3 pe-0 mb-2 mb-md-0 ps-md-2 ps-0">
                                             <label class="form-label" for="start_time">{{ trans('dashboard.fields.start_time') }}: <span class="text-danger">*</span></label>

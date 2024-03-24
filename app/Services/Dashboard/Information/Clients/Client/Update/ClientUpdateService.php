@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard\Information\Clients\Client\Update;
 
+use App\Services\Dashboard\Information\Clients\ClientLessons\Update\ClientLessonUpdateService;
 use App\Services\Dashboard\Information\Clients\ClientRelatives\Update\ClientRelativeUpdateService;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,11 @@ class ClientUpdateService extends UpdateService
     protected string $first_name;
     protected ?string $last_name;
     protected ?string $dob;
+    protected ?string $diagnosis;
+    protected ?string $agreement_date;
     protected mixed $photo;
     protected array $relatives;
+    protected array $lessons;
 
     public function __construct(array $data, Client $client)
     {
@@ -26,8 +30,11 @@ class ClientUpdateService extends UpdateService
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->dob = $data['dob'];
+        $this->diagnosis = $data['diagnosis'];
+        $this->agreement_date = $data['agreement_date'];
         $this->photo = $data['photo'];
         $this->relatives = $data['relatives'];
+        $this->lessons = $data['lessons'];
     }
 
     protected function update(): bool|Exception
@@ -39,6 +46,8 @@ class ClientUpdateService extends UpdateService
                     'first_name' => $this->first_name,
                     'last_name' => $this->last_name,
                     'dob' => $this->dob,
+                    'diagnosis' => $this->diagnosis,
+                    'agreement_date' => $this->agreement_date,
                 ];
 
                 $attributes['photo'] = $this->photo;
@@ -51,6 +60,9 @@ class ClientUpdateService extends UpdateService
 
                 $clientRelativeUpdate = new ClientRelativeUpdateService($this->client, $this->relatives);
                 $clientRelativeUpdate->callMethod();
+
+                $clientLessonUpdate = new ClientLessonUpdateService($this->client, $this->lessons);
+                $clientLessonUpdate->callMethod();
             }, 5);
 
             return true;

@@ -8,7 +8,7 @@ use App\Models\Dashboard\Information\Types\Payments\PaymentType;
 
 class PaymentTypeUpdateForm extends Form
 {
-    #[Validate('required|string|min:2')]
+    #[Validate('required|string|min:2', as: 'dashboard.fields.title', translate: true)]
     public ?string $title = null;
 
     public function setValues(PaymentType $paymentType): void

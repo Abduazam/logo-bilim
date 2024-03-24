@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('first_name', 75);
             $table->string('last_name', 75);
             $table->date('dob')->nullable();
-            $table->string('diagnosis');
+            $table->string('diagnosis')->nullable();
             $table->date('agreement_date');
             $table->string('photo')->nullable();
             $table->timestamps();

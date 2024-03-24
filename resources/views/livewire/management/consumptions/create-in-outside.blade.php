@@ -5,7 +5,7 @@
     </button>
 
     <form wire:submit.prevent="create" class="w-50 position-relative">
-        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-25 shadow h-100" tabindex="-1" id="create-consumption-outside" aria-labelledby="create-consumption-outsideLabel" data-bs-backdrop="false">
+        <div wire:ignore.self class="offcanvas offcanvas-end bg-body-extra-light w-25 w-mobile shadow h-100" tabindex="-1" id="create-consumption-outside" aria-labelledby="create-consumption-outsideLabel" data-bs-backdrop="false">
             <div class="offcanvas-header bg-body-light">
                 <h6 class="offcanvas-title" id="create-consumption-outsideLabel">{{ trans('dashboard.actions.new') }} {{ strtolower(trans('dashboard.sections.consumption')) }}</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

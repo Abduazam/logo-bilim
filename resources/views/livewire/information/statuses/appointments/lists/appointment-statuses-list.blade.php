@@ -1,16 +1,16 @@
 <div>
     <div class="filter-table pb-4">
         <div class="row w-100 h-100 m-0 p-0">
-            <div class="col-md-3 col-4 ps-0">
+            <div class="col-md-3 col-sm-4 col-12 ps-0 pe-md-2 pe-0 mb-3 mb-md-0">
                 <x-sections.fillers.search />
             </div>
-            <div class="col-md-6 col-4 px-0">
+            <div class="col-md-7 col-8 px-0">
                 <!-- Filters -->
                 <div class="row w-100 h-100 p-0 m-0">
                     <div class="col-md-3 col-6 ps-0">
                         <x-sections.fillers.active-inactive />
                     </div>
-                    <div class="col-md-3 col-6 ps-0 pe-4">
+                    <div class="col-md-3 col-6 pe-0">
                         <x-sections.fillers.per-page />
                     </div>
                 </div>

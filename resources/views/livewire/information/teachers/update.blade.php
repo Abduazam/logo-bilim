@@ -1,25 +1,25 @@
 <div class="pb-4">
     <form wire:submit.prevent="update">
         <div class="row w-100 h-100 p-0 m-0">
-            <div class="col-lg-9 col-md-8 ps-0">
+            <div class="col-lg-9 col-md-8 ps-md-0">
                 <div class="block block-rounded">
                     <div class="block-content fs-sm">
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
-                            <div class="col-md-4 ps-0">
+                            <div class="col-md-4 ps-md-0 mb-md-0 mb-4">
                                 <label class="form-label" for="fullname">{{ trans('dashboard.fields.fullname') }}: <span class="text-danger">*</span></label>
                                 <input wire:model.blur="form.fullname" type="text" class="form-control form-control-sm w-100 @error('form.fullname') is-invalid @elseif(!empty($this->form->fullname)) is-valid @enderror" id="fullname" name="fullname" placeholder="{{ trans('dashboard.fields.fullname') }}">
                                 @error('form.fullname')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-4 px-md-2 px-0">
+                            <div class="col-md-4 px-2 mb-md-0 mb-4">
                                 <label class="form-label" for="dob">{{ trans('dashboard.fields.birth_date') }}:</label>
                                 <input wire:model.blur="form.dob" type="date" class="form-control form-control-sm w-100 @error('form.dob') is-invalid @elseif(!empty($this->form->dob)) is-valid @enderror" id="dob" name="dob">
                                 @error('form.dob')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-4 pe-0">
+                            <div class="col-md-4 pe-md-0">
                                 <label class="form-label" for="phone_number">{{ trans('dashboard.fields.phone_number') }}:</label>
                                 <input wire:model.blur="form.phone_number" type="number" class="form-control form-control-sm w-100 @error('form.phone_number') is-invalid @elseif(!empty($this->form->phone_number)) is-valid @enderror" id="phone_number" name="phone_number" placeholder="{{ trans('dashboard.fields.phone_number') }}">
                                 @error('form.phone_number')
@@ -28,10 +28,10 @@
                             </div>
                         </div>
                         <div class="row w-100 h-100 p-0 mx-0 mb-4">
-                            <div class="col-md-4 ps-0">
+                            <div class="col-md-4 ps-md-0 mb-md-0 mb-4">
                                 <label class="form-label" for="branches">{{ trans('dashboard.sections.branch') }}:</label>
                                 <select wire:model.blur="branch_id" wire:change="addBranch($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->branches)) is-valid @enderror" name="branches" id="branches">
-                                    <option value="null" disabled>Choose</option>
+                                    <x-forms.selects.options.choose />
                                     @foreach($this->branches as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
@@ -40,10 +40,10 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-4 px-md-2 px-0">
+                            <div class="col-md-4 px-2">
                                 <label class="form-label" for="services">{{ trans('dashboard.sections.service') }}:</label>
                                 <select wire:model.blur="service_id" wire:change="addService($event.target.value)" class="form-select form-select-sm @error('form.teacher_services') is-invalid @elseif(!empty($this->form->services)) is-valid @enderror" name="services" id="services" @if(is_null($this->branch_id)) disabled @endif>
-                                    <option value="null" disabled>Choose</option>
+                                    <x-forms.selects.options.choose />
                                     @foreach($this->services as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
@@ -60,11 +60,11 @@
                                     @foreach($services as $service_id => $values)
                                         <div class="row w-100 p-3 mx-0 bg-light rounded-2 position-relative mt-2">
                                             <div class="col-12 d-flex align-items-center px-0">
-                                                <div class="col-3">
+                                                <div class="col-sm-3 col-8">
                                                     <label for="{{ $branch_id . $service_id }}" class="form-label mb-0 me-2">{{ $values['branch_title'] . ', ' . $values['service_title'] }}: <span class="text-danger">*</span></label>
                                                 </div>
-                                                <div class="col-9">
-                                                    <input wire:model.blur="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="{{ trans('dashboard.fields.price') }}: {{ $values['price'] }}">
+                                                <div class="col-sm-9 col-4">
+                                                    <input wire:model.blur="form.teacher_services.{{ $branch_id }}.{{ $service_id }}.salary" type="number" class="form-control form-control-sm w-75 w-mobile-100 @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary') is-invalid @elseif(!is_null($this->form->teacher_services[$branch_id][$service_id]['salary']) && is_numeric($this->form->teacher_services[$branch_id][$service_id]['salary'])) is-valid @enderror" name="{{ $branch_id . $service_id }}" id="{{ $branch_id . $service_id }}" placeholder="{{ trans('dashboard.fields.price') }}: {{ $values['price'] }}">
                                                     @error('form.teacher_services.' . $branch_id . '.' . $service_id . '.salary')
                                                     <span class="invalid-feedback">{{ $message }}</span>
                                                     @enderror
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-4 pe-0">
+            <div class="col-lg-3 col-md-4 pe-md-0">
                 <div class="block block-rounded">
                     <div class="block-content fs-sm">
                         <div class="mb-4">
@@ -122,8 +122,10 @@
             </div>
         </div>
 
-        <x-forms.buttons.default.back route="{{ route('dashboard.information.teachers.index') }}" />
-        <x-forms.buttons.default.update-stay />
-        <x-forms.buttons.default.update />
+        <div class="px-md-0 px-2">
+            <x-forms.buttons.default.back route="{{ route('dashboard.information.teachers.index') }}" />
+            <x-forms.buttons.default.update-stay />
+            <x-forms.buttons.default.update />
+        </div>
     </form>
 </div>

@@ -25,7 +25,7 @@ class ClientCreateForm extends Form
     #[Validate('required|date', as: 'dashboard.fields.agreement_date', translate: true)]
     public ?string $agreement_date = null;
 
-    #[Validate('nullable|image|mimes:jpg,jpeg,png,gif|max:5120')]
+    #[Validate('nullable|image|mimes:jpg,jpeg,png,gif|max:5120', as: 'dashboard.fields.photo', translate: true)]
     public mixed $photo = null;
 
     #[Validate([

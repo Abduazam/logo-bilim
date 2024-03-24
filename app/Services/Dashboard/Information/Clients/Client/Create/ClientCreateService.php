@@ -30,9 +30,9 @@ class ClientCreateService extends CreateService
         $this->dob = $data['dob'];
         $this->diagnosis = $data['diagnosis'];
         $this->agreement_date = $data['agreement_date'];
-        $this->photo = array_key_exists('photo', $data) ? $data['photo'] : null;
-        $this->relatives = array_key_exists('relatives', $data) ? $data['relatives'] : [];
-        $this->lessons = array_key_exists('lessons', $data) ? $data['lessons'] : [];
+        $this->photo = $data['photo'];
+        $this->relatives = $data['relatives'];
+        $this->lessons = $data['lessons'];
     }
 
     protected function create(): bool|Exception

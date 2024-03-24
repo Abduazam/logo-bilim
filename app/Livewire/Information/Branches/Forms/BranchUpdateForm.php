@@ -8,7 +8,7 @@ use App\Models\Dashboard\Information\Branches\Branch;
 
 class BranchUpdateForm extends Form
 {
-    #[Validate('required|string|min:2')]
+    #[Validate('required|string|min:2', as: 'dashboard.fields.title', translate: true)]
     public string $title = '';
 
     #[Validate([
@@ -17,9 +17,9 @@ class BranchUpdateForm extends Form
         'chosen_services.*.title' => 'required|string',
         'chosen_services.*.price' => 'required|numeric',
     ], as: [
-        'chosen_services' => 'services',
-        'chosen_services.*.price' => 'price',
-    ])]
+        'chosen_services' => 'dashboard.sections.service',
+        'chosen_services.*.price' => 'dashboard.fields.price',
+    ], translate: true)]
     public array $chosen_services = [];
 
     public function setValues(Branch $branch): void

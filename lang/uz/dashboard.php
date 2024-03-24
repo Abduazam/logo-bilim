@@ -84,6 +84,9 @@ return [
         'phone_number' => "Telefon raqami",
         'relative_status' => "Qarindoshlik holati",
 
+        // TEACHER
+        'teacher_services' => "Pedagogning xizmatlari",
+
         // SERVICE
         'price' => "Narxi",
 
@@ -150,7 +153,7 @@ return [
         'create-another' => "Yaratish va yana",
         'edit' => "O'zgartirish",
         'update' => "O'zgartirish",
-        'update-stay' => "O'zgartir va qol",
+        'update-stay' => "O'zgartir va qolish",
         'restore' => "Tiklash",
         'delete' => "O'chirish",
         'force-delete' => "To'liq o'chirish",
@@ -164,7 +167,7 @@ return [
         // USERS
         'have-not-photo' => "rasmi yo'q",
         'added-clients-today' => "Bugun qo'shilganlar soni",
-        'scheduled-consultations-today' => "Bugunga belgilanganlar soni",
+        'scheduled-consultations-today' => "Bugun belgilanganlar soni",
         'today-consumptions' => "Bugungi xarajatlar",
     ],
 
@@ -181,5 +184,7 @@ return [
 
     'sentences' => [
         'photo-not-provided' => "Rasm mavjud emas",
+        'new-agreement' => "Yangi shartnoma",
+        'new-agreement-desc' => "Yangi klient keldimi?",
     ],
 ];

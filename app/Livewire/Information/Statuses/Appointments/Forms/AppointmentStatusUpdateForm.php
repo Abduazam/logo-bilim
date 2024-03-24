@@ -8,7 +8,7 @@ use App\Models\Dashboard\Information\Statuses\Appointments\AppointmentStatus;
 
 class AppointmentStatusUpdateForm extends Form
 {
-    #[Validate('required|string|min:2')]
+    #[Validate('required|string|min:2', as: 'dashboard.fields.title', translate: true)]
     public ?string $title = null;
 
     public function setValues(AppointmentStatus $appointmentStatus): void

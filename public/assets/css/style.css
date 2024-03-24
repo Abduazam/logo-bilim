@@ -90,3 +90,35 @@
 .remove-permission:hover i {
     color: #333!important;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@media only screen and (max-width: 767px) {
+    .fa-3x {
+        font-size: 30px;
+    }
+
+    .fs-mobile-16 {
+        font-size: 16px!important;
+    }
+
+    .fs-mobile-13 {
+        font-size: 13px!important;
+    }
+
+    .w-mobile {
+        width: 75%!important;
+    }
+
+    .w-mobile-100 {
+        width: 100%!important;
+    }
+}
